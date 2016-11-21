@@ -1,3 +1,5 @@
+package main;
+
 
 public class ligneArticle {
 	private int quantite ;

@@ -1,3 +1,5 @@
+package main;
+
 public class videothequeVendable extends videotheque {
 	
 	private float prix ; 
