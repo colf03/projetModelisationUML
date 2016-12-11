@@ -28,7 +28,7 @@ public class Location extends Transaction{
 		super (idNumtel);
 		this.videothequeId=idFilm;
 		
-		//date retour= 14 jour de plus à la date actuelle
+		//date retour= 14 jour de plus a la date actuelle
 		Calendar calendrier = Calendar.getInstance(); 
 		calendrier.add(Calendar.DAY_OF_MONTH, 14);
 		Date d=calendrier.getTime();

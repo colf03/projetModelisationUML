@@ -18,7 +18,7 @@ public class CreationTable {
 		                   " DESCRIPTION     CHAR(500), " + 
 		                   " GENRE       CHAR(50) )"; 
 		      stmt.executeUpdate(sql);
-		      System.out.println("table Film crée");
+		      System.out.println("table Film cree");
 		      
 		      
 		      
@@ -31,7 +31,7 @@ public class CreationTable {
 	                   " EMAIL  CHAR(50) )"; 
 		      
 		      stmt.executeUpdate(sql);
-		      System.out.println("table Client crée");
+		      System.out.println("table Client cree");
 		      
 		      sql="CREATE TABLE ARTICLE  " +
 	                   "(ID INTEGER PRIMARY KEY AUTOINCREMENT  ," +
@@ -39,7 +39,7 @@ public class CreationTable {
 	                   " PRIX  FLOAT NOT NULL)"; 
 		      
 		      stmt.executeUpdate(sql);
-		      System.out.println("table Article crée");
+		      System.out.println("table Article cree");
 		      
 		      
 		      sql="CREATE TABLE VIDEOTHEQUE " +
@@ -51,7 +51,7 @@ public class CreationTable {
 	                   " FOREIGN KEY(FILM_ID) REFERENCES FILM(ID) )"; 
 		      
 		      stmt.executeUpdate(sql);
-		      System.out.println("table Videotheque crée");
+		      System.out.println("table Videotheque crÃ©Ã©e");
 		      
 		      sql="CREATE TABLE VENTE " +
 	                   "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+
@@ -62,7 +62,7 @@ public class CreationTable {
 	                   " FOREIGN KEY(CLIENT_NUMTEL) REFERENCES CLIENT(NUMTEL) )"; 
 		      
 		      stmt.executeUpdate(sql);
-		      System.out.println("table Vente crée");
+		      System.out.println("table Vente cree");
 		      
 
 		      sql="CREATE TABLE LOCATION " +
@@ -75,7 +75,7 @@ public class CreationTable {
 	                   " FOREIGN KEY(CLIENT_NUMTEL) REFERENCES CLIENT(NUMTEL) )"; 
 		      
 		      stmt.executeUpdate(sql);
-		      System.out.println("table Location crée");
+		      System.out.println("table Location cree");
 		      
 		      
 		      
