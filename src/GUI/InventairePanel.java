@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -91,13 +93,20 @@ public class InventairePanel extends javax.swing.JPanel {
         jlblDuree.setText("Durée de location : ");
 
         jcbVendable.setText("Vendable");
+        jcbVendable.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbVendableItemStateChanged(evt);
+            }
+        });
 
+        jlblPrix.setForeground(java.awt.SystemColor.textInactiveText);
         jlblPrix.setText("Prix : ");
 
         jbtnAnnuler.setText("Annuler");
 
         jbtnSoumettre.setText("Soumettre");
 
+        jftfPrix.setEditable(false);
         jftfPrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
 
         jtaDescription.setColumns(20);
@@ -258,6 +267,19 @@ public class InventairePanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jcbVendableItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbVendableItemStateChanged
+        if(evt.getStateChange() == 1)
+        {
+            jftfPrix.setEditable(true);
+            jlblPrix.setForeground(Color.black);
+        }
+        else if(evt.getStateChange() == 2){
+            jftfPrix.setEditable(false);
+            jlblPrix.setForeground(SystemColor.textInactiveText);
+        }
+        
+    }//GEN-LAST:event_jcbVendableItemStateChanged
 
     private void jcbRechercheUpdate(DocumentEvent evt) {                                     
         jcbRecherche.showPopup();

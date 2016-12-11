@@ -40,8 +40,9 @@ public class AchatPanel extends javax.swing.JPanel {
         jcbTitre = new javax.swing.JComboBox<>();
         jbtnConfirmer = new javax.swing.JButton();
         jbtnAnnuler = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jftfTotal = new javax.swing.JFormattedTextField();
+        jftfTotal.setValue(1234.56)
         infoClientPanel = new javax.swing.JPanel();
         jlblClient = new javax.swing.JLabel();
         jlblNoTel = new javax.swing.JLabel();
@@ -97,9 +98,13 @@ public class AchatPanel extends javax.swing.JPanel {
 
         jbtnAnnuler.setText("Annuler");
 
-        jLabel1.setText("1,234.56 $");
-
         jLabel2.setText("Total : ");
+
+        jftfTotal.setEditable(false);
+        jftfTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jftfTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jftfTotal.setMinimumSize(new java.awt.Dimension(100, 20));
+        jftfTotal.setPreferredSize(new java.awt.Dimension(100, 20));
 
         javax.swing.GroupLayout infoAchatPanelLayout = new javax.swing.GroupLayout(infoAchatPanel);
         infoAchatPanel.setLayout(infoAchatPanelLayout);
@@ -126,7 +131,7 @@ public class AchatPanel extends javax.swing.JPanel {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoAchatPanelLayout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)))))
+                                .addComponent(jftfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         infoAchatPanelLayout.setVerticalGroup(
@@ -141,11 +146,11 @@ public class AchatPanel extends javax.swing.JPanel {
                         .addComponent(jbtnAjouter))
                     .addComponent(jlblTitre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpAchatInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jscpAchatInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(jftfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnConfirmer)
@@ -253,7 +258,6 @@ public class AchatPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel infoAchatPanel;
     private javax.swing.JPanel infoClientPanel;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbtnAjouter;
     private javax.swing.JButton jbtnAnnuler;
@@ -261,6 +265,7 @@ public class AchatPanel extends javax.swing.JPanel {
     private javax.swing.JButton jbtnSoumettre;
     private javax.swing.JComboBox<String> jcbTitre;
     private javax.swing.JFormattedTextField jftfNoTel;
+    private javax.swing.JFormattedTextField jftfTotal;
     private javax.swing.JLabel jlblAchat;
     private javax.swing.JLabel jlblClient;
     private javax.swing.JLabel jlblCodeSecret;
