@@ -27,19 +27,316 @@ public class ComptePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        infoClientPanel = new javax.swing.JPanel();
+        jlblClient = new javax.swing.JLabel();
+        jlblNoTel = new javax.swing.JLabel();
+        jftfNoTel = new javax.swing.JFormattedTextField();
+        jlblCodeSecret = new javax.swing.JLabel();
+        jpsfCodeSecret = new javax.swing.JPasswordField();
+        jbtnSoumettre = new javax.swing.JButton();
+        jscpClientInfo = new javax.swing.JScrollPane();
+        jtblClientInfo = new javax.swing.JTable();
+        ajouterModifierPanel = new javax.swing.JPanel();
+        jlblNom = new javax.swing.JLabel();
+        jtfTitre = new javax.swing.JTextField();
+        jbtnAnnuler = new javax.swing.JButton();
+        jbtnSoumettre1 = new javax.swing.JButton();
+        jlblAjouterModifier = new javax.swing.JLabel();
+        jtfTitre1 = new javax.swing.JTextField();
+        jlblPrenom = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jlblAddresse = new javax.swing.JLabel();
+        jlblNoRue = new javax.swing.JLabel();
+        jtfNoRue = new javax.swing.JTextField();
+        jlblNomRue = new javax.swing.JLabel();
+        jtfNomRue = new javax.swing.JTextField();
+        jlblVille = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jlblProvince = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jlblCodePostal = new javax.swing.JLabel();
+        jtfCodePostal = new javax.swing.JTextField();
+        jlblNoTel1 = new javax.swing.JLabel();
+        jftfNoTel1 = new javax.swing.JFormattedTextField();
+        jlblCodeSecret1 = new javax.swing.JLabel();
+        jpsfCodeSecret1 = new javax.swing.JPasswordField();
+
+        infoClientPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        infoClientPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblClient.setText("Informations du Client");
+
+        jlblNoTel.setText("Numéro de téléphone : ");
+
+        try {
+            jftfNoTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jlblCodeSecret.setText("Code Secret : ");
+
+        jbtnSoumettre.setText("Soumettre");
+
+        jtblClientInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nom", "Prénom", "Addresse", "Email"
+            }
+        ));
+        jscpClientInfo.setViewportView(jtblClientInfo);
+
+        javax.swing.GroupLayout infoClientPanelLayout = new javax.swing.GroupLayout(infoClientPanel);
+        infoClientPanel.setLayout(infoClientPanelLayout);
+        infoClientPanelLayout.setHorizontalGroup(
+            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoClientPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 448, Short.MAX_VALUE)
+                    .addComponent(jlblClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(infoClientPanelLayout.createSequentialGroup()
+                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblNoTel)
+                            .addComponent(jlblCodeSecret))
+                        .addGap(18, 18, 18)
+                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpsfCodeSecret)
+                            .addComponent(jftfNoTel)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoClientPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbtnSoumettre)))
+                .addContainerGap())
+        );
+        infoClientPanelLayout.setVerticalGroup(
+            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoClientPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblClient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlblNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnSoumettre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpClientInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        ajouterModifierPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        ajouterModifierPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jlblNom.setText("Nom : ");
+
+        jbtnAnnuler.setText("Annuler");
+
+        jbtnSoumettre1.setText("Soumettre");
+
+        jlblAjouterModifier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblAjouterModifier.setText("Ajouter / Modifier");
+
+        jlblPrenom.setText("Prénom : ");
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+
+        jlblAddresse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblAddresse.setText("Addresse");
+
+        jlblNoRue.setText("Numéro de rue : ");
+
+        jlblNomRue.setText("Nom de rue : ");
+
+        jlblVille.setText("Ville : ");
+
+        jlblProvince.setText("Province : ");
+
+        jlblCodePostal.setText("Code Postal : ");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblAddresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblNoRue)
+                            .addComponent(jlblNomRue)
+                            .addComponent(jlblVille)
+                            .addComponent(jlblProvince)
+                            .addComponent(jlblCodePostal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfCodePostal)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField1)
+                            .addComponent(jtfNomRue)
+                            .addComponent(jtfNoRue))))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblAddresse)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblNoRue)
+                    .addComponent(jtfNoRue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblNomRue)
+                    .addComponent(jtfNomRue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblVille)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblProvince)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCodePostal)
+                    .addComponent(jtfCodePostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jlblNoTel1.setText("Numéro de téléphone : ");
+
+        try {
+            jftfNoTel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jlblCodeSecret1.setText("Code Secret : ");
+
+        javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
+        ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
+        ajouterModifierPanelLayout.setHorizontalGroup(
+            ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jlblAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
+                        .addComponent(jlblCodeSecret1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpsfCodeSecret1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
+                        .addComponent(jbtnAnnuler)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnSoumettre1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
+                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblNoTel1)
+                            .addComponent(jlblNom)
+                            .addComponent(jlblPrenom))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfTitre)
+                            .addComponent(jtfTitre1)
+                            .addComponent(jftfNoTel1, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap())
+        );
+        ajouterModifierPanelLayout.setVerticalGroup(
+            ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jlblAjouterModifier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTitre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblNoTel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfNoTel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCodeSecret1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpsfCodeSecret1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(125, 125, 125)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnSoumettre1)
+                    .addComponent(jbtnAnnuler))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ajouterModifierPanel;
+    private javax.swing.JPanel infoClientPanel;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton jbtnAnnuler;
+    private javax.swing.JButton jbtnSoumettre;
+    private javax.swing.JButton jbtnSoumettre1;
+    private javax.swing.JFormattedTextField jftfNoTel;
+    private javax.swing.JFormattedTextField jftfNoTel1;
+    private javax.swing.JLabel jlblAddresse;
+    private javax.swing.JLabel jlblAjouterModifier;
+    private javax.swing.JLabel jlblClient;
+    private javax.swing.JLabel jlblCodePostal;
+    private javax.swing.JLabel jlblCodeSecret;
+    private javax.swing.JLabel jlblCodeSecret1;
+    private javax.swing.JLabel jlblNoRue;
+    private javax.swing.JLabel jlblNoTel;
+    private javax.swing.JLabel jlblNoTel1;
+    private javax.swing.JLabel jlblNom;
+    private javax.swing.JLabel jlblNomRue;
+    private javax.swing.JLabel jlblPrenom;
+    private javax.swing.JLabel jlblProvince;
+    private javax.swing.JLabel jlblVille;
+    private javax.swing.JPasswordField jpsfCodeSecret;
+    private javax.swing.JPasswordField jpsfCodeSecret1;
+    private javax.swing.JScrollPane jscpClientInfo;
+    private javax.swing.JTable jtblClientInfo;
+    private javax.swing.JTextField jtfCodePostal;
+    private javax.swing.JTextField jtfNoRue;
+    private javax.swing.JTextField jtfNomRue;
+    private javax.swing.JTextField jtfTitre;
+    private javax.swing.JTextField jtfTitre1;
     // End of variables declaration//GEN-END:variables
 }

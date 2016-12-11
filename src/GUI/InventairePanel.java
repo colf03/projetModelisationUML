@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author Bobby
@@ -27,19 +31,264 @@ public class InventairePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ajouterModifierPanel = new javax.swing.JPanel();
+        jlblAjouterModifier = new javax.swing.JLabel();
+        jlblTitre = new javax.swing.JLabel();
+        jlblDescription = new javax.swing.JLabel();
+        jlblGenre = new javax.swing.JLabel();
+        jcbGenre = new javax.swing.JComboBox<>();
+        jlblDuree = new javax.swing.JLabel();
+        jcbVendable = new javax.swing.JCheckBox();
+        jlblPrix = new javax.swing.JLabel();
+        jbtnAnnuler = new javax.swing.JButton();
+        jbtnSoumettre = new javax.swing.JButton();
+        jtfTitre = new javax.swing.JTextField();
+        jtfDuree = new javax.swing.JTextField();
+        jftfPrix = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtaDescription = new javax.swing.JTextArea();
+        inventairePanel = new javax.swing.JPanel();
+        jlblInventaire = new javax.swing.JLabel();
+        jlblRecherche = new javax.swing.JLabel();
+        jcbRecherche = new javax.swing.JComboBox<>();
+        jscpInventaireInfo = new javax.swing.JScrollPane();
+        jtblInventaireInfo1 = new javax.swing.JTable();
+
+        ajouterModifierPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        ajouterModifierPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        ajouterModifierPanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jlblAjouterModifier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblAjouterModifier.setText("Ajouter / Modifier");
+
+        jlblTitre.setText("Titre : ");
+
+        jlblDescription.setText("Description : ");
+
+        jlblGenre.setText("Genre : ");
+
+        jcbGenre.setEditable(true);
+        jcbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbGenre.setSelectedItem("");
+        JTextField editorComponent2 = (JTextField)jcbGenre.getEditor().getEditorComponent();
+        editorComponent2.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                jcbGenreUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                jcbGenreUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                jcbGenreUpdate(e);
+            }
+        });
+
+        jlblDuree.setText("Durée de location : ");
+
+        jcbVendable.setText("Vendable");
+
+        jlblPrix.setText("Prix : ");
+
+        jbtnAnnuler.setText("Annuler");
+
+        jbtnSoumettre.setText("Soumettre");
+
+        jftfPrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+
+        jtaDescription.setColumns(20);
+        jtaDescription.setRows(5);
+        jScrollPane1.setViewportView(jtaDescription);
+
+        javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
+        ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
+        ajouterModifierPanelLayout.setHorizontalGroup(
+            ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
+                        .addGap(0, 216, Short.MAX_VALUE)
+                        .addComponent(jbtnAnnuler)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnSoumettre))
+                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblGenre)
+                            .addComponent(jlblTitre)
+                            .addComponent(jlblDescription)
+                            .addComponent(jlblPrix)
+                            .addComponent(jcbVendable)
+                            .addComponent(jlblDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
+                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbGenre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jtfTitre)
+                            .addComponent(jtfDuree)
+                            .addComponent(jftfPrix)
+                            .addComponent(jScrollPane1))))
+                .addContainerGap())
+        );
+        ajouterModifierPanelLayout.setVerticalGroup(
+            ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblAjouterModifier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfTitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbVendable)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(99, 99, 99)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnSoumettre)
+                    .addComponent(jbtnAnnuler))
+                .addContainerGap())
+        );
+
+        inventairePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        inventairePanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        inventairePanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jlblInventaire.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblInventaire.setText("Inventaire");
+
+        jlblRecherche.setText("Recherche : ");
+
+        jcbRecherche.setEditable(true);
+        jcbRecherche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbRecherche.setSelectedItem("");
+        JTextField editorComponent = (JTextField)jcbRecherche.getEditor().getEditorComponent();
+        editorComponent.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                jcbRechercheUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                jcbRechercheUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                jcbRechercheUpdate(e);
+            }
+        });
+
+        jtblInventaireInfo1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Titre", "Description", "Genre", "Durée des locations", "Quantitée en stock", "Vendable"
+            }
+        ));
+        jscpInventaireInfo.setViewportView(jtblInventaireInfo1);
+
+        javax.swing.GroupLayout inventairePanelLayout = new javax.swing.GroupLayout(inventairePanel);
+        inventairePanel.setLayout(inventairePanelLayout);
+        inventairePanelLayout.setHorizontalGroup(
+            inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventairePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addComponent(jlblInventaire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(inventairePanelLayout.createSequentialGroup()
+                        .addComponent(jlblRecherche)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbRecherche, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        inventairePanelLayout.setVerticalGroup(
+            inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(inventairePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblInventaire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(inventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(inventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jcbRechercheUpdate(DocumentEvent evt) {                                     
+        jcbRecherche.showPopup();
+    }
+    
+    private void jcbGenreUpdate(DocumentEvent evt) {                                     
+        jcbGenre.showPopup();
+    } 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ajouterModifierPanel;
+    private javax.swing.JPanel inventairePanel;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnAnnuler;
+    private javax.swing.JButton jbtnSoumettre;
+    private javax.swing.JComboBox<String> jcbGenre;
+    private javax.swing.JComboBox<String> jcbRecherche;
+    private javax.swing.JCheckBox jcbVendable;
+    private javax.swing.JFormattedTextField jftfPrix;
+    private javax.swing.JLabel jlblAjouterModifier;
+    private javax.swing.JLabel jlblDescription;
+    private javax.swing.JLabel jlblDuree;
+    private javax.swing.JLabel jlblGenre;
+    private javax.swing.JLabel jlblInventaire;
+    private javax.swing.JLabel jlblPrix;
+    private javax.swing.JLabel jlblRecherche;
+    private javax.swing.JLabel jlblTitre;
+    private javax.swing.JScrollPane jscpInventaireInfo;
+    private javax.swing.JTextArea jtaDescription;
+    private javax.swing.JTable jtblInventaireInfo1;
+    private javax.swing.JTextField jtfDuree;
+    private javax.swing.JTextField jtfTitre;
     // End of variables declaration//GEN-END:variables
 }

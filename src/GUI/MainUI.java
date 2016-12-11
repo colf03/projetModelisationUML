@@ -33,9 +33,8 @@ public class MainUI extends javax.swing.JFrame {
         mainPanel = new javax.swing.JPanel();
         locationPanel = new GUI.LocationPanel();
         achatPanel = new GUI.AchatPanel();
-        inventairePanel = new GUI.InventairePanel();
         comptePanel = new GUI.ComptePanel();
-        adminPanel = new GUI.AdminPanel();
+        inventairePanel = new GUI.InventairePanel();
         tabsPanel = new javax.swing.JPanel();
         jtbLocationTab = new javax.swing.JToggleButton();
         jtbAchatTab = new javax.swing.JToggleButton();
@@ -52,58 +51,9 @@ public class MainUI extends javax.swing.JFrame {
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel.setLayout(new java.awt.CardLayout());
         mainPanel.add(locationPanel, "location");
-
-        javax.swing.GroupLayout achatPanelLayout = new javax.swing.GroupLayout(achatPanel);
-        achatPanel.setLayout(achatPanelLayout);
-        achatPanelLayout.setHorizontalGroup(
-            achatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1146, Short.MAX_VALUE)
-        );
-        achatPanelLayout.setVerticalGroup(
-            achatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
-        );
-
         mainPanel.add(achatPanel, "achat");
-
-        javax.swing.GroupLayout inventairePanelLayout = new javax.swing.GroupLayout(inventairePanel);
-        inventairePanel.setLayout(inventairePanelLayout);
-        inventairePanelLayout.setHorizontalGroup(
-            inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1146, Short.MAX_VALUE)
-        );
-        inventairePanelLayout.setVerticalGroup(
-            inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(inventairePanel, "inventaire");
-
-        javax.swing.GroupLayout comptePanelLayout = new javax.swing.GroupLayout(comptePanel);
-        comptePanel.setLayout(comptePanelLayout);
-        comptePanelLayout.setHorizontalGroup(
-            comptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1146, Short.MAX_VALUE)
-        );
-        comptePanelLayout.setVerticalGroup(
-            comptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
-        );
-
         mainPanel.add(comptePanel, "compte");
-
-        javax.swing.GroupLayout adminPanelLayout = new javax.swing.GroupLayout(adminPanel);
-        adminPanel.setLayout(adminPanelLayout);
-        adminPanelLayout.setHorizontalGroup(
-            adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1146, Short.MAX_VALUE)
-        );
-        adminPanelLayout.setVerticalGroup(
-            adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 697, Short.MAX_VALUE)
-        );
-
-        mainPanel.add(adminPanel, "admin");
+        mainPanel.add(inventairePanel, "inventaire");
 
         Tabs.add(jtbLocationTab);
         jtbLocationTab.setSelected(true);
@@ -276,7 +226,6 @@ public class MainUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup Tabs;
     private GUI.AchatPanel achatPanel;
-    private GUI.AdminPanel adminPanel;
     private GUI.ComptePanel comptePanel;
     private GUI.InventairePanel inventairePanel;
     private javax.swing.JMenu jMenu1;

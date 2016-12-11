@@ -31,15 +31,16 @@ public class LocationPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        locationInfoPanel = new javax.swing.JPanel();
+        infoLocationPanel = new javax.swing.JPanel();
         jlblLocation = new javax.swing.JLabel();
         jlblTitre = new javax.swing.JLabel();
         jbtnAjouter = new javax.swing.JButton();
-        jscpLocationInfo = new javax.swing.JScrollPane();
-        jtblLocationInfo = new javax.swing.JTable();
+        jscpAchatInfo = new javax.swing.JScrollPane();
+        jtblAchatInfo = new javax.swing.JTable();
         jcbTitre = new javax.swing.JComboBox<>();
         jbtnConfirmer = new javax.swing.JButton();
-        customerInfoPanel = new javax.swing.JPanel();
+        jbtnAnnuler = new javax.swing.JButton();
+        infoClientPanel = new javax.swing.JPanel();
         jlblClient = new javax.swing.JLabel();
         jlblNoTel = new javax.swing.JLabel();
         jftfNoTel = new javax.swing.JFormattedTextField();
@@ -49,8 +50,8 @@ public class LocationPanel extends javax.swing.JPanel {
         jscpClientInfo = new javax.swing.JScrollPane();
         jtblClientInfo = new javax.swing.JTable();
 
-        locationInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        locationInfoPanel.setMinimumSize(new java.awt.Dimension(300, 300));
+        infoLocationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        infoLocationPanel.setMinimumSize(new java.awt.Dimension(400, 400));
 
         jlblLocation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblLocation.setText("Informations de la Location");
@@ -59,7 +60,7 @@ public class LocationPanel extends javax.swing.JPanel {
 
         jbtnAjouter.setText("Ajouter");
 
-        jtblLocationInfo.setModel(new javax.swing.table.DefaultTableModel(
+        jtblAchatInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +68,7 @@ public class LocationPanel extends javax.swing.JPanel {
                 "ID", "Titre", "Description", "Genre", "Durée de la location"
             }
         ));
-        jscpLocationInfo.setViewportView(jtblLocationInfo);
+        jscpAchatInfo.setViewportView(jtblAchatInfo);
 
         jcbTitre.setEditable(true);
         jcbTitre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -76,62 +77,68 @@ public class LocationPanel extends javax.swing.JPanel {
         editorComponent.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                jcbTitreKeyReleased(e);
+                jcbTitreUpdate(e);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                jcbTitreKeyReleased(e);
+                jcbTitreUpdate(e);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                jcbTitreKeyReleased(e);
+                jcbTitreUpdate(e);
             }
         });
 
         jbtnConfirmer.setText("Comfirmer la location");
 
-        javax.swing.GroupLayout locationInfoPanelLayout = new javax.swing.GroupLayout(locationInfoPanel);
-        locationInfoPanel.setLayout(locationInfoPanelLayout);
-        locationInfoPanelLayout.setHorizontalGroup(
-            locationInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(locationInfoPanelLayout.createSequentialGroup()
+        jbtnAnnuler.setText("Annuler");
+
+        javax.swing.GroupLayout infoLocationPanelLayout = new javax.swing.GroupLayout(infoLocationPanel);
+        infoLocationPanel.setLayout(infoLocationPanelLayout);
+        infoLocationPanelLayout.setHorizontalGroup(
+            infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(locationInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpLocationInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addGroup(locationInfoPanelLayout.createSequentialGroup()
+                .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscpAchatInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addGroup(infoLocationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbtnAnnuler)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnConfirmer))
                     .addComponent(jlblLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(locationInfoPanelLayout.createSequentialGroup()
+                    .addGroup(infoLocationPanelLayout.createSequentialGroup()
                         .addComponent(jlblTitre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbTitre, 0, 169, Short.MAX_VALUE)
+                        .addComponent(jcbTitre, 0, 268, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnAjouter)))
                 .addContainerGap())
         );
-        locationInfoPanelLayout.setVerticalGroup(
-            locationInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(locationInfoPanelLayout.createSequentialGroup()
+        infoLocationPanelLayout.setVerticalGroup(
+            infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlblLocation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(locationInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(locationInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jcbTitre)
                         .addComponent(jbtnAjouter))
                     .addComponent(jlblTitre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpLocationInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jscpAchatInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnConfirmer)
+                .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnConfirmer)
+                    .addComponent(jbtnAnnuler))
                 .addContainerGap())
         );
 
-        customerInfoPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        customerInfoPanel.setMinimumSize(new java.awt.Dimension(300, 300));
+        infoClientPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        infoClientPanel.setMinimumSize(new java.awt.Dimension(400, 400));
 
         jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblClient.setText("Informations du Client");
@@ -158,45 +165,45 @@ public class LocationPanel extends javax.swing.JPanel {
         ));
         jscpClientInfo.setViewportView(jtblClientInfo);
 
-        javax.swing.GroupLayout customerInfoPanelLayout = new javax.swing.GroupLayout(customerInfoPanel);
-        customerInfoPanel.setLayout(customerInfoPanelLayout);
-        customerInfoPanelLayout.setHorizontalGroup(
-            customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerInfoPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout infoClientPanelLayout = new javax.swing.GroupLayout(infoClientPanel);
+        infoClientPanel.setLayout(infoClientPanelLayout);
+        infoClientPanelLayout.setHorizontalGroup(
+            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoClientPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpClientInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                     .addComponent(jlblClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(customerInfoPanelLayout.createSequentialGroup()
-                        .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(infoClientPanelLayout.createSequentialGroup()
+                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblNoTel)
                             .addComponent(jlblCodeSecret))
                         .addGap(18, 18, 18)
-                        .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jpsfCodeSecret)
-                            .addComponent(jftfNoTel, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customerInfoPanelLayout.createSequentialGroup()
+                            .addComponent(jftfNoTel)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoClientPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnSoumettre)))
                 .addContainerGap())
         );
-        customerInfoPanelLayout.setVerticalGroup(
-            customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerInfoPanelLayout.createSequentialGroup()
+        infoClientPanelLayout.setVerticalGroup(
+            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoClientPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jlblClient)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jlblNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jftfNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(customerInfoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtnSoumettre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -206,9 +213,9 @@ public class LocationPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(customerInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(locationInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,19 +223,21 @@ public class LocationPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(locationInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(customerInfoPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbTitreKeyReleased(DocumentEvent evt) {                                     
+    private void jcbTitreUpdate(DocumentEvent evt) {                                     
         jcbTitre.showPopup();
-    } 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel customerInfoPanel;
+    private javax.swing.JPanel infoClientPanel;
+    private javax.swing.JPanel infoLocationPanel;
     private javax.swing.JButton jbtnAjouter;
+    private javax.swing.JButton jbtnAnnuler;
     private javax.swing.JButton jbtnConfirmer;
     private javax.swing.JButton jbtnSoumettre;
     private javax.swing.JComboBox<String> jcbTitre;
@@ -239,10 +248,9 @@ public class LocationPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jlblNoTel;
     private javax.swing.JLabel jlblTitre;
     private javax.swing.JPasswordField jpsfCodeSecret;
+    private javax.swing.JScrollPane jscpAchatInfo;
     private javax.swing.JScrollPane jscpClientInfo;
-    private javax.swing.JScrollPane jscpLocationInfo;
+    private javax.swing.JTable jtblAchatInfo;
     private javax.swing.JTable jtblClientInfo;
-    private javax.swing.JTable jtblLocationInfo;
-    private javax.swing.JPanel locationInfoPanel;
     // End of variables declaration//GEN-END:variables
 }

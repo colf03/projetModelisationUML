@@ -5,6 +5,10 @@
  */
 package GUI;
 
+import javax.swing.JTextField;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
+
 /**
  *
  * @author Bobby
@@ -27,19 +31,245 @@ public class AchatPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        infoAchatPanel = new javax.swing.JPanel();
+        jlblAchat = new javax.swing.JLabel();
+        jlblTitre = new javax.swing.JLabel();
+        jbtnAjouter = new javax.swing.JButton();
+        jscpAchatInfo = new javax.swing.JScrollPane();
+        jtblAchatInfo = new javax.swing.JTable();
+        jcbTitre = new javax.swing.JComboBox<>();
+        jbtnConfirmer = new javax.swing.JButton();
+        jbtnAnnuler = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        infoClientPanel = new javax.swing.JPanel();
+        jlblClient = new javax.swing.JLabel();
+        jlblNoTel = new javax.swing.JLabel();
+        jftfNoTel = new javax.swing.JFormattedTextField();
+        jlblCodeSecret = new javax.swing.JLabel();
+        jpsfCodeSecret = new javax.swing.JPasswordField();
+        jbtnSoumettre = new javax.swing.JButton();
+        jscpClientInfo = new javax.swing.JScrollPane();
+        jtblClientInfo = new javax.swing.JTable();
+
+        infoAchatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        infoAchatPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jlblAchat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblAchat.setText("Informations de la Vente");
+
+        jlblTitre.setText("Titre : ");
+
+        jbtnAjouter.setText("Ajouter");
+
+        jtblAchatInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Titre", "Description", "Prix"
+            }
+        ));
+        jscpAchatInfo.setViewportView(jtblAchatInfo);
+
+        jcbTitre.setEditable(true);
+        jcbTitre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbTitre.setSelectedItem("");
+        JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();
+        editorComponent.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                jcbTitreUpdate(e);
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                jcbTitreUpdate(e);
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                jcbTitreUpdate(e);
+            }
+        });
+
+        jbtnConfirmer.setText("Comfirmer l'achat");
+
+        jbtnAnnuler.setText("Annuler");
+
+        jLabel1.setText("1,234.56 $");
+
+        jLabel2.setText("Total : ");
+
+        javax.swing.GroupLayout infoAchatPanelLayout = new javax.swing.GroupLayout(infoAchatPanel);
+        infoAchatPanel.setLayout(infoAchatPanelLayout);
+        infoAchatPanelLayout.setHorizontalGroup(
+            infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoAchatPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscpAchatInfo)
+                    .addComponent(jlblAchat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(infoAchatPanelLayout.createSequentialGroup()
+                        .addComponent(jlblTitre)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jcbTitre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnAjouter))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoAchatPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoAchatPanelLayout.createSequentialGroup()
+                                .addComponent(jbtnAnnuler)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnConfirmer))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoAchatPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)))))
+                .addContainerGap())
+        );
+        infoAchatPanelLayout.setVerticalGroup(
+            infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoAchatPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblAchat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jcbTitre)
+                        .addComponent(jbtnAjouter))
+                    .addComponent(jlblTitre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpAchatInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnConfirmer)
+                    .addComponent(jbtnAnnuler))
+                .addContainerGap())
+        );
+
+        infoClientPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        infoClientPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        infoClientPanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblClient.setText("Informations du Client");
+
+        jlblNoTel.setText("Numéro de téléphone : ");
+
+        try {
+            jftfNoTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jlblCodeSecret.setText("Code Secret : ");
+
+        jbtnSoumettre.setText("Soumettre");
+
+        jtblClientInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nom", "Prénom", "Addresse", "Email"
+            }
+        ));
+        jscpClientInfo.setViewportView(jtblClientInfo);
+
+        javax.swing.GroupLayout infoClientPanelLayout = new javax.swing.GroupLayout(infoClientPanel);
+        infoClientPanel.setLayout(infoClientPanelLayout);
+        infoClientPanelLayout.setHorizontalGroup(
+            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoClientPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addComponent(jlblClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(infoClientPanelLayout.createSequentialGroup()
+                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblNoTel)
+                            .addComponent(jlblCodeSecret))
+                        .addGap(18, 18, 18)
+                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpsfCodeSecret)
+                            .addComponent(jftfNoTel)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoClientPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbtnSoumettre)))
+                .addContainerGap())
+        );
+        infoClientPanelLayout.setVerticalGroup(
+            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(infoClientPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblClient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlblNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnSoumettre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoAchatPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(infoAchatPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void jcbTitreUpdate(DocumentEvent evt) {                                     
+        jcbTitre.showPopup();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel infoAchatPanel;
+    private javax.swing.JPanel infoClientPanel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton jbtnAjouter;
+    private javax.swing.JButton jbtnAnnuler;
+    private javax.swing.JButton jbtnConfirmer;
+    private javax.swing.JButton jbtnSoumettre;
+    private javax.swing.JComboBox<String> jcbTitre;
+    private javax.swing.JFormattedTextField jftfNoTel;
+    private javax.swing.JLabel jlblAchat;
+    private javax.swing.JLabel jlblClient;
+    private javax.swing.JLabel jlblCodeSecret;
+    private javax.swing.JLabel jlblNoTel;
+    private javax.swing.JLabel jlblTitre;
+    private javax.swing.JPasswordField jpsfCodeSecret;
+    private javax.swing.JScrollPane jscpAchatInfo;
+    private javax.swing.JScrollPane jscpClientInfo;
+    private javax.swing.JTable jtblAchatInfo;
+    private javax.swing.JTable jtblClientInfo;
     // End of variables declaration//GEN-END:variables
 }
