@@ -54,7 +54,7 @@ public class Vente extends Transaction {
 	
 	//voir tableau pour choisir mode de paiement
 	public void terminerVente(int modePmt) throws ClassNotFoundException, SQLException{
-		 String[] tMode = {  "carte débit", "carte crébit", "argent comptant", "chèque"};
+		 String[] tMode = {  "carte debit", "carte crebit", "argent comptant", "cheque"};
 		 this.modePaiement=tMode[modePmt];
 		 float totaux=0;
 		 for (LigneArticle l : listeA){

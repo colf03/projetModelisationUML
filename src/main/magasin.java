@@ -1,13 +1,13 @@
 package main;
 
 
-public class magasin {
+public class Magasin {
 
 	private String nom ;
 	
 	private String adresse ;
 
-public magasin ()  {
+public Magasin ()  {
 	
 	this.nom=null ;
 	this.adresse=null ; 

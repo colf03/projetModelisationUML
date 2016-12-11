@@ -57,11 +57,11 @@ public class MainUI extends javax.swing.JFrame {
         achatPanel.setLayout(achatPanelLayout);
         achatPanelLayout.setHorizontalGroup(
             achatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1144, Short.MAX_VALUE)
+            .addGap(0, 1146, Short.MAX_VALUE)
         );
         achatPanelLayout.setVerticalGroup(
             achatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         mainPanel.add(achatPanel, "achat");
@@ -70,11 +70,11 @@ public class MainUI extends javax.swing.JFrame {
         inventairePanel.setLayout(inventairePanelLayout);
         inventairePanelLayout.setHorizontalGroup(
             inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1144, Short.MAX_VALUE)
+            .addGap(0, 1146, Short.MAX_VALUE)
         );
         inventairePanelLayout.setVerticalGroup(
             inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         mainPanel.add(inventairePanel, "inventaire");
@@ -83,11 +83,11 @@ public class MainUI extends javax.swing.JFrame {
         comptePanel.setLayout(comptePanelLayout);
         comptePanelLayout.setHorizontalGroup(
             comptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1144, Short.MAX_VALUE)
+            .addGap(0, 1146, Short.MAX_VALUE)
         );
         comptePanelLayout.setVerticalGroup(
             comptePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         mainPanel.add(comptePanel, "compte");
@@ -96,11 +96,11 @@ public class MainUI extends javax.swing.JFrame {
         adminPanel.setLayout(adminPanelLayout);
         adminPanelLayout.setHorizontalGroup(
             adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1144, Short.MAX_VALUE)
+            .addGap(0, 1146, Short.MAX_VALUE)
         );
         adminPanelLayout.setVerticalGroup(
             adminPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 695, Short.MAX_VALUE)
+            .addGap(0, 697, Short.MAX_VALUE)
         );
 
         mainPanel.add(adminPanel, "admin");

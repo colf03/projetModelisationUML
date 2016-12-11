@@ -1,10 +1,10 @@
 package main;
 
-public class videothequeVendable extends videotheque {
+public class VideothequeVendable extends Videotheque {
 	
 	private float prix ; 
 	
-	public videothequeVendable ()
+	public VideothequeVendable ()
 	{
 	
 	  super () ;

@@ -1,6 +1,6 @@
 package main;
 
 
-public class videotheque {
+public class Videotheque {
 
 }
