@@ -41,9 +41,10 @@ public class MainUI extends javax.swing.JFrame {
         jtbInventaireTab = new javax.swing.JToggleButton();
         jtbCompteTab = new javax.swing.JToggleButton();
         jtbAdminTab = new javax.swing.JToggleButton();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuBar = new javax.swing.JMenuBar();
+        jmFile = new javax.swing.JMenu();
+        jmiExit = new javax.swing.JMenuItem();
+        jmEdit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 480));
@@ -136,13 +137,22 @@ public class MainUI extends javax.swing.JFrame {
                 .addGap(0, 0, 0))
         );
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jmFile.setText("File");
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jmiExit.setText("Exit");
+        jmiExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiExitActionPerformed(evt);
+            }
+        });
+        jmFile.add(jmiExit);
 
-        setJMenuBar(jMenuBar1);
+        jMenuBar.add(jmFile);
+
+        jmEdit.setText("Edit");
+        jMenuBar.add(jmEdit);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,6 +198,10 @@ public class MainUI extends javax.swing.JFrame {
         card.show(mainPanel, "admin");
     }//GEN-LAST:event_jtbAdminTabActionPerformed
 
+    private void jmiExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiExitActionPerformed
+        dispose();
+    }//GEN-LAST:event_jmiExitActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -228,9 +242,10 @@ public class MainUI extends javax.swing.JFrame {
     private GUI.AchatPanel achatPanel;
     private GUI.ComptePanel comptePanel;
     private GUI.InventairePanel inventairePanel;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenu jmEdit;
+    private javax.swing.JMenu jmFile;
+    private javax.swing.JMenuItem jmiExit;
     private javax.swing.JToggleButton jtbAchatTab;
     private javax.swing.JToggleButton jtbAdminTab;
     private javax.swing.JToggleButton jtbCompteTab;

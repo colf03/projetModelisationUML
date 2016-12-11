@@ -9,12 +9,12 @@ package GUI;
  *
  * @author Bobby
  */
-public class ComptePanel extends javax.swing.JPanel {
+public class InfoClientPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ComptePanel
+     * Creates new form InfoClientPanel
      */
-    public ComptePanel() {
+    public InfoClientPanel() {
         initComponents();
     }
 
@@ -27,14 +27,17 @@ public class ComptePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlblClient = new javax.swing.JLabel();
+        jlblNoTel = new javax.swing.JLabel();
+        jftfNoTel = new javax.swing.JFormattedTextField();
+        jlblCodeSecret = new javax.swing.JLabel();
+        jpsfCodeSecret = new javax.swing.JPasswordField();
+        jbtnSoumettre = new javax.swing.JButton();
         ajouterModifierPanel = new javax.swing.JPanel();
         jlblNom = new javax.swing.JLabel();
-        jtfTitre = new javax.swing.JTextField();
-        jbtnAnnuler = new javax.swing.JButton();
-        jbtnSoumettre1 = new javax.swing.JButton();
-        jlblAjouterModifier = new javax.swing.JLabel();
-        jtfTitre1 = new javax.swing.JTextField();
+        jtfNom = new javax.swing.JTextField();
         jlblPrenom = new javax.swing.JLabel();
+        jtfPrenom = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jlblAddresse = new javax.swing.JLabel();
         jlblNoRue = new javax.swing.JLabel();
@@ -42,30 +45,45 @@ public class ComptePanel extends javax.swing.JPanel {
         jlblNomRue = new javax.swing.JLabel();
         jtfNomRue = new javax.swing.JTextField();
         jlblVille = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jtfVille = new javax.swing.JTextField();
         jlblProvince = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jtfProvince = new javax.swing.JTextField();
         jlblCodePostal = new javax.swing.JLabel();
         jtfCodePostal = new javax.swing.JTextField();
-        jlblNoTel1 = new javax.swing.JLabel();
-        jftfNoTel1 = new javax.swing.JFormattedTextField();
-        jlblCodeSecret1 = new javax.swing.JLabel();
-        jpsfCodeSecret1 = new javax.swing.JPasswordField();
-        infoClientPanel = new GUI.InfoClientPanel();
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblClient.setText("Informations du Client");
+
+        jlblNoTel.setText("Numéro de téléphone : ");
+
+        try {
+            jftfNoTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
+        jlblCodeSecret.setText("Code Secret : ");
+
+        jbtnSoumettre.setText("Soumettre");
+        jbtnSoumettre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSoumettreActionPerformed(evt);
+            }
+        });
 
         ajouterModifierPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        ajouterModifierPanel.setMinimumSize(new java.awt.Dimension(400, 400));
 
         jlblNom.setText("Nom : ");
 
-        jbtnAnnuler.setText("Annuler");
-
-        jbtnSoumettre1.setText("Soumettre");
-
-        jlblAjouterModifier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblAjouterModifier.setText("Ajouter / Modifier");
+        jtfNom.setEditable(false);
 
         jlblPrenom.setText("Prénom : ");
+
+        jtfPrenom.setEditable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -74,13 +92,23 @@ public class ComptePanel extends javax.swing.JPanel {
 
         jlblNoRue.setText("Numéro de rue : ");
 
+        jtfNoRue.setEditable(false);
+
         jlblNomRue.setText("Nom de rue : ");
+
+        jtfNomRue.setEditable(false);
 
         jlblVille.setText("Ville : ");
 
+        jtfVille.setEditable(false);
+
         jlblProvince.setText("Province : ");
 
+        jtfProvince.setEditable(false);
+
         jlblCodePostal.setText("Code Postal : ");
+
+        jtfCodePostal.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -99,11 +127,11 @@ public class ComptePanel extends javax.swing.JPanel {
                             .addComponent(jlblCodePostal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfNoRue)
+                            .addComponent(jtfCodePostal)
+                            .addComponent(jtfProvince)
+                            .addComponent(jtfVille)
                             .addComponent(jtfNomRue)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField2)
-                            .addComponent(jtfCodePostal))))
+                            .addComponent(jtfNoRue))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,27 +150,17 @@ public class ComptePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblVille)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfVille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblProvince)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfProvince, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblCodePostal)
                     .addComponent(jtfCodePostal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jlblNoTel1.setText("Numéro de téléphone : ");
-
-        try {
-            jftfNoTel1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jlblCodeSecret1.setText("Code Secret : ");
 
         javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
         ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
@@ -152,55 +170,29 @@ public class ComptePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jlblAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
-                        .addComponent(jlblCodeSecret1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpsfCodeSecret1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnAnnuler)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnSoumettre1))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblNoTel1)
                             .addComponent(jlblNom)
                             .addComponent(jlblPrenom))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfTitre)
-                            .addComponent(jtfTitre1)
-                            .addComponent(jftfNoTel1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))))
+                            .addComponent(jtfPrenom)
+                            .addComponent(jtfNom))))
                 .addContainerGap())
         );
         ajouterModifierPanelLayout.setVerticalGroup(
             ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(jlblAjouterModifier)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTitre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblNoTel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftfNoTel1))
+                    .addComponent(jtfPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblCodeSecret1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpsfCodeSecret1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(125, 125, 125)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnSoumettre1)
-                    .addComponent(jbtnAnnuler))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -210,48 +202,81 @@ public class ComptePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblNoTel)
+                            .addComponent(jlblCodeSecret))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jftfNoTel, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                            .addComponent(jpsfCodeSecret)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbtnSoumettre))
+                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jlblClient)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jlblNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnSoumettre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    public void addActionListenerToSubmit(java.awt.event.ActionListener listener){
+        jbtnSoumettre.addActionListener(listener);
+    }
+    
+    private void jbtnSoumettreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSoumettreActionPerformed
+        jtfNom.setText("Barker");
+        jtfPrenom.setText("Bob");
+        jtfNoRue.setText("5705");
+        jtfNomRue.setText("Falls Ave");
+        jtfVille.setText("Niagara Falls");
+        jtfProvince.setText("Ontario");
+        jtfCodePostal.setText("L2E 6T3");
+    }//GEN-LAST:event_jbtnSoumettreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajouterModifierPanel;
-    private GUI.InfoClientPanel infoClientPanel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton jbtnAnnuler;
-    private javax.swing.JButton jbtnSoumettre1;
-    private javax.swing.JFormattedTextField jftfNoTel1;
+    private javax.swing.JButton jbtnSoumettre;
+    private javax.swing.JFormattedTextField jftfNoTel;
     private javax.swing.JLabel jlblAddresse;
-    private javax.swing.JLabel jlblAjouterModifier;
+    private javax.swing.JLabel jlblClient;
     private javax.swing.JLabel jlblCodePostal;
-    private javax.swing.JLabel jlblCodeSecret1;
+    private javax.swing.JLabel jlblCodeSecret;
     private javax.swing.JLabel jlblNoRue;
-    private javax.swing.JLabel jlblNoTel1;
+    private javax.swing.JLabel jlblNoTel;
     private javax.swing.JLabel jlblNom;
     private javax.swing.JLabel jlblNomRue;
     private javax.swing.JLabel jlblPrenom;
     private javax.swing.JLabel jlblProvince;
     private javax.swing.JLabel jlblVille;
-    private javax.swing.JPasswordField jpsfCodeSecret1;
+    private javax.swing.JPasswordField jpsfCodeSecret;
     private javax.swing.JTextField jtfCodePostal;
     private javax.swing.JTextField jtfNoRue;
+    private javax.swing.JTextField jtfNom;
     private javax.swing.JTextField jtfNomRue;
-    private javax.swing.JTextField jtfTitre;
-    private javax.swing.JTextField jtfTitre1;
+    private javax.swing.JTextField jtfPrenom;
+    private javax.swing.JTextField jtfProvince;
+    private javax.swing.JTextField jtfVille;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="inventairePanel" pref="422" max="32767" attributes="0"/>
+              <Component id="inventairePanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ajouterModifierPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -62,10 +62,10 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jlblAjouterModifier" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="219" max="32767" attributes="0"/>
                           <Component id="jbtnAnnuler" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnSoumettre" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnConfirmer" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -124,7 +124,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbtnSoumettre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnConfirmer" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtnAnnuler" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -183,9 +183,15 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Vendable"/>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbVendableItemStateChanged"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jlblPrix">
           <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6d" green="6d" id="Text Inactive Text" palette="2" red="6d" type="palette"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Prix : "/>
           </Properties>
         </Component>
@@ -194,9 +200,9 @@
             <Property name="text" type="java.lang.String" value="Annuler"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbtnSoumettre">
+        <Component class="javax.swing.JButton" name="jbtnConfirmer">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Soumettre"/>
+            <Property name="text" type="java.lang.String" value="Confirmer"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfTitre">
@@ -205,6 +211,7 @@
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jftfPrix">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format subtype="0" type="4"/>
             </Property>
@@ -248,7 +255,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jscpInventaireInfo" alignment="0" pref="408" max="32767" attributes="0"/>
+                      <Component id="jscpInventaireInfo" alignment="0" pref="386" max="32767" attributes="0"/>
                       <Component id="jlblInventaire" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jlblRecherche" min="-2" max="-2" attributes="0"/>
