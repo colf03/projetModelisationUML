@@ -43,7 +43,7 @@ public class InventairePanel extends javax.swing.JPanel {
         jcbVendable = new javax.swing.JCheckBox();
         jlblPrix = new javax.swing.JLabel();
         jbtnAnnuler = new javax.swing.JButton();
-        jbtnSoumettre = new javax.swing.JButton();
+        jbtnConfirmer = new javax.swing.JButton();
         jtfTitre = new javax.swing.JTextField();
         jtfDuree = new javax.swing.JTextField();
         jftfPrix = new javax.swing.JFormattedTextField();
@@ -104,7 +104,7 @@ public class InventairePanel extends javax.swing.JPanel {
 
         jbtnAnnuler.setText("Annuler");
 
-        jbtnSoumettre.setText("Soumettre");
+        jbtnConfirmer.setText("Confirmer");
 
         jftfPrix.setEditable(false);
         jftfPrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
@@ -122,10 +122,10 @@ public class InventairePanel extends javax.swing.JPanel {
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlblAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
-                        .addGap(0, 216, Short.MAX_VALUE)
+                        .addGap(0, 219, Short.MAX_VALUE)
                         .addComponent(jbtnAnnuler)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnSoumettre))
+                        .addComponent(jbtnConfirmer))
                     .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblGenre)
@@ -172,7 +172,7 @@ public class InventairePanel extends javax.swing.JPanel {
                     .addComponent(jftfPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(99, 99, 99)
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnSoumettre)
+                    .addComponent(jbtnConfirmer)
                     .addComponent(jbtnAnnuler))
                 .addContainerGap())
         );
@@ -224,7 +224,7 @@ public class InventairePanel extends javax.swing.JPanel {
             .addGroup(inventairePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                    .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                     .addComponent(jlblInventaire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventairePanelLayout.createSequentialGroup()
                         .addComponent(jlblRecherche)
@@ -252,7 +252,7 @@ public class InventairePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(inventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
+                .addComponent(inventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -294,7 +294,7 @@ public class InventairePanel extends javax.swing.JPanel {
     private javax.swing.JPanel inventairePanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnAnnuler;
-    private javax.swing.JButton jbtnSoumettre;
+    private javax.swing.JButton jbtnConfirmer;
     private javax.swing.JComboBox<String> jcbGenre;
     private javax.swing.JComboBox<String> jcbRecherche;
     private javax.swing.JCheckBox jcbVendable;

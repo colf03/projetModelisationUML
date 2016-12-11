@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -40,25 +43,20 @@ public class LocationPanel extends javax.swing.JPanel {
         jcbTitre = new javax.swing.JComboBox<>();
         jbtnConfirmer = new javax.swing.JButton();
         jbtnAnnuler = new javax.swing.JButton();
-        infoClientPanel = new javax.swing.JPanel();
-        jlblClient = new javax.swing.JLabel();
-        jlblNoTel = new javax.swing.JLabel();
-        jftfNoTel = new javax.swing.JFormattedTextField();
-        jlblCodeSecret = new javax.swing.JLabel();
-        jpsfCodeSecret = new javax.swing.JPasswordField();
-        jbtnSoumettre = new javax.swing.JButton();
-        jscpClientInfo = new javax.swing.JScrollPane();
-        jtblClientInfo = new javax.swing.JTable();
+        infoClientPanel = new GUI.InfoClientPanel();
 
         infoLocationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         infoLocationPanel.setMinimumSize(new java.awt.Dimension(400, 400));
 
+        jlblLocation.setForeground(java.awt.SystemColor.textInactiveText);
         jlblLocation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblLocation.setText("Informations de la Location");
 
+        jlblTitre.setForeground(java.awt.SystemColor.textInactiveText);
         jlblTitre.setText("Titre : ");
 
         jbtnAjouter.setText("Ajouter");
+        jbtnAjouter.setEnabled(false);
 
         jtblAchatInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -73,6 +71,7 @@ public class LocationPanel extends javax.swing.JPanel {
         jcbTitre.setEditable(true);
         jcbTitre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbTitre.setSelectedItem("");
+        jcbTitre.setEnabled(false);
         JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();
         editorComponent.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -92,8 +91,10 @@ public class LocationPanel extends javax.swing.JPanel {
         });
 
         jbtnConfirmer.setText("Comfirmer la location");
+        jbtnConfirmer.setEnabled(false);
 
         jbtnAnnuler.setText("Annuler");
+        jbtnAnnuler.setEnabled(false);
 
         javax.swing.GroupLayout infoLocationPanelLayout = new javax.swing.GroupLayout(infoLocationPanel);
         infoLocationPanel.setLayout(infoLocationPanelLayout);
@@ -137,75 +138,11 @@ public class LocationPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        infoClientPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        infoClientPanel.setMinimumSize(new java.awt.Dimension(400, 400));
-
-        jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblClient.setText("Informations du Client");
-
-        jlblNoTel.setText("Numéro de téléphone : ");
-
-        try {
-            jftfNoTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        jlblCodeSecret.setText("Code Secret : ");
-
-        jbtnSoumettre.setText("Soumettre");
-
-        jtblClientInfo.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Nom", "Prénom", "Addresse", "Email"
+        infoClientPanel.addActionListenerToSubmit(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                setLocationState(true);
             }
-        ));
-        jscpClientInfo.setViewportView(jtblClientInfo);
-
-        javax.swing.GroupLayout infoClientPanelLayout = new javax.swing.GroupLayout(infoClientPanel);
-        infoClientPanel.setLayout(infoClientPanelLayout);
-        infoClientPanelLayout.setHorizontalGroup(
-            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoClientPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                    .addComponent(jlblClient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(infoClientPanelLayout.createSequentialGroup()
-                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblNoTel)
-                            .addComponent(jlblCodeSecret))
-                        .addGap(18, 18, 18)
-                        .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpsfCodeSecret)
-                            .addComponent(jftfNoTel)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoClientPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnSoumettre)))
-                .addContainerGap())
-        );
-        infoClientPanelLayout.setVerticalGroup(
-            infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(infoClientPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlblClient)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jlblNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftfNoTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(infoClientPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnSoumettre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpClientInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -220,7 +157,7 @@ public class LocationPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -232,25 +169,33 @@ public class LocationPanel extends javax.swing.JPanel {
     private void jcbTitreUpdate(DocumentEvent evt) {                                     
         jcbTitre.showPopup();
     }
+    
+    private void setLocationState(boolean state){
+        if (state){
+            jlblLocation.setForeground(Color.black);
+            jlblTitre.setForeground(Color.black);
+        }            
+        else{
+            jlblLocation.setForeground(SystemColor.textInactiveText);
+            jlblTitre.setForeground(SystemColor.textInactiveText);
+        }
+        jbtnAjouter.setEnabled(state);
+        jbtnAnnuler.setEnabled(state);
+        jbtnConfirmer.setEnabled(state);
+        jcbTitre.setEnabled(state);
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel infoClientPanel;
+    private GUI.InfoClientPanel infoClientPanel;
     private javax.swing.JPanel infoLocationPanel;
     private javax.swing.JButton jbtnAjouter;
     private javax.swing.JButton jbtnAnnuler;
     private javax.swing.JButton jbtnConfirmer;
-    private javax.swing.JButton jbtnSoumettre;
     private javax.swing.JComboBox<String> jcbTitre;
-    private javax.swing.JFormattedTextField jftfNoTel;
-    private javax.swing.JLabel jlblClient;
-    private javax.swing.JLabel jlblCodeSecret;
     private javax.swing.JLabel jlblLocation;
-    private javax.swing.JLabel jlblNoTel;
     private javax.swing.JLabel jlblTitre;
-    private javax.swing.JPasswordField jpsfCodeSecret;
     private javax.swing.JScrollPane jscpAchatInfo;
-    private javax.swing.JScrollPane jscpClientInfo;
     private javax.swing.JTable jtblAchatInfo;
-    private javax.swing.JTable jtblClientInfo;
     // End of variables declaration//GEN-END:variables
 }
