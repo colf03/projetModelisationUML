@@ -23,7 +23,8 @@ public class CreationTable {
 		      
 		      
 		      sql="CREATE TABLE CLIENT " +
-	                   "(CODE INT PRIMARY KEY  ," +
+	                   "(NUMTEL INT PRIMARY KEY  ," +
+	                   " CODESEC       INT    NOT NULL, " +
 	                   " NOM         CHAR(50)    NOT NULL, " + 
 	                   " PRENOM     CHAR(50) NOT NULL, " + 
 	                   " ADRESSE     CHAR(50) NOT NULL,"+
@@ -52,25 +53,26 @@ public class CreationTable {
 		      stmt.executeUpdate(sql);
 		      System.out.println("table Videotheque crée");
 		      
-		      sql="CREATE TABLE Vente " +
+		      sql="CREATE TABLE VENTE " +
 	                   "(ID INTEGER PRIMARY KEY AUTOINCREMENT,"+
-		    		   " CLIENT_CODE INT , " + 
+		    		   " CLIENT_NUMTEL INT , " + 
 	                   " PRIX_TOTAL  FLOAT, "+
 	                   " MODE_PAIEMENT  CHAR(50), "+
-	                   " DATE_VENTE DATE, "+
-	                   " FOREIGN KEY(CLIENT_CODE) REFERENCES CLIENT(CODE) )"; 
+	                   " DATE_TRANSACTION DATE, "+
+	                   " FOREIGN KEY(CLIENT_NUMTEL) REFERENCES CLIENT(NUMTEL) )"; 
 		      
 		      stmt.executeUpdate(sql);
 		      System.out.println("table Vente crée");
 		      
 
 		      sql="CREATE TABLE LOCATION " +
-	                   "(VIDEOTHEQUE_ID INTEGER  ," +
-	                   " CLIENT_CODE INT , " + 
-	                   " DATE_LOCATION DATE, "+
+		    		   "(ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+	                   " VIDEOTHEQUE_ID INTEGER  ," +
+	                   " CLIENT_NUMTEL INT , " + 
+	                   " DATE_TRANSACTION DATE, "+
 	                   " DATE_RETOUR_LOCATION DATE, "+
 	                   " FOREIGN KEY(VIDEOTHEQUE_ID) REFERENCES VIDEOTHEQUE(ID), "+
-	                   " FOREIGN KEY(CLIENT_CODE) REFERENCES CLIENT(CODE) )"; 
+	                   " FOREIGN KEY(CLIENT_NUMTEL) REFERENCES CLIENT(NUMTEL) )"; 
 		      
 		      stmt.executeUpdate(sql);
 		      System.out.println("table Location crée");
