@@ -20,18 +20,18 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="infoClientPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="ajouterModifierPanel" max="32767" attributes="0"/>
+              <Component id="historiquePanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="historiquePanel" max="32767" attributes="0"/>
                   <Component id="infoClientPanel" max="32767" attributes="0"/>
-                  <Component id="ajouterModifierPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -39,7 +39,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JPanel" name="ajouterModifierPanel">
+    <Component class="GUI.InfoClientPanel" name="infoClientPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="infoClientPanel = new GUI.InfoClientPanel(true);"/>
+      </AuxValues>
+    </Component>
+    <Container class="javax.swing.JPanel" name="historiquePanel">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -49,40 +54,19 @@
         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[400, 400]"/>
         </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[400, 400]"/>
+        </Property>
       </Properties>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel1" max="32767" attributes="0"/>
-                      <Component id="jlblAjouterModifier" alignment="0" max="32767" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="jlblCodeSecret1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jpsfCodeSecret1" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jbtnAnnuler" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnSoumettre1" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jlblNoTel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlblNom" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlblPrenom" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfTitre" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jtfTitre1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jftfNoTel1" alignment="0" pref="250" max="32767" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="jlblHistorique" max="32767" attributes="0"/>
+                      <Component id="jscpHistorique" pref="386" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -91,210 +75,83 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
-                  <Component id="jlblAjouterModifier" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlblNom" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jtfTitre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlblPrenom" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jtfTitre1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jlblHistorique" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlblNoTel1" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="jftfNoTel1" alignment="3" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="jscpHistorique" pref="0" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlblCodeSecret1" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jpsfCodeSecret1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="125" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbtnSoumettre1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnAnnuler" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jlblNom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Nom : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtfTitre">
-        </Component>
-        <Component class="javax.swing.JButton" name="jbtnAnnuler">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Annuler"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jbtnSoumettre1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Soumettre"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlblAjouterModifier">
+        <Component class="javax.swing.JLabel" name="jlblHistorique">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Ajouter / Modifier"/>
+            <Property name="text" type="java.lang.String" value="Historique des transactions"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jtfTitre1">
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlblPrenom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Pr&#xe9;nom : "/>
-          </Properties>
-        </Component>
-        <Container class="javax.swing.JPanel" name="jPanel1">
-          <Properties>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder/>
-              </Border>
-            </Property>
-          </Properties>
+        <Container class="javax.swing.JScrollPane" name="jscpHistorique">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
 
-          <Layout>
-            <DimensionLayout dim="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jlblAddresse" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jlblNoRue" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlblNomRue" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlblVille" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlblProvince" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jlblCodePostal" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jtfNoRue" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtfNomRue" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTextField2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jtfCodePostal" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-            <DimensionLayout dim="1">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jlblAddresse" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlblNoRue" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfNoRue" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlblNomRue" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfNomRue" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlblVille" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlblProvince" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jlblCodePostal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jtfCodePostal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
-              </Group>
-            </DimensionLayout>
-          </Layout>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jlblAddresse">
+            <Component class="javax.swing.JTable" name="jtblHistorique">
               <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Addresse"/>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="6" rowCount="0">
+                    <Column editable="true" title="ID" type="java.lang.Object"/>
+                    <Column editable="true" title="Date" type="java.lang.Object"/>
+                    <Column editable="true" title="Type" type="java.lang.Object"/>
+                    <Column editable="true" title="Titre" type="java.lang.Object"/>
+                    <Column editable="true" title="Prix" type="java.lang.Object"/>
+                    <Column editable="true" title="Date de retour" type="java.lang.Object"/>
+                  </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
+                </Property>
+                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                </Property>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jlblNoRue">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Num&#xe9;ro de rue : "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jtfNoRue">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jlblNomRue">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Nom de rue : "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jtfNomRue">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jlblVille">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Ville : "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField1">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jlblProvince">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Province : "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jlblCodePostal">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Code Postal : "/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jtfCodePostal">
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jlblNoTel1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Num&#xe9;ro de t&#xe9;l&#xe9;phone : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jftfNoTel1">
-          <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="(###) ###-####" subtype="-1" type="5"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jlblCodeSecret1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Code Secret : "/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JPasswordField" name="jpsfCodeSecret1">
-        </Component>
       </SubComponents>
     </Container>
-    <Component class="GUI.InfoClientPanel" name="infoClientPanel">
-    </Component>
   </SubComponents>
 </Form>

@@ -188,6 +188,7 @@
     </Container>
     <Component class="GUI.InfoClientPanel" name="infoClientPanel">
       <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="infoClientPanel = new GUI.InfoClientPanel(false);"/>
         <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="infoClientPanel.addActionListenerToSubmit(new java.awt.event.ActionListener() {&#xa;            public void actionPerformed(java.awt.event.ActionEvent evt) {&#xa;                setLocationState(true);&#xa;            }&#xa;        });&#xa;"/>
       </AuxValues>
     </Component>

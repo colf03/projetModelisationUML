@@ -5,6 +5,12 @@
  */
 package GUI;
 
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import main.Client;
+
 /**
  *
  * @author Bobby
@@ -14,6 +20,20 @@ public class InfoClientPanel extends javax.swing.JPanel {
     /**
      * Creates new form InfoClientPanel
      */
+    public InfoClientPanel(boolean editable) {
+        initComponents();
+        jtfNom.setEditable(editable);
+        jtfPrenom.setEditable(editable);
+        jtfEmail.setEditable(editable);
+        jtfNoRue.setEditable(editable);
+        jtfNomRue.setEditable(editable);
+        jtfVille.setEditable(editable);
+        jtfProvince.setEditable(editable);
+        jtfCodePostal.setEditable(editable);
+        jbtnCreer.setVisible(editable);
+        jbtnSoumettre.setVisible(editable);
+    }
+    
     public InfoClientPanel() {
         initComponents();
     }
@@ -32,7 +52,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jftfNoTel = new javax.swing.JFormattedTextField();
         jlblCodeSecret = new javax.swing.JLabel();
         jpsfCodeSecret = new javax.swing.JPasswordField();
-        jbtnSoumettre = new javax.swing.JButton();
+        jbtnCharger = new javax.swing.JButton();
         ajouterModifierPanel = new javax.swing.JPanel();
         jlblNom = new javax.swing.JLabel();
         jtfNom = new javax.swing.JTextField();
@@ -50,6 +70,10 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jtfProvince = new javax.swing.JTextField();
         jlblCodePostal = new javax.swing.JLabel();
         jtfCodePostal = new javax.swing.JTextField();
+        jlblEmail = new javax.swing.JLabel();
+        jtfEmail = new javax.swing.JTextField();
+        jbtnSoumettre = new javax.swing.JButton();
+        jbtnCreer = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         setMinimumSize(new java.awt.Dimension(400, 400));
@@ -68,10 +92,10 @@ public class InfoClientPanel extends javax.swing.JPanel {
 
         jlblCodeSecret.setText("Code Secret : ");
 
-        jbtnSoumettre.setText("Soumettre");
-        jbtnSoumettre.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCharger.setText("Charger");
+        jbtnCharger.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnSoumettreActionPerformed(evt);
+                jbtnChargerActionPerformed(evt);
             }
         });
 
@@ -79,11 +103,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
 
         jlblNom.setText("Nom : ");
 
-        jtfNom.setEditable(false);
-
         jlblPrenom.setText("Prénom : ");
-
-        jtfPrenom.setEditable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -92,23 +112,13 @@ public class InfoClientPanel extends javax.swing.JPanel {
 
         jlblNoRue.setText("Numéro de rue : ");
 
-        jtfNoRue.setEditable(false);
-
         jlblNomRue.setText("Nom de rue : ");
-
-        jtfNomRue.setEditable(false);
 
         jlblVille.setText("Ville : ");
 
-        jtfVille.setEditable(false);
-
         jlblProvince.setText("Province : ");
 
-        jtfProvince.setEditable(false);
-
         jlblCodePostal.setText("Code Postal : ");
-
-        jtfCodePostal.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -127,7 +137,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
                             .addComponent(jlblCodePostal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfCodePostal)
+                            .addComponent(jtfCodePostal, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
                             .addComponent(jtfProvince)
                             .addComponent(jtfVille)
                             .addComponent(jtfNomRue)
@@ -162,6 +172,8 @@ public class InfoClientPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jlblEmail.setText("Email : ");
+
         javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
         ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
         ajouterModifierPanelLayout.setHorizontalGroup(
@@ -170,12 +182,14 @@ public class InfoClientPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
+                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblNom)
-                            .addComponent(jlblPrenom))
+                            .addComponent(jlblPrenom)
+                            .addComponent(jlblEmail))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfEmail)
                             .addComponent(jtfPrenom)
                             .addComponent(jtfNom))))
                 .addContainerGap())
@@ -192,9 +206,17 @@ public class InfoClientPanel extends javax.swing.JPanel {
                     .addComponent(jlblPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jbtnSoumettre.setText("Soumettre");
+
+        jbtnCreer.setText("Créer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -212,10 +234,14 @@ public class InfoClientPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jftfNoTel, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                             .addComponent(jpsfCodeSecret)))
+                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnSoumettre))
-                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbtnCharger))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtnCreer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbtnSoumettre)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,37 +258,62 @@ public class InfoClientPanel extends javax.swing.JPanel {
                     .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnSoumettre)
+                .addComponent(jbtnCharger)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnSoumettre)
+                    .addComponent(jbtnCreer))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     public void addActionListenerToSubmit(java.awt.event.ActionListener listener){
-        jbtnSoumettre.addActionListener(listener);
+        jbtnCharger.addActionListener(listener);
     }
     
-    private void jbtnSoumettreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSoumettreActionPerformed
-        jtfNom.setText("Barker");
-        jtfPrenom.setText("Bob");
-        jtfNoRue.setText("5705");
-        jtfNomRue.setText("Falls Ave");
-        jtfVille.setText("Niagara Falls");
-        jtfProvince.setText("Ontario");
-        jtfCodePostal.setText("L2E 6T3");
-    }//GEN-LAST:event_jbtnSoumettreActionPerformed
+    private void jbtnChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChargerActionPerformed
+        try {
+            jftfNoTel.setBackground(Color.white);
+            jpsfCodeSecret.setBackground(Color.white);
+            String noTel = jftfNoTel.getText();
+            if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}"))
+                throw new NumberFormatException();
+            
+            Client client = Client.trouverClient(noTel, jpsfCodeSecret.getPassword());
+            
+            jtfNom.setText(client.getNom());
+            jtfPrenom.setText(client.getPrenom());
+            jtfNoRue.setText(client.getNoRue());
+            jtfNomRue.setText(client.getNomRue());
+            jtfVille.setText(client.getVille());
+            jtfProvince.setText(client.getProvince());
+            jtfCodePostal.setText(client.getCodePostal());
+        } catch (NumberFormatException ex) {
+            jftfNoTel.setBackground(new Color(255,232,232));
+        } catch (Client.UnautorizedException ex) {
+            jpsfCodeSecret.setBackground(new Color(255,232,232));
+        } catch (SQLException ex) {
+            Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbtnChargerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajouterModifierPanel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtnCharger;
+    private javax.swing.JButton jbtnCreer;
     private javax.swing.JButton jbtnSoumettre;
     private javax.swing.JFormattedTextField jftfNoTel;
     private javax.swing.JLabel jlblAddresse;
     private javax.swing.JLabel jlblClient;
     private javax.swing.JLabel jlblCodePostal;
     private javax.swing.JLabel jlblCodeSecret;
+    private javax.swing.JLabel jlblEmail;
     private javax.swing.JLabel jlblNoRue;
     private javax.swing.JLabel jlblNoTel;
     private javax.swing.JLabel jlblNom;
@@ -272,6 +323,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jlblVille;
     private javax.swing.JPasswordField jpsfCodeSecret;
     private javax.swing.JTextField jtfCodePostal;
+    private javax.swing.JTextField jtfEmail;
     private javax.swing.JTextField jtfNoRue;
     private javax.swing.JTextField jtfNom;
     private javax.swing.JTextField jtfNomRue;

@@ -35,6 +35,7 @@ public class MainUI extends javax.swing.JFrame {
         achatPanel = new GUI.AchatPanel();
         comptePanel = new GUI.ComptePanel();
         inventairePanel = new GUI.InventairePanel();
+        adminPanel = new GUI.AdminPanel();
         tabsPanel = new javax.swing.JPanel();
         jtbLocationTab = new javax.swing.JToggleButton();
         jtbAchatTab = new javax.swing.JToggleButton();
@@ -47,7 +48,7 @@ public class MainUI extends javax.swing.JFrame {
         jmEdit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(640, 480));
+        setMinimumSize(new java.awt.Dimension(980, 480));
 
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel.setLayout(new java.awt.CardLayout());
@@ -55,6 +56,7 @@ public class MainUI extends javax.swing.JFrame {
         mainPanel.add(achatPanel, "achat");
         mainPanel.add(comptePanel, "compte");
         mainPanel.add(inventairePanel, "inventaire");
+        mainPanel.add(adminPanel, "admin");
 
         Tabs.add(jtbLocationTab);
         jtbLocationTab.setSelected(true);
@@ -240,6 +242,7 @@ public class MainUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup Tabs;
     private GUI.AchatPanel achatPanel;
+    private GUI.AdminPanel adminPanel;
     private GUI.ComptePanel comptePanel;
     private GUI.InventairePanel inventairePanel;
     private javax.swing.JMenuBar jMenuBar;

@@ -27,19 +27,128 @@ public class AdminPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        clientsPanel = new javax.swing.JPanel();
+        jlblClients = new javax.swing.JLabel();
+        jscpClients = new javax.swing.JScrollPane();
+        jtblClients = new javax.swing.JTable();
+        transactionsPanel = new javax.swing.JPanel();
+        jlblTransactions = new javax.swing.JLabel();
+        jscpTransactions = new javax.swing.JScrollPane();
+        jtblTransactions = new javax.swing.JTable();
+
+        clientsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        clientsPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        clientsPanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jlblClients.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblClients.setText("Liste des clients");
+
+        jtblClients.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscpClients.setViewportView(jtblClients);
+
+        javax.swing.GroupLayout clientsPanelLayout = new javax.swing.GroupLayout(clientsPanel);
+        clientsPanel.setLayout(clientsPanelLayout);
+        clientsPanelLayout.setHorizontalGroup(
+            clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, clientsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jscpClients, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                    .addComponent(jlblClients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        clientsPanelLayout.setVerticalGroup(
+            clientsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(clientsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblClients)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpClients, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        transactionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        transactionsPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        transactionsPanel.setPreferredSize(new java.awt.Dimension(400, 400));
+
+        jlblTransactions.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblTransactions.setText("Liste des transactions");
+
+        jtblTransactions.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jscpTransactions.setViewportView(jtblTransactions);
+
+        javax.swing.GroupLayout transactionsPanelLayout = new javax.swing.GroupLayout(transactionsPanel);
+        transactionsPanel.setLayout(transactionsPanelLayout);
+        transactionsPanelLayout.setHorizontalGroup(
+            transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, transactionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jscpTransactions, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jlblTransactions, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        transactionsPanelLayout.setVerticalGroup(
+            transactionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(transactionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblTransactions)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpTransactions, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(clientsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(transactionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(transactionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(clientsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel clientsPanel;
+    private javax.swing.JLabel jlblClients;
+    private javax.swing.JLabel jlblTransactions;
+    private javax.swing.JScrollPane jscpClients;
+    private javax.swing.JScrollPane jscpTransactions;
+    private javax.swing.JTable jtblClients;
+    private javax.swing.JTable jtblTransactions;
+    private javax.swing.JPanel transactionsPanel;
     // End of variables declaration//GEN-END:variables
 }

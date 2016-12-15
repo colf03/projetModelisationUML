@@ -43,7 +43,7 @@ public class LocationPanel extends javax.swing.JPanel {
         jcbTitre = new javax.swing.JComboBox<>();
         jbtnConfirmer = new javax.swing.JButton();
         jbtnAnnuler = new javax.swing.JButton();
-        infoClientPanel = new GUI.InfoClientPanel();
+        infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(false);
 
         infoLocationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         infoLocationPanel.setMinimumSize(new java.awt.Dimension(400, 400));

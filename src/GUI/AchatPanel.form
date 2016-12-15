@@ -237,6 +237,9 @@
       </SubComponents>
     </Container>
     <Component class="GUI.InfoClientPanel" name="infoClientPanel">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="infoClientPanel = new GUI.InfoClientPanel(false);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

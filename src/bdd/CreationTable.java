@@ -23,12 +23,16 @@ public class CreationTable {
 		      
 		      
 		      sql="CREATE TABLE CLIENT " +
-	                   "(NUMTEL INT PRIMARY KEY  ," +
-	                   " CODESEC       INT    NOT NULL, " +
-	                   " NOM         CHAR(50)    NOT NULL, " + 
-	                   " PRENOM     CHAR(50) NOT NULL, " + 
-	                   " ADRESSE     CHAR(50) NOT NULL,"+
-	                   " EMAIL  CHAR(50) )"; 
+	                   "(NUMTEL CHAR(10) PRIMARY KEY  ," +
+	                   " CODESEC        CHAR(256)    NOT NULL, " +
+	                   " NOM            CHAR(50)    NOT NULL, " + 
+	                   " PRENOM         CHAR(50) NOT NULL, " + 
+	                   " NORUE          CHAR(50) NOT NULL,"+
+                           " NOMRUE         CHAR(50) NOT NULL,"+
+                           " VILLE         CHAR(50) NOT NULL,"+
+                           " PROVINCE         CHAR(50) NOT NULL,"+
+                           " CODEPOSTAL         CHAR(50) NOT NULL,"+
+	                   " EMAIL          CHAR(50) )"; 
 		      
 		      stmt.executeUpdate(sql);
 		      System.out.println("table Client cree");

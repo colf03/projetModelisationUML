@@ -43,7 +43,7 @@ public class AchatPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jftfTotal = new javax.swing.JFormattedTextField();
         jftfTotal.setValue(1234.56);
-        infoClientPanel = new GUI.InfoClientPanel();
+        infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(false);
 
         infoAchatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         infoAchatPanel.setMinimumSize(new java.awt.Dimension(400, 400));
