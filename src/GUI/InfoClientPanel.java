@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.JTextComponent;
 import main.Client;
 
 /**
@@ -21,6 +23,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
      * Creates new form InfoClientPanel
      */
     public InfoClientPanel(boolean editable) {
+        this.editable = editable;
         initComponents();
         jtfNom.setEditable(editable);
         jtfPrenom.setEditable(editable);
@@ -30,7 +33,6 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jtfVille.setEditable(editable);
         jtfProvince.setEditable(editable);
         jtfCodePostal.setEditable(editable);
-        jbtnCreer.setVisible(editable);
         jbtnSoumettre.setVisible(editable);
     }
     
@@ -73,10 +75,10 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jlblEmail = new javax.swing.JLabel();
         jtfEmail = new javax.swing.JTextField();
         jbtnSoumettre = new javax.swing.JButton();
-        jbtnCreer = new javax.swing.JButton();
+        jlblErreur = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        setMinimumSize(new java.awt.Dimension(400, 400));
+        setMinimumSize(new java.awt.Dimension(400, 475));
         setPreferredSize(new java.awt.Dimension(400, 400));
 
         jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -137,7 +139,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
                             .addComponent(jlblCodePostal))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfCodePostal, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                            .addComponent(jtfCodePostal)
                             .addComponent(jtfProvince)
                             .addComponent(jtfVille)
                             .addComponent(jtfNomRue)
@@ -215,8 +217,13 @@ public class InfoClientPanel extends javax.swing.JPanel {
         );
 
         jbtnSoumettre.setText("Soumettre");
+        jbtnSoumettre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSoumettreActionPerformed(evt);
+            }
+        });
 
-        jbtnCreer.setText("Créer");
+        jlblErreur.setForeground(javax.swing.UIManager.getDefaults().getColor("nb.diff.unresolved.color"));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -237,11 +244,12 @@ public class InfoClientPanel extends javax.swing.JPanel {
                     .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnCharger))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtnCreer)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtnSoumettre)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtnSoumettre, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jlblErreur)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnCharger)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -258,25 +266,42 @@ public class InfoClientPanel extends javax.swing.JPanel {
                     .addComponent(jlblCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jpsfCodeSecret, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnCharger)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnCharger)
+                    .addComponent(jlblErreur))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnSoumettre)
-                    .addComponent(jbtnCreer))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jbtnSoumettre)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private static final Color errorColor = new Color(255,232,232);
+    private boolean editable = true;
+    
     public void addActionListenerToSubmit(java.awt.event.ActionListener listener){
         jbtnCharger.addActionListener(listener);
     }
     
+    private void resetFields(){
+        jlblErreur.setText("");
+        jftfNoTel.setBackground(Color.white);
+        jpsfCodeSecret.setBackground(Color.white);
+        jtfNom.setBackground(Color.white);
+        jtfPrenom.setBackground(Color.white);
+        jtfEmail.setBackground(Color.white);
+        jtfNoRue.setBackground(Color.white);
+        jtfNomRue.setBackground(Color.white);
+        jtfVille.setBackground(Color.white);
+        jtfProvince.setBackground(Color.white);
+        jtfCodePostal.setBackground(Color.white);
+    }
+    
     private void jbtnChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChargerActionPerformed
+        if (editable)
+            resetFields();
         try {
-            jftfNoTel.setBackground(Color.white);
-            jpsfCodeSecret.setBackground(Color.white);
             String noTel = jftfNoTel.getText();
             if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}"))
                 throw new NumberFormatException();
@@ -298,15 +323,63 @@ public class InfoClientPanel extends javax.swing.JPanel {
             Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Client.NotFoundException ex) {
+            jlblErreur.setText("Client inexistant");
         }
     }//GEN-LAST:event_jbtnChargerActionPerformed
+
+    private void jbtnSoumettreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSoumettreActionPerformed
+        resetFields();
+        try {
+            String noTel = jftfNoTel.getText();
+            char[] code = jpsfCodeSecret.getPassword();
+            String nom = jtfNom.getText();
+            String prenom = jtfPrenom.getText();
+            String email = jtfEmail.getText();
+            String noRue = jtfNoRue.getText();
+            String nomRue = jtfNomRue.getText();
+            String ville = jtfVille.getText();
+            String province = jtfProvince.getText();
+            String codePostal = jtfCodePostal.getText();
+            if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}"))
+                throw new RequiredException(jftfNoTel);
+            if (code.length == 0)
+                throw new RequiredException(jpsfCodeSecret);
+            if (nom.isEmpty())
+                throw new RequiredException(jtfNom);
+            if (prenom.isEmpty())
+                throw new RequiredException(jtfPrenom);
+            if (email.isEmpty() && email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")) // Yay for phat regex expressions! :D
+                throw new RequiredException(jtfEmail);
+            if (noRue.isEmpty())
+                throw new RequiredException(jtfNoRue);
+            if (nomRue.isEmpty())
+                throw new RequiredException(jtfNomRue);
+            if (ville.isEmpty())
+                throw new RequiredException(jtfVille);
+            if (province.isEmpty())
+                throw new RequiredException(jtfProvince);
+            if (codePostal.isEmpty())
+                throw new RequiredException(jtfCodePostal);
+            
+
+            Client nouveauClient = new Client(noTel, code, nom, prenom, email, noRue, nomRue, ville, province, codePostal);
+            Client.ajouterClient(nouveauClient, code);
+
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RequiredException ex){
+            
+        } catch (Client.UnautorizedException ex) {
+            jpsfCodeSecret.setBackground(new Color(255,232,232));
+        }
+    }//GEN-LAST:event_jbtnSoumettreActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajouterModifierPanel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbtnCharger;
-    private javax.swing.JButton jbtnCreer;
     private javax.swing.JButton jbtnSoumettre;
     private javax.swing.JFormattedTextField jftfNoTel;
     private javax.swing.JLabel jlblAddresse;
@@ -314,6 +387,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jlblCodePostal;
     private javax.swing.JLabel jlblCodeSecret;
     private javax.swing.JLabel jlblEmail;
+    private javax.swing.JLabel jlblErreur;
     private javax.swing.JLabel jlblNoRue;
     private javax.swing.JLabel jlblNoTel;
     private javax.swing.JLabel jlblNom;
@@ -331,4 +405,12 @@ public class InfoClientPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jtfProvince;
     private javax.swing.JTextField jtfVille;
     // End of variables declaration//GEN-END:variables
+
+    private static class RequiredException extends Exception {
+
+        public JTextComponent component;
+        public RequiredException(JTextComponent component) {
+            component.setBackground(new Color(255,232,232));
+        }
+    }
 }

@@ -1,17 +1,16 @@
 package main;
 
-
 public class Magasin {
 
-	private String nom ;
-	
-	private String adresse ;
+    private String nom;
 
-public Magasin ()  {
-	
-	this.nom=null ;
-	this.adresse=null ; 
-	
-}
+    private String adresse;
+
+    public Magasin() {
+
+        this.nom = null;
+        this.adresse = null;
+
+    }
 
 }
