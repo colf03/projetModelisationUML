@@ -7,6 +7,8 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,8 +17,6 @@ import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import main.Client;
 import main.FilmVideotheque;
 
@@ -78,24 +78,23 @@ public class LocationPanel extends javax.swing.JPanel {
         jscpAchatInfo.setViewportView(jtblAchatInfo);
 
         jcbTitre.setEditable(true);
-        jcbTitre.setModel(new DefaultComboBoxModel(new String[] { "item 1", "item 2", " " }));
         jcbTitre.setSelectedItem("");
         jcbTitre.setEnabled(false);
         JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();
-        editorComponent.getDocument().addDocumentListener(new DocumentListener() {
+        editorComponent.addKeyListener(new KeyListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
-                update();
+            public void keyTyped(KeyEvent e) {
+
             }
 
             @Override
-            public void removeUpdate(DocumentEvent e) {
-                update();
+            public void keyPressed(KeyEvent e) {
+
             }
 
             @Override
-            public void changedUpdate(DocumentEvent e) {
-
+            public void keyReleased(KeyEvent e) {
+                update();
             }
 
             public void update(){
@@ -196,14 +195,17 @@ public class LocationPanel extends javax.swing.JPanel {
     private void jcbTitreUpdate() {                                     
         try {
             JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
-            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(tf.getText());
+            String text = tf.getText();
+            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text);
             String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
-            //jcbTitre.removeAllItems();
+            jcbTitre.removeAllItems();
             DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
             for(String titre : listeTitre){
                 model.addElement(titre);
             }
             jcbTitre.setModel(model);
+            jcbTitre.setSelectedIndex(-1);
+            tf.setText(text);
             jcbTitre.showPopup();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);

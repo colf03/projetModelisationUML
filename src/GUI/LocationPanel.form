@@ -157,16 +157,13 @@
         <Component class="javax.swing.JComboBox" name="jcbTitre">
           <Properties>
             <Property name="editable" type="boolean" value="true"/>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="new DefaultComboBoxModel(new String[] { &quot;item 1&quot;, &quot;item 2&quot;, &quot; &quot; })" type="code"/>
-            </Property>
             <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="&quot;&quot;" type="code"/>
             </Property>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();&#xa;editorComponent.getDocument().addDocumentListener(new DocumentListener() {&#xa;    @Override&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    @Override&#xa;    public void removeUpdate(DocumentEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    @Override&#xa;    public void changedUpdate(DocumentEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    public void update(){&#xa;        //perform separately, as listener conflicts between the editing component&#xa;        //and JComboBox will result in an IllegalStateException due to editing &#xa;        //the component when it is locked. &#xa;&#xa;        SwingUtilities.invokeLater(new Runnable(){&#xa;            @Override&#xa;            public void run() {&#xa;                jcbTitreUpdate();&#xa;            }&#xa;        });&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();&#xa;editorComponent.addKeyListener(new KeyListener() {&#xa;    @Override&#xa;    public void keyTyped(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyPressed(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyReleased(KeyEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    public void update(){&#xa;        //perform separately, as listener conflicts between the editing component&#xa;        //and JComboBox will result in an IllegalStateException due to editing &#xa;        //the component when it is locked. &#xa;&#xa;        SwingUtilities.invokeLater(new Runnable(){&#xa;            @Override&#xa;            public void run() {&#xa;                jcbTitreUpdate();&#xa;            }&#xa;        });&#xa;    }&#xa;});"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
