@@ -63,8 +63,8 @@ public class CreationTable {
                  " VENDABLE         BOOLEAN NOT NULL, " + 
                  " LOUE             BOOLEAN NOT NULL, " + 
                  " DUREE_LOCATION   INT NOT NULL, " +
-                 " PRIXLOCATION     FLOAT NOT NULL, " +
-                 " PRIXVENTE        FLOAT, " +
+                 " PRIX_LOCATION     FLOAT NOT NULL, " +
+                 " PRIX_VENTE        FLOAT, " +
                  " FOREIGN KEY(FILM_ID) REFERENCES FILM(ID) )"; 
 
             stmt.executeUpdate(sql);

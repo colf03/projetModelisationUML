@@ -191,6 +191,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Annuler"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAnnulerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnConfirmer">
           <Properties>
@@ -225,22 +228,22 @@
         <Component class="javax.swing.JFormattedTextField" name="jftfPrixLocation">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="0"/>
+              <Format format="#,###.00" subtype="-1" type="0"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jftfPrixVente">
           <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="0"/>
+            <Property name="editable" type="boolean" value="false" postCode="java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat(&quot;#,###.00&quot;);&#xa;decimalFormat.setParseIntegerOnly(true);"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(decimalFormat))" type="code"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="jftfDureeLocation">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="0"/>
+              <Format subtype="1" type="0"/>
             </Property>
           </Properties>
         </Component>
@@ -274,8 +277,6 @@
                           <Component id="jlblFiltrer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jtfFiltrer" max="32767" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnAppliquer" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane2" alignment="0" pref="386" max="32767" attributes="0"/>
                   </Group>
@@ -292,10 +293,9 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlblFiltrer" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                       <Component id="jtfFiltrer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnAppliquer" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="326" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="332" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -314,14 +314,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfFiltrer">
-        </Component>
-        <Component class="javax.swing.JButton" name="jbtnAppliquer">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Appliquer"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAppliquerActionPerformed"/>
-          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jtfFiltrer.getDocument().addDocumentListener(new DocumentListener() {&#xa;    @Override&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    @Override&#xa;    public void removeUpdate(DocumentEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    @Override&#xa;    public void changedUpdate(DocumentEvent e) {&#xa;&#xa;    }&#xa;&#xa;    public void update(){&#xa;        //perform separately, as listener conflicts between the editing component&#xa;        //and JComboBox will result in an IllegalStateException due to editing&#xa;        //the component when it is locked.&#xa;&#xa;        SwingUtilities.invokeLater(new Runnable(){&#xa;            @Override&#xa;            public void run() {&#xa;                updateTable(jtfFiltrer.getText());&#xa;            }&#xa;        });&#xa;    }&#xa;});"/>
+          </AuxValues>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <Properties>
@@ -333,12 +328,14 @@
             <Component class="javax.swing.JTable" name="jtblInventaireInfo">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="updateTable(&quot;&quot;);">
-                  <Table columnCount="9" rowCount="0">
+                  <Table columnCount="9" rowCount="1">
                     <Column editable="false" title="ID" type="java.lang.Integer"/>
                     <Column editable="false" title="Titre" type="java.lang.String"/>
                     <Column editable="false" title="Description" type="java.lang.String"/>
                     <Column editable="false" title="Genre" type="java.lang.String"/>
-                    <Column editable="false" title="Vendable" type="java.lang.Boolean"/>
+                    <Column editable="false" title="Vendable" type="java.lang.Boolean">
+                      <Data value="true"/>
+                    </Column>
                     <Column editable="false" title="Lou&#xe9;" type="java.lang.Boolean"/>
                     <Column editable="false" title="Dur&#xe9;e des locations" type="java.lang.Integer"/>
                     <Column editable="false" title="Prix Location" type="java.lang.Float"/>
@@ -383,6 +380,16 @@
                       <Editor/>
                       <Renderer/>
                     </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
                   </TableColumnModel>
                 </Property>
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -392,6 +399,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="jtblInventaireInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener(){&#xa;        public void valueChanged(ListSelectionEvent event) {&#xa;            if (jtblInventaireInfo.getRowCount() &gt; 0)&#xa;                loadRow(event);&#xa;        }&#xa;    });"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

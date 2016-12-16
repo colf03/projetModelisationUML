@@ -36,18 +36,44 @@ public class Film {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
 
-        String sql = "INSERT INTO FILM(TITRE,DESCRIPTION,GENRE) "
+        ArrayList<Film> listeFilm = trouverFilm(f.titre);
+        if (listeFilm.size() > 0)
+        {
+            String sql = "UPDATE FILM " +
+                "SET DESCRIPTION='" + f.description + "',GENRE='" + f.genre + "' " +
+                "WHERE TITRE='" + f.titre + "';";
+            st.executeUpdate(sql);
+
+            cb.fermerConnectionBDD();
+
+        }else{
+            String sql = "INSERT INTO FILM(TITRE,DESCRIPTION,GENRE) "
                 + "VALUES ('" + f.titre + "','" + f.description + "','" + f.genre + "');";
-        st.executeUpdate(sql);
+            st.executeUpdate(sql);
 
-        cb.fermerConnectionBDD();;
-
+            cb.fermerConnectionBDD();
+        }
     }
 
     public static ArrayList<Film> trouverFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
-        ArrayList<Film> liste = new ArrayList<Film>();
+        ArrayList<Film> liste = new ArrayList<>();
+        String sql = "SELECT * FROM FILM WHERE TITRE='" + title + "';";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Film f = new Film(rs.getInt("ID"), rs.getString("TITRE"), rs.getString("DESCRIPTION"), rs.getString("GENRE"));
+            liste.add(f);
+        }
+        rs.close();
+        cb.fermerConnectionBDD();
+        return liste;
+    }
+    
+    public static ArrayList<Film> rechercheFilm(String title) throws ClassNotFoundException, SQLException {
+        ConnectionBDD cb = new ConnectionBDD();
+        Statement st = cb.getStmt();
+        ArrayList<Film> liste = new ArrayList<>();
         String sql = "SELECT * FROM FILM WHERE TITRE LIKE '%" + title + "%';";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {

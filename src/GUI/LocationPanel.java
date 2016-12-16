@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -197,7 +196,7 @@ public class LocationPanel extends javax.swing.JPanel {
     private void jcbTitreUpdate() {                                     
         try {
             JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
-            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm(tf.getText());
+            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(tf.getText());
             String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
             //jcbTitre.removeAllItems();
             DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
