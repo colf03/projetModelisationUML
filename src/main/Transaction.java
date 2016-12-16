@@ -5,11 +5,11 @@ import java.util.Calendar;
 
 public abstract class Transaction {
 
-    protected int id_numtel;
+    protected String numTel;
     protected String date_transaction;
 
-    protected Transaction(int i) {
-        this.id_numtel = i;
+    protected Transaction(String numTel) {
+        this.numTel = numTel;
         this.date_transaction = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
 
     }
@@ -19,14 +19,14 @@ public abstract class Transaction {
 
     }
 
-    protected Transaction(int i, String date) {
-        this.id_numtel = i;
+    protected Transaction(String numTel, String date) {
+        this.numTel = numTel;
         this.date_transaction = date;
 
     }
 
-    public int getId_numtel() {
-        return id_numtel;
+    public String getClientNumTel() {
+        return numTel;
     }
 
     public String getDate_transaction() {

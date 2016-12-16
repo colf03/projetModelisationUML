@@ -10,13 +10,16 @@ import java.awt.SystemColor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
 import main.Client;
 import main.FilmVideotheque;
 
@@ -46,11 +49,13 @@ public class LocationPanel extends javax.swing.JPanel {
         jlblLocation = new javax.swing.JLabel();
         jlblTitre = new javax.swing.JLabel();
         jbtnAjouter = new javax.swing.JButton();
-        jscpAchatInfo = new javax.swing.JScrollPane();
-        jtblAchatInfo = new javax.swing.JTable();
+        jscpLocationInfo = new javax.swing.JScrollPane();
+        jtblLocationInfo = new javax.swing.JTable();
         jcbTitre = new javax.swing.JComboBox<>();
         jbtnConfirmer = new javax.swing.JButton();
         jbtnAnnuler = new javax.swing.JButton();
+        jftfTotal = new javax.swing.JFormattedTextField();
+        jLabel2 = new javax.swing.JLabel();
         infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(false);
 
         infoLocationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -66,22 +71,34 @@ public class LocationPanel extends javax.swing.JPanel {
 
         jbtnAjouter.setText("Ajouter");
         jbtnAjouter.setEnabled(false);
+        jbtnAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAjouterActionPerformed(evt);
+            }
+        });
 
-        jtblAchatInfo.setModel(new javax.swing.table.DefaultTableModel(
+        jtblLocationInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Titre", "Description", "Genre", "Durée de la location"
+                "ID", "Titre", "Description", "Genre", "Durée de la location", "Prix"
             }
-        ));
-        jscpAchatInfo.setViewportView(jtblAchatInfo);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jscpLocationInfo.setViewportView(jtblLocationInfo);
 
         jcbTitre.setEditable(true);
         jcbTitre.setSelectedItem("");
         jcbTitre.setEnabled(false);
-        JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();
-        editorComponent.addKeyListener(new KeyListener() {
+        ((JTextField)jcbTitre.getEditor().getEditorComponent()).addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
 
@@ -113,9 +130,28 @@ public class LocationPanel extends javax.swing.JPanel {
 
         jbtnConfirmer.setText("Comfirmer la location");
         jbtnConfirmer.setEnabled(false);
+        jbtnConfirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnConfirmerActionPerformed(evt);
+            }
+        });
 
         jbtnAnnuler.setText("Annuler");
         jbtnAnnuler.setEnabled(false);
+        jbtnAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAnnulerActionPerformed(evt);
+            }
+        });
+
+        jftfTotal.setEditable(false);
+        jftfTotal.setValue(0);
+        jftfTotal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jftfTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jftfTotal.setMinimumSize(new java.awt.Dimension(100, 20));
+        jftfTotal.setPreferredSize(new java.awt.Dimension(100, 20));
+
+        jLabel2.setText("Total : ");
 
         javax.swing.GroupLayout infoLocationPanelLayout = new javax.swing.GroupLayout(infoLocationPanel);
         infoLocationPanel.setLayout(infoLocationPanelLayout);
@@ -124,19 +160,25 @@ public class LocationPanel extends javax.swing.JPanel {
             .addGroup(infoLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpAchatInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                    .addGroup(infoLocationPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnAnnuler)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnConfirmer))
+                    .addComponent(jscpLocationInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jlblLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(infoLocationPanelLayout.createSequentialGroup()
                         .addComponent(jlblTitre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbTitre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jcbTitre, 0, 268, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnAjouter)))
+                        .addComponent(jbtnAjouter))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLocationPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLocationPanelLayout.createSequentialGroup()
+                                .addComponent(jbtnAnnuler)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnConfirmer))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLocationPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jftfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         infoLocationPanelLayout.setVerticalGroup(
@@ -151,7 +193,11 @@ public class LocationPanel extends javax.swing.JPanel {
                         .addComponent(jbtnAjouter))
                     .addComponent(jlblTitre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpAchatInfo)
+                .addComponent(jscpLocationInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jftfTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnConfirmer)
@@ -174,9 +220,9 @@ public class LocationPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -184,13 +230,65 @@ public class LocationPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
+                    .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void clearLocation(){
+        DefaultTableModel model = (DefaultTableModel)jtblLocationInfo.getModel();
+        model.setRowCount(0);
+        films = new ArrayList<FilmVideotheque>();
+        total = 0;
+        jftfTotal.setValue(total);
+        ((JTextField)jcbTitre.getEditor().getEditorComponent()).setText("");
+    }
+    
+    private void jbtnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAjouterActionPerformed
+        try {
+            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm((String)jcbTitre.getSelectedItem());
+            if (listeFilm.size() > 0)
+            {
+                DefaultTableModel model = (DefaultTableModel)jtblLocationInfo.getModel();
+                for (FilmVideotheque film : listeFilm){
+                    if (!films.stream().map(e -> e.getId()).collect(Collectors.toList()).contains(film.getId()) && !film.isLoue()){
+                        films.add(film);
+                        model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.getDureeLocation(), film.getPrixLocation()});
+                        total += film.getPrixLocation();
+                        jftfTotal.setValue(total);
+                    }
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbtnAjouterActionPerformed
+
+    private void jbtnAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAnnulerActionPerformed
+        clearLocation();
+    }//GEN-LAST:event_jbtnAnnulerActionPerformed
+
+    private void jbtnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmerActionPerformed
+        for (FilmVideotheque film : films){
+            try {
+                main.Location location = new main.Location(client.getNumTel(), film.getId(), film.getDureeLocation());
+                location.ajouterLocation();
+                JOptionPane.showMessageDialog(jbtnConfirmer, "La location a été créée avec succès.");
+                clearLocation();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_jbtnConfirmerActionPerformed
+
     private Client client;
+    private List<FilmVideotheque> films = new ArrayList<FilmVideotheque>();
+    private float total = 0;
     
     private void jcbTitreUpdate() {                                     
         try {
@@ -236,13 +334,15 @@ public class LocationPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private GUI.InfoClientPanel infoClientPanel;
     private javax.swing.JPanel infoLocationPanel;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton jbtnAjouter;
     private javax.swing.JButton jbtnAnnuler;
     private javax.swing.JButton jbtnConfirmer;
     private javax.swing.JComboBox<String> jcbTitre;
+    private javax.swing.JFormattedTextField jftfTotal;
     private javax.swing.JLabel jlblLocation;
     private javax.swing.JLabel jlblTitre;
-    private javax.swing.JScrollPane jscpAchatInfo;
-    private javax.swing.JTable jtblAchatInfo;
+    private javax.swing.JScrollPane jscpLocationInfo;
+    private javax.swing.JTable jtblLocationInfo;
     // End of variables declaration//GEN-END:variables
 }

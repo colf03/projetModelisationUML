@@ -128,7 +128,7 @@ public class FilmVideotheque {
     public static void louerFilm(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;
-        String sql = "UPDATE VIDEOTHEQUE set LOUE = 1 where ID=" + id + ";";
+        String sql = "UPDATE VIDEOTHEQUE set LOUE = 'true' where ID=" + id + ";";
         st.executeUpdate(sql);
         cb.fermerConnectionBDD();
 
@@ -137,7 +137,7 @@ public class FilmVideotheque {
     public static void retourLocationFilm(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;
-        String sql = "UPDATE VIDEOTHEQUE set LOUE = 0 where ID=" + id + ";";
+        String sql = "UPDATE VIDEOTHEQUE set LOUE = 'false' where ID=" + id + ";";
         st.executeUpdate(sql);
         cb.fermerConnectionBDD();
     }
@@ -145,7 +145,7 @@ public class FilmVideotheque {
     public static void filmVendable(int id, float p) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;
-        String sql = "UPDATE VIDEOTHEQUE set VENDABLE = 1 , PRIX=" + p + " where ID=" + id + ";";
+        String sql = "UPDATE VIDEOTHEQUE set VENDABLE = 'true' , PRIX=" + p + " where ID=" + id + ";";
         st.executeUpdate(sql);
         cb.fermerConnectionBDD();
     }

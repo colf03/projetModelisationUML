@@ -197,7 +197,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();&#xa;editorComponent.getDocument().addDocumentListener(new DocumentListener() {&#xa;    @Override&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        jcbTitreUpdate(e);&#xa;    }&#xa;&#xa;    @Override&#xa;    public void removeUpdate(DocumentEvent e) {&#xa;        jcbTitreUpdate(e);&#xa;    }&#xa;&#xa;    @Override&#xa;    public void changedUpdate(DocumentEvent e) {&#xa;        jcbTitreUpdate(e);&#xa;    }&#xa;});&#xa;"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((JTextField)jcbTitre.getEditor().getEditorComponent()).addKeyListener(new KeyListener() {&#xa;    @Override&#xa;    public void keyTyped(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyPressed(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyReleased(KeyEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    public void update(){&#xa;        //perform separately, as listener conflicts between the editing component&#xa;        //and JComboBox will result in an IllegalStateException due to editing &#xa;        //the component when it is locked. &#xa;&#xa;        SwingUtilities.invokeLater(new Runnable(){&#xa;            @Override&#xa;            public void run() {&#xa;                jcbTitreUpdate();&#xa;            }&#xa;        });&#xa;    }&#xa;});"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
@@ -230,9 +230,6 @@
               <Dimension value="[100, 20]"/>
             </Property>
           </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jftfTotal.setValue(1234.56);"/>
-          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

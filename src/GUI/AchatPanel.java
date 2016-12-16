@@ -5,9 +5,20 @@
  */
 package GUI;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import main.Article;
+import main.FilmVideotheque;
 
 /**
  *
@@ -42,7 +53,6 @@ public class AchatPanel extends javax.swing.JPanel {
         jbtnAnnuler = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jftfTotal = new javax.swing.JFormattedTextField();
-        jftfTotal.setValue(1234.56);
         infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(false);
 
         infoAchatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -68,21 +78,33 @@ public class AchatPanel extends javax.swing.JPanel {
         jcbTitre.setEditable(true);
         jcbTitre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbTitre.setSelectedItem("");
-        JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();
-        editorComponent.getDocument().addDocumentListener(new DocumentListener() {
+        ((JTextField)jcbTitre.getEditor().getEditorComponent()).addKeyListener(new KeyListener() {
             @Override
-            public void insertUpdate(DocumentEvent e) {
-                jcbTitreUpdate(e);
+            public void keyTyped(KeyEvent e) {
+
             }
 
             @Override
-            public void removeUpdate(DocumentEvent e) {
-                jcbTitreUpdate(e);
+            public void keyPressed(KeyEvent e) {
+
             }
 
             @Override
-            public void changedUpdate(DocumentEvent e) {
-                jcbTitreUpdate(e);
+            public void keyReleased(KeyEvent e) {
+                update();
+            }
+
+            public void update(){
+                //perform separately, as listener conflicts between the editing component
+                //and JComboBox will result in an IllegalStateException due to editing
+                //the component when it is locked.
+
+                SwingUtilities.invokeLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        jcbTitreUpdate();
+                    }
+                });
             }
         });
 
@@ -172,8 +194,38 @@ public class AchatPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     
-    private void jcbTitreUpdate(DocumentEvent evt) {                                     
-        jcbTitre.showPopup();
+    private List<Article> articles;
+    private float total;
+    
+    private void clearAchat(){
+        DefaultTableModel model = (DefaultTableModel)jtblAchatInfo.getModel();
+        model.setRowCount(0);
+        articles = new ArrayList<Article>();
+        total = 0;
+        jftfTotal.setValue(total);
+        ((JTextField)jcbTitre.getEditor().getEditorComponent()).setText("");
+    }
+    
+    private void jcbTitreUpdate() {                                     
+        try {
+            JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
+            String text = tf.getText();
+            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text);
+            String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
+            jcbTitre.removeAllItems();
+            DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
+            for(String titre : listeTitre){
+                model.addElement(titre);
+            }
+            jcbTitre.setModel(model);
+            jcbTitre.setSelectedIndex(-1);
+            tf.setText(text);
+            jcbTitre.showPopup();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -44,7 +44,7 @@ public class Vente extends Transaction {
 
     public void ajouterIdClient(int id) {
 
-        this.id_numtel = id;
+        this.numTel = id;
     }
 
     //voir tableau pour choisir mode de paiement
@@ -71,7 +71,7 @@ public class Vente extends Transaction {
         } else {
 
             String sql = "INSERT INTO VENTE(CLIENT_NUMTEL,PRIX_TOTAL,MODE_PAIEMENT,DATE_TRANSACTION) "
-                    + "VALUES (" + id_numtel + "," + total + ",'" + modePaiement + "'," + date_transaction + ");";
+                    + "VALUES (" + numTel + "," + total + ",'" + modePaiement + "'," + date_transaction + ");";
             st.executeUpdate(sql);
             cb.fermerConnectionBDD();
             for (FilmVideotheque film : listeF) {

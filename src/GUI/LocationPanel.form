@@ -18,9 +18,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="infoClientPanel" pref="417" max="32767" attributes="0"/>
+              <Component id="infoClientPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="infoLocationPanel" pref="450" max="32767" attributes="0"/>
+              <Component id="infoLocationPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -30,7 +30,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="infoLocationPanel" pref="533" max="32767" attributes="0"/>
+                  <Component id="infoLocationPanel" pref="460" max="32767" attributes="0"/>
                   <Component id="infoClientPanel" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -57,23 +57,32 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jscpAchatInfo" alignment="0" pref="436" max="32767" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                          <Component id="jbtnAnnuler" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jbtnConfirmer" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jscpLocationInfo" alignment="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jlblLocation" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jlblTitre" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jcbTitre" max="32767" attributes="0"/>
+                          <Component id="jcbTitre" pref="268" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jbtnAjouter" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jbtnAnnuler" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jbtnConfirmer" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jftfTotal" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -94,7 +103,12 @@
                       <Component id="jlblTitre" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jscpAchatInfo" max="32767" attributes="0"/>
+                  <Component id="jscpLocationInfo" pref="0" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jftfTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jbtnConfirmer" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -128,23 +142,27 @@
             <Property name="text" type="java.lang.String" value="Ajouter"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAjouterActionPerformed"/>
+          </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jscpAchatInfo">
+        <Container class="javax.swing.JScrollPane" name="jscpLocationInfo">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jtblAchatInfo">
+            <Component class="javax.swing.JTable" name="jtblLocationInfo">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Titre" type="java.lang.Object"/>
-                    <Column editable="true" title="Description" type="java.lang.Object"/>
-                    <Column editable="true" title="Genre" type="java.lang.Object"/>
-                    <Column editable="true" title="Dur&#xe9;e de la location" type="java.lang.Object"/>
+                  <Table columnCount="6" rowCount="0">
+                    <Column editable="true" title="ID" type="java.lang.Integer"/>
+                    <Column editable="true" title="Titre" type="java.lang.String"/>
+                    <Column editable="true" title="Description" type="java.lang.String"/>
+                    <Column editable="true" title="Genre" type="java.lang.String"/>
+                    <Column editable="true" title="Dur&#xe9;e de la location" type="java.lang.Integer"/>
+                    <Column editable="true" title="Prix" type="java.lang.Float"/>
                   </Table>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -163,7 +181,7 @@
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();&#xa;editorComponent.addKeyListener(new KeyListener() {&#xa;    @Override&#xa;    public void keyTyped(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyPressed(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyReleased(KeyEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    public void update(){&#xa;        //perform separately, as listener conflicts between the editing component&#xa;        //and JComboBox will result in an IllegalStateException due to editing &#xa;        //the component when it is locked. &#xa;&#xa;        SwingUtilities.invokeLater(new Runnable(){&#xa;            @Override&#xa;            public void run() {&#xa;                jcbTitreUpdate();&#xa;            }&#xa;        });&#xa;    }&#xa;});"/>
+            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="((JTextField)jcbTitre.getEditor().getEditorComponent()).addKeyListener(new KeyListener() {&#xa;    @Override&#xa;    public void keyTyped(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyPressed(KeyEvent e) {&#xa;        &#xa;    }&#xa;&#xa;    @Override&#xa;    public void keyReleased(KeyEvent e) {&#xa;        update();&#xa;    }&#xa;&#xa;    public void update(){&#xa;        //perform separately, as listener conflicts between the editing component&#xa;        //and JComboBox will result in an IllegalStateException due to editing &#xa;        //the component when it is locked. &#xa;&#xa;        SwingUtilities.invokeLater(new Runnable(){&#xa;            @Override&#xa;            public void run() {&#xa;                jcbTitreUpdate();&#xa;            }&#xa;        });&#xa;    }&#xa;});"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
@@ -172,11 +190,37 @@
             <Property name="text" type="java.lang.String" value="Comfirmer la location"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnConfirmerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnAnnuler">
           <Properties>
             <Property name="text" type="java.lang.String" value="Annuler"/>
             <Property name="enabled" type="boolean" value="false"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAnnulerActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jftfTotal">
+          <Properties>
+            <Property name="editable" type="boolean" value="false" postCode="jftfTotal.setValue(0);"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="0" type="4"/>
+            </Property>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[100, 20]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[100, 20]"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Total : "/>
           </Properties>
         </Component>
       </SubComponents>

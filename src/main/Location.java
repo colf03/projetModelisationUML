@@ -4,39 +4,37 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.ArrayList;
+
 
 public class Location extends Transaction {
 
     private Integer id;
+    private int dureeLocation;
     private Integer videothequeId;
     private String date_retour;
 
-    private Location(Integer i, Integer idFilm, int idNumtel, String dateTransac, String dateRetour) {
-        super(idNumtel, dateTransac);
-        this.id = i;
+    private Location(Integer id, Integer idFilm, String numTel, int dureeLocation, String dateTransac, String dateRetour) {
+        super(numTel, dateTransac);
+        this.id = id;
         this.videothequeId = idFilm;
+        this.dureeLocation = dureeLocation;
         this.date_transaction = dateTransac;
         this.date_retour = dateRetour;
     }
 
-    public Location(int idNumtel, Integer idFilm) {
-        super(idNumtel);
+    public Location(String numTel, Integer idFilm, int dureeLocation) {
+        super(numTel);
         this.videothequeId = idFilm;
-
-        //date retour= 14 jour de plus a la date actuelle
-        Calendar calendrier = Calendar.getInstance();
-        calendrier.add(Calendar.DAY_OF_MONTH, 14);
-        Date d = calendrier.getTime();
-        this.date_retour = new SimpleDateFormat("yyyy-MM-dd").format(d);
+        this.dureeLocation = dureeLocation;
     }
 
     public void ajouterLocation() throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
 
-        String sql = "INSERT INTO LOCATION(VIDEOTHEQUE_ID,CLIENT_NUMTEL,DATE_TRANSACTION,DATE_RETOUR_LOCATION) "
-                + "VALUES (" + videothequeId + "," + id_numtel + "," + date_transaction + "," + date_retour + ");";
+        String sql = "INSERT INTO LOCATION(VIDEOTHEQUE_ID,CLIENT_NUMTEL,DUREE_LOCATION,DATE_TRANSACTION,DATE_RETOUR_LOCATION) "
+                + "VALUES (" + videothequeId + ",'" + numTel + "'," + dureeLocation + ",'" + date_transaction + "','" + date_retour + "');";
         st.executeUpdate(sql);
         cb.fermerConnectionBDD();
 
@@ -50,7 +48,7 @@ public class Location extends Transaction {
         String sql = "SELECT * FROM VENTE;";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            Location l = new Location(rs.getInt("ID"), rs.getInt("VIDEOTHEQUE_ID"), rs.getInt("CLIENT_NUMTEL"),
+            Location l = new Location(rs.getInt("ID"), rs.getInt("VIDEOTHEQUE_ID"), rs.getString("CLIENT_NUMTEL"), rs.getInt("DUREE_LOCATION"), 
                     new SimpleDateFormat("yyy-MM-dd").format(rs.getDate("DATE_TRANSACTION")),
                     new SimpleDateFormat("yyy-MM-dd").format(rs.getDate("DATE_RETOUR_LOCATION ")));
             liste.add(l);
@@ -74,4 +72,7 @@ public class Location extends Transaction {
         return date_retour;
     }
 
+    public int getDureeLocation() {
+        return dureeLocation;
+    }
 }
