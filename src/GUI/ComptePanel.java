@@ -14,10 +14,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import javax.swing.table.DefaultTableModel;
 import main.Client;
 import main.FilmVideotheque;
 import main.Location;
+import main.Vente;
 
 /**
  *
@@ -125,14 +127,14 @@ public class ComptePanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Description", "Date", "Total"
+                "ID", "Date", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -194,23 +196,30 @@ public class ComptePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private Client client;
-    
-    private void loadClient(Client client){
+
+    private void loadClient(Client client) {
         try {
             this.client = client;
             List<Location> locations = Location.allLocation(client.getNumTel());
-            DefaultTableModel model = (DefaultTableModel)jtblHistLocation.getModel();
-            for (Location location : locations){
+            DefaultTableModel modelLocation = (DefaultTableModel) jtblHistLocation.getModel();
+            modelLocation.setRowCount(0);
+            for (Location location : locations) {
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		Date dateTransaction = df.parse(location.getDate_transaction());
+                Date dateTransaction = df.parse(location.getDate_transaction());
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(dateTransaction);
                 cal.add(Calendar.DATE, location.getDureeLocation());
                 Date dateLimite = cal.getTime();
                 boolean retard = new Date().after(dateLimite);
-                model.addRow(new Object[]{location.getId(), FilmVideotheque.trouverFilm(location.getVideothequeId()).getFilm().getTitre(), location.getDureeLocation(), location.getDate_transaction(), location.getDate_retour(), retard});
+                modelLocation.addRow(new Object[]{location.getId(), FilmVideotheque.trouverFilm(location.getVideothequeId()).getFilm().getTitre(), location.getDureeLocation(), location.getDate_transaction(), location.getDate_retour(), retard});
             }
-                
+            
+            List<Vente> ventes = Vente.allVente(client.getNumTel());
+            DefaultTableModel modelVente = (DefaultTableModel) jtblHistAchat.getModel();
+            modelVente.setRowCount(0);
+            for (Vente vente : ventes)
+                modelVente.addRow(new Object[]{vente.getId(), vente.getDate_transaction(), vente.getTotal()});
+
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ComptePanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

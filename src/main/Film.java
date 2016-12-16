@@ -37,18 +37,17 @@ public class Film {
         Statement st = cb.getStmt();
 
         ArrayList<Film> listeFilm = trouverFilm(f.titre);
-        if (listeFilm.size() > 0)
-        {
-            String sql = "UPDATE FILM " +
-                "SET DESCRIPTION='" + f.description + "',GENRE='" + f.genre + "' " +
-                "WHERE TITRE='" + f.titre + "';";
+        if (listeFilm.size() > 0) {
+            String sql = "UPDATE FILM "
+                    + "SET DESCRIPTION='" + f.description + "',GENRE='" + f.genre + "' "
+                    + "WHERE TITRE='" + f.titre + "';";
             st.executeUpdate(sql);
 
             cb.fermerConnectionBDD();
 
-        }else{
+        } else {
             String sql = "INSERT INTO FILM(TITRE,DESCRIPTION,GENRE) "
-                + "VALUES ('" + f.titre + "','" + f.description + "','" + f.genre + "');";
+                    + "VALUES ('" + f.titre + "','" + f.description + "','" + f.genre + "');";
             st.executeUpdate(sql);
 
             cb.fermerConnectionBDD();
@@ -69,7 +68,7 @@ public class Film {
         cb.fermerConnectionBDD();
         return liste;
     }
-    
+
     public static ArrayList<Film> rechercheFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();

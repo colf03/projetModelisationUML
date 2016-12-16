@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.text.JTextComponent;
 import main.Client;
 
 /**
@@ -310,8 +309,8 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jtfCodePostal.setText("");
         this.client = null;
     }
-    
-    public Client getClient(){
+
+    public Client getClient() {
         jbtnChargerActionPerformed(null);
         return this.client;
     }

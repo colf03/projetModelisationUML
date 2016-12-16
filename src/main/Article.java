@@ -56,11 +56,26 @@ public class Article {
         return liste;
     }
 
-    public static ArrayList<Article> trouverArticle(String descrip) throws ClassNotFoundException, SQLException {
+    public static ArrayList<Article> rechercheArticle(String descrip) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
         ArrayList<Article> liste = new ArrayList<Article>();
         String sql = "SELECT * FROM ARTICLE WHERE DESCRIPTION LIKE '%" + descrip + "%';";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Article a = new Article(rs.getInt("ID"), rs.getString("DESCRIPTION"), rs.getFloat("PRIX"));
+            liste.add(a);
+        }
+        rs.close();
+        cb.fermerConnectionBDD();
+        return liste;
+    }
+
+    public static ArrayList<Article> trouverArticle(String descrip) throws ClassNotFoundException, SQLException {
+        ConnectionBDD cb = new ConnectionBDD();
+        Statement st = cb.getStmt();
+        ArrayList<Article> liste = new ArrayList<Article>();
+        String sql = "SELECT * FROM ARTICLE WHERE DESCRIPTION ='" + descrip + "';";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             Article a = new Article(rs.getInt("ID"), rs.getString("DESCRIPTION"), rs.getFloat("PRIX"));

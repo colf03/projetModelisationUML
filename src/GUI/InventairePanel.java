@@ -472,7 +472,7 @@ public class InventairePanel extends javax.swing.JPanel {
 
         jlblArticlePrix.setText("Prix : ");
 
-        jftfArticlePrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        jftfArticlePrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
 
         javax.swing.GroupLayout articleEditPanelLayout = new javax.swing.GroupLayout(articleEditPanel);
         articleEditPanel.setLayout(articleEditPanelLayout);
@@ -568,7 +568,7 @@ public class InventairePanel extends javax.swing.JPanel {
             jftfFilmPrixVente.setBackground(Color.white);
         }
     }
-    
+
     private void emptyFilmFields() {
         jtfFilmTitre.setText("");
         jtaFilmDescription.setText("");
@@ -578,12 +578,12 @@ public class InventairePanel extends javax.swing.JPanel {
         jcbFilmVendable.setSelected(false);
         jftfFilmPrixVente.setValue(null);
     }
-    
+
     private void resetArticleErrors() {
         jtfArticleDescription.setBackground(Color.white);
         jftfArticlePrix.setBackground(Color.white);
     }
-    
+
     private void emptyArticleFields() {
         jtfArticleDescription.setText("");
         jftfArticlePrix.setValue(null);
@@ -635,17 +635,18 @@ public class InventairePanel extends javax.swing.JPanel {
                 if (jftfFilmPrixVente.getValue() == null) {
                     throw new RequiredException(jftfFilmPrixVente);
                 }
-                prixVente = ((Number)jftfFilmPrixVente.getValue()).floatValue();
+                prixVente = ((Number) jftfFilmPrixVente.getValue()).floatValue();
                 if (prixVente < 0) {
                     throw new RequiredException(jftfFilmPrixVente);
                 }
             }
-            int qtee = ((Number)jftfFilmQtee.getValue()).intValue();
-            int dureeLocation = ((Number)jftfFilmDureeLocation.getValue()).intValue();
-            float prixLocation = ((Number)jftfFilmPrixLocation.getValue()).floatValue();
+            int qtee = ((Number) jftfFilmQtee.getValue()).intValue();
+            int dureeLocation = ((Number) jftfFilmDureeLocation.getValue()).intValue();
+            float prixLocation = ((Number) jftfFilmPrixLocation.getValue()).floatValue();
 
-            if (qtee < 0)
+            if (qtee < 0) {
                 throw new RequiredException(jftfFilmQtee);
+            }
             if (dureeLocation < 1) {
                 throw new RequiredException(jftfFilmDureeLocation);
             }
@@ -675,14 +676,14 @@ public class InventairePanel extends javax.swing.JPanel {
         try {
 
             String description = jtfArticleDescription.getText();
-            
+
             if (description.isEmpty()) {
                 throw new RequiredException(jtfArticleDescription);
             }
             if (jftfArticlePrix.getValue() == null) {
                 throw new RequiredException(jftfArticlePrix);
             }
-            float prix = ((Number)jftfArticlePrix.getValue()).floatValue();
+            float prix = ((Number) jftfArticlePrix.getValue()).floatValue();
 
             if (prix < 0) {
                 throw new RequiredException(jftfArticlePrix);
@@ -699,12 +700,12 @@ public class InventairePanel extends javax.swing.JPanel {
         updateArticleTable("");
     }//GEN-LAST:event_jbtnArticleConfirmerActionPerformed
 
-    private void updateFilmTable(String filtre){
+    private void updateFilmTable(String filtre) {
         try {
             List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(filtre);
-            DefaultTableModel model = (DefaultTableModel)jtblFilmInventaireInfo.getModel();
+            DefaultTableModel model = (DefaultTableModel) jtblFilmInventaireInfo.getModel();
             model.setRowCount(0);
-            for (FilmVideotheque film : listeFilm){
+            for (FilmVideotheque film : listeFilm) {
                 model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.getQtee(), film.getDureeLocation(), film.getPrixLocation(), film.isVendable(), film.getPrixVente()});
             }
         } catch (ClassNotFoundException ex) {
@@ -713,13 +714,13 @@ public class InventairePanel extends javax.swing.JPanel {
             Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void updateArticleTable(String filtre){
+
+    private void updateArticleTable(String filtre) {
         try {
-            List<Article> listeArticle = Article.trouverArticle(filtre);
-            DefaultTableModel model = (DefaultTableModel)jtblArticleInventaireInfo.getModel();
+            List<Article> listeArticle = Article.rechercheArticle(filtre);
+            DefaultTableModel model = (DefaultTableModel) jtblArticleInventaireInfo.getModel();
             model.setRowCount(0);
-            for (Article article : listeArticle){
+            for (Article article : listeArticle) {
                 model.addRow(new Object[]{article.getId(), article.getDescription(), article.getPrix()});
             }
         } catch (ClassNotFoundException ex) {
@@ -728,34 +729,35 @@ public class InventairePanel extends javax.swing.JPanel {
             Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void loadFilmRow(ListSelectionEvent evt){
-        DefaultTableModel model = (DefaultTableModel)jtblFilmInventaireInfo.getModel();
+
+    private void loadFilmRow(ListSelectionEvent evt) {
+        DefaultTableModel model = (DefaultTableModel) jtblFilmInventaireInfo.getModel();
         int row = jtblFilmInventaireInfo.getSelectedRow();
         if (row >= 0) {
-            jtfFilmTitre.setText((String)model.getValueAt(row, 1));
-            jtaFilmDescription.setText((String)model.getValueAt(row, 2));
-            jtfFilmGenre.setText((String)model.getValueAt(row, 3));
-            jftfFilmQtee.setValue((int)model.getValueAt(row, 4));
-            jftfFilmDureeLocation.setValue((int)model.getValueAt(row, 5));
-            jftfFilmPrixLocation.setValue((float)model.getValueAt(row, 6));
-            jcbFilmVendable.setSelected((boolean)model.getValueAt(row, 7));
-            if (jcbFilmVendable.isSelected())
-                jftfFilmPrixVente.setValue((float)model.getValueAt(row, 8));
-            else
+            jtfFilmTitre.setText((String) model.getValueAt(row, 1));
+            jtaFilmDescription.setText((String) model.getValueAt(row, 2));
+            jtfFilmGenre.setText((String) model.getValueAt(row, 3));
+            jftfFilmQtee.setValue((int) model.getValueAt(row, 4));
+            jftfFilmDureeLocation.setValue((int) model.getValueAt(row, 5));
+            jftfFilmPrixLocation.setValue((float) model.getValueAt(row, 6));
+            jcbFilmVendable.setSelected((boolean) model.getValueAt(row, 7));
+            if (jcbFilmVendable.isSelected()) {
+                jftfFilmPrixVente.setValue((float) model.getValueAt(row, 8));
+            } else {
                 jftfFilmPrixVente.setValue(null);
+            }
         }
     }
-    
-    private void loadArticleRow(ListSelectionEvent evt){
-        DefaultTableModel model = (DefaultTableModel)jtblArticleInventaireInfo.getModel();
+
+    private void loadArticleRow(ListSelectionEvent evt) {
+        DefaultTableModel model = (DefaultTableModel) jtblArticleInventaireInfo.getModel();
         int row = jtblArticleInventaireInfo.getSelectedRow();
         if (row >= 0) {
-            jtfArticleDescription.setText((String)model.getValueAt(row, 1));
-            jftfArticlePrix.setValue((float)model.getValueAt(row, 2));
+            jtfArticleDescription.setText((String) model.getValueAt(row, 1));
+            jftfArticlePrix.setValue((float) model.getValueAt(row, 2));
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel articleEditPanel;
     private javax.swing.JPanel articleInventairePanel;
