@@ -72,7 +72,15 @@ public class AchatPanel extends javax.swing.JPanel {
             new String [] {
                 "ID", "Titre", "Description", "Prix"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jscpAchatInfo.setViewportView(jtblAchatInfo);
 
         jcbTitre.setEditable(true);

@@ -61,7 +61,7 @@ public class CreationTable {
                  "(ID               INTEGER PRIMARY KEY AUTOINCREMENT, "+
                  " FILM_ID          INT NOT NULL, " +
                  " VENDABLE         BOOLEAN NOT NULL, " + 
-                 " LOUE             BOOLEAN NOT NULL, " + 
+                 " QTEE             INT NOT NULL, " + 
                  " DUREE_LOCATION   INT NOT NULL, " +
                  " PRIX_LOCATION     FLOAT NOT NULL, " +
                  " PRIX_VENTE        FLOAT, " +

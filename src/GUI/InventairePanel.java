@@ -60,11 +60,13 @@ public class InventairePanel extends javax.swing.JPanel {
         jftfPrixVente = new javax.swing.JFormattedTextField();
         jftfDureeLocation = new javax.swing.JFormattedTextField();
         jtfGenre = new javax.swing.JTextField();
+        jlblQtee = new javax.swing.JLabel();
+        jftfQtee = new javax.swing.JFormattedTextField();
         inventairePanel = new javax.swing.JPanel();
         jlblInventaire = new javax.swing.JLabel();
         jlblFiltrer = new javax.swing.JLabel();
         jtfFiltrer = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jscpInventaireInfo = new javax.swing.JScrollPane();
         jtblInventaireInfo = new javax.swing.JTable();
 
         ajouterModifierPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -121,6 +123,10 @@ public class InventairePanel extends javax.swing.JPanel {
 
         jftfDureeLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
+        jlblQtee.setText("Quantitée : ");
+
+        jftfQtee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
         javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
         ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
         ajouterModifierPanelLayout.setHorizontalGroup(
@@ -142,7 +148,8 @@ public class InventairePanel extends javax.swing.JPanel {
                             .addComponent(jlblDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jcbVendable)
                             .addComponent(jlblPrixLocation)
-                            .addComponent(jlblPrixVente))
+                            .addComponent(jlblPrixVente)
+                            .addComponent(jlblQtee))
                         .addGap(1, 1, 1)
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtfTitre)
@@ -150,7 +157,8 @@ public class InventairePanel extends javax.swing.JPanel {
                             .addComponent(jftfPrixLocation)
                             .addComponent(jftfPrixVente)
                             .addComponent(jftfDureeLocation)
-                            .addComponent(jtfGenre))))
+                            .addComponent(jtfGenre)
+                            .addComponent(jftfQtee))))
                 .addContainerGap())
         );
         ajouterModifierPanelLayout.setVerticalGroup(
@@ -172,6 +180,10 @@ public class InventairePanel extends javax.swing.JPanel {
                     .addComponent(jtfGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblQtee, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfQtee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblDuree)
                     .addComponent(jftfDureeLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,15 +194,12 @@ public class InventairePanel extends javax.swing.JPanel {
                 .addComponent(jcbVendable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                        .addComponent(jlblPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbtnConfirmer)
-                            .addComponent(jbtnAnnuler)))
-                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                        .addComponent(jftfPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jlblPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnConfirmer)
+                    .addComponent(jbtnAnnuler))
                 .addContainerGap())
         );
 
@@ -233,18 +242,18 @@ public class InventairePanel extends javax.swing.JPanel {
             }
         });
 
-        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jscpInventaireInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         jtblInventaireInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null,  new Boolean(true), null, null, null, null}
+
             },
             new String [] {
-                "ID", "Titre", "Description", "Genre", "Vendable", "Loué", "Durée des locations", "Prix Location", "Prix Vente"
+                "ID", "Titre", "Description", "Genre", "Quantitée", "Durée des locations", "Prix Location", "Vendable", "Prix Vente"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Boolean.class, java.lang.Float.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false, false, false, false, false, false
@@ -267,7 +276,7 @@ public class InventairePanel extends javax.swing.JPanel {
                 loadRow(event);
             }
         });
-        jScrollPane2.setViewportView(jtblInventaireInfo);
+        jscpInventaireInfo.setViewportView(jtblInventaireInfo);
 
         javax.swing.GroupLayout inventairePanelLayout = new javax.swing.GroupLayout(inventairePanel);
         inventairePanel.setLayout(inventairePanelLayout);
@@ -281,7 +290,7 @@ public class InventairePanel extends javax.swing.JPanel {
                         .addComponent(jlblFiltrer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfFiltrer))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                    .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
                 .addContainerGap())
         );
         inventairePanelLayout.setVerticalGroup(
@@ -294,7 +303,7 @@ public class InventairePanel extends javax.swing.JPanel {
                     .addComponent(jlblFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -369,6 +378,9 @@ public class InventairePanel extends javax.swing.JPanel {
             if (genre.isEmpty()) {
                 throw new RequiredException(jtfGenre);
             }
+            if (jftfQtee.getValue() == null) {
+                throw new RequiredException(jftfQtee);
+            }
             if (jftfDureeLocation.getValue() == null) {
                 throw new RequiredException(jftfDureeLocation);
             }
@@ -385,10 +397,12 @@ public class InventairePanel extends javax.swing.JPanel {
                     throw new RequiredException(jftfPrixVente);
                 }
             }
-
+            int qtee = ((Number)jftfQtee.getValue()).intValue();
             int dureeLocation = ((Number)jftfDureeLocation.getValue()).intValue();
             float prixLocation = ((Number)jftfPrixLocation.getValue()).floatValue();
 
+            if (qtee < 0)
+                throw new RequiredException(jftfQtee);
             if (dureeLocation < 1) {
                 throw new RequiredException(jftfDureeLocation);
             }
@@ -397,7 +411,7 @@ public class InventairePanel extends javax.swing.JPanel {
             }
 
             Film.ajouterFilm(new Film(titre, description, genre));
-            FilmVideotheque.ajouterFilmVideotheque(new FilmVideotheque(Film.rechercheFilm(titre).get(0), jcbVendable.isSelected(), false, dureeLocation, prixLocation, prixVente));
+            FilmVideotheque.ajouterFilmVideotheque(new FilmVideotheque(Film.rechercheFilm(titre).get(0), jcbVendable.isSelected(), qtee, dureeLocation, prixLocation, prixVente));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -419,7 +433,7 @@ public class InventairePanel extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel)jtblInventaireInfo.getModel();
             model.setRowCount(0);
             for (FilmVideotheque film : listeFilm){
-                model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.isVendable(), film.isLoue(), film.getDureeLocation(), film.getPrixLocation(), film.getPrixVente()});
+                model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.getQtee(), film.getDureeLocation(), film.getPrixLocation(), film.isVendable(), film.getPrixVente()});
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -435,9 +449,10 @@ public class InventairePanel extends javax.swing.JPanel {
             jtfTitre.setText((String)model.getValueAt(row, 1));
             jtaDescription.setText((String)model.getValueAt(row, 2));
             jtfGenre.setText((String)model.getValueAt(row, 3));
-            jcbVendable.setSelected((boolean)model.getValueAt(row, 4));
-            jftfDureeLocation.setValue((int)model.getValueAt(row, 6));
-            jftfPrixLocation.setValue((float)model.getValueAt(row, 7));
+            jftfQtee.setValue((int)model.getValueAt(row, 4));
+            jftfDureeLocation.setValue((int)model.getValueAt(row, 5));
+            jftfPrixLocation.setValue((float)model.getValueAt(row, 6));
+            jcbVendable.setSelected((boolean)model.getValueAt(row, 7));
             if (jcbVendable.isSelected())
                 jftfPrixVente.setValue((float)model.getValueAt(row, 8));
             else
@@ -449,13 +464,13 @@ public class InventairePanel extends javax.swing.JPanel {
     private javax.swing.JPanel ajouterModifierPanel;
     private javax.swing.JPanel inventairePanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnAnnuler;
     private javax.swing.JButton jbtnConfirmer;
     private javax.swing.JCheckBox jcbVendable;
     private javax.swing.JFormattedTextField jftfDureeLocation;
     private javax.swing.JFormattedTextField jftfPrixLocation;
     private javax.swing.JFormattedTextField jftfPrixVente;
+    private javax.swing.JFormattedTextField jftfQtee;
     private javax.swing.JLabel jlblAjouterModifier;
     private javax.swing.JLabel jlblDescription;
     private javax.swing.JLabel jlblDuree;
@@ -464,6 +479,7 @@ public class InventairePanel extends javax.swing.JPanel {
     private javax.swing.JLabel jlblInventaire;
     private javax.swing.JLabel jlblPrixLocation;
     private javax.swing.JLabel jlblPrixVente;
+    private javax.swing.JLabel jlblQtee;
     private javax.swing.JLabel jlblTitre;
     private javax.swing.JScrollPane jscpInventaireInfo;
     private javax.swing.JTextArea jtaDescription;

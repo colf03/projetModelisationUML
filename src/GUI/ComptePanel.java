@@ -5,6 +5,20 @@
  */
 package GUI;
 
+import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import main.Client;
+import main.FilmVideotheque;
+import main.Location;
+
 /**
  *
  * @author Bobby
@@ -28,46 +42,127 @@ public class ComptePanel extends javax.swing.JPanel {
     private void initComponents() {
 
         infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(true);
-        historiquePanel = new javax.swing.JPanel();
-        jlblHistorique = new javax.swing.JLabel();
-        jscpHistorique = new javax.swing.JScrollPane();
-        jtblHistorique = new javax.swing.JTable();
+        histLocationPanel = new javax.swing.JPanel();
+        jlblHistLocation = new javax.swing.JLabel();
+        jscpHistLocation = new javax.swing.JScrollPane();
+        jtblHistLocation = new javax.swing.JTable();
+        histAchatPanel = new javax.swing.JPanel();
+        jlblHistAchat = new javax.swing.JLabel();
+        jscpHistAchat = new javax.swing.JScrollPane();
+        jtblHistAchat = new javax.swing.JTable();
 
-        historiquePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        historiquePanel.setMinimumSize(new java.awt.Dimension(400, 400));
-        historiquePanel.setPreferredSize(new java.awt.Dimension(400, 400));
+        infoClientPanel.addActionListenerToSubmit(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Client client = infoClientPanel.getClient();
+                if (client != null)
+                loadClient(client);
+            }
+        });
 
-        jlblHistorique.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblHistorique.setText("Historique des transactions");
+        histLocationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        histLocationPanel.setMinimumSize(new java.awt.Dimension(400, 227));
+        histLocationPanel.setPreferredSize(new java.awt.Dimension(400, 227));
 
-        jtblHistorique.setModel(new javax.swing.table.DefaultTableModel(
+        jlblHistLocation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblHistLocation.setText("Historique des locations");
+
+        jtblHistLocation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Date", "Type", "Titre", "Prix", "Date de retour"
+                "ID", "Title", "Durée de location", "Date de location", "Date de retour", "Retard"
             }
-        ));
-        jscpHistorique.setViewportView(jtblHistorique);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
-        javax.swing.GroupLayout historiquePanelLayout = new javax.swing.GroupLayout(historiquePanel);
-        historiquePanel.setLayout(historiquePanelLayout);
-        historiquePanelLayout.setHorizontalGroup(
-            historiquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(historiquePanelLayout.createSequentialGroup()
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jtblHistLocation.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jscpHistLocation.setViewportView(jtblHistLocation);
+
+        javax.swing.GroupLayout histLocationPanelLayout = new javax.swing.GroupLayout(histLocationPanel);
+        histLocationPanel.setLayout(histLocationPanelLayout);
+        histLocationPanelLayout.setHorizontalGroup(
+            histLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(histLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(historiquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblHistorique, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jscpHistorique, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addGroup(histLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblHistLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jscpHistLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        historiquePanelLayout.setVerticalGroup(
-            historiquePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(historiquePanelLayout.createSequentialGroup()
+        histLocationPanelLayout.setVerticalGroup(
+            histLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(histLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlblHistorique)
+                .addComponent(jlblHistLocation)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpHistorique, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jscpHistLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        histAchatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        histAchatPanel.setMinimumSize(new java.awt.Dimension(400, 227));
+        histAchatPanel.setPreferredSize(new java.awt.Dimension(400, 227));
+
+        jlblHistAchat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblHistAchat.setText("Historique des transactions");
+
+        jtblHistAchat.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Description", "Date", "Total"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jscpHistAchat.setViewportView(jtblHistAchat);
+
+        javax.swing.GroupLayout histAchatPanelLayout = new javax.swing.GroupLayout(histAchatPanel);
+        histAchatPanel.setLayout(histAchatPanelLayout);
+        histAchatPanelLayout.setHorizontalGroup(
+            histAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(histAchatPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(histAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblHistAchat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jscpHistAchat, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        histAchatPanelLayout.setVerticalGroup(
+            histAchatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(histAchatPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblHistAchat)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpHistAchat, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -79,26 +174,61 @@ public class ComptePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(historiquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(histLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(histAchatPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(historiquePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(histLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(histAchatPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private Client client;
+    
+    private void loadClient(Client client){
+        try {
+            this.client = client;
+            List<Location> locations = Location.allLocation(client.getNumTel());
+            DefaultTableModel model = (DefaultTableModel)jtblHistLocation.getModel();
+            for (Location location : locations){
+                DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateTransaction = df.parse(location.getDate_transaction());
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(dateTransaction);
+                cal.add(Calendar.DATE, location.getDureeLocation());
+                Date dateLimite = cal.getTime();
+                boolean retard = new Date().after(dateLimite);
+                model.addRow(new Object[]{location.getId(), FilmVideotheque.trouverFilm(location.getVideothequeId()).getFilm().getTitre(), location.getDureeLocation(), location.getDate_transaction(), location.getDate_retour(), retard});
+            }
+                
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ComptePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ComptePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(ComptePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel historiquePanel;
+    private javax.swing.JPanel histAchatPanel;
+    private javax.swing.JPanel histLocationPanel;
     private GUI.InfoClientPanel infoClientPanel;
-    private javax.swing.JLabel jlblHistorique;
-    private javax.swing.JScrollPane jscpHistorique;
-    private javax.swing.JTable jtblHistorique;
+    private javax.swing.JLabel jlblHistAchat;
+    private javax.swing.JLabel jlblHistLocation;
+    private javax.swing.JScrollPane jscpHistAchat;
+    private javax.swing.JScrollPane jscpHistLocation;
+    private javax.swing.JTable jtblHistAchat;
+    private javax.swing.JTable jtblHistLocation;
     // End of variables declaration//GEN-END:variables
 }

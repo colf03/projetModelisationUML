@@ -88,9 +88,16 @@ public class LocationPanel extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jscpLocationInfo.setViewportView(jtblLocationInfo);
@@ -252,7 +259,7 @@ public class LocationPanel extends javax.swing.JPanel {
             {
                 DefaultTableModel model = (DefaultTableModel)jtblLocationInfo.getModel();
                 for (FilmVideotheque film : listeFilm){
-                    if (!films.stream().map(e -> e.getId()).collect(Collectors.toList()).contains(film.getId()) && !film.isLoue()){
+                    if (!films.stream().map(e -> e.getId()).collect(Collectors.toList()).contains(film.getId()) && film.getQtee() > 0){
                         films.add(film);
                         model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.getDureeLocation(), film.getPrixLocation()});
                         total += film.getPrixLocation();
