@@ -138,6 +138,20 @@ public class Client {
         cb.fermerConnectionBDD();
         return c;
     }
+    
+    public static Client trouverClient(String num) throws ClassNotFoundException, SQLException{
+        ConnectionBDD cb = new ConnectionBDD();
+        Statement st = cb.getStmt();
+        Client c = null;
+        String sql = "SELECT * FROM CLIENT WHERE NUMTEL = '" + num + "';";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            c = new Client(rs.getString("NUMTEL"), rs.getString("CODESEC"), rs.getString("NOM"), rs.getString("PRENOM"), rs.getString("EMAIL"), rs.getString("NORUE"), rs.getString("NOMRUE"), rs.getString("VILLE"), rs.getString("PROVINCE"), rs.getString("CODEPOSTAL"));
+        }
+        rs.close();
+        cb.fermerConnectionBDD();
+        return c;
+    }
 
     public static ArrayList<Client> trouverClients(String nom) throws SQLException, ClassNotFoundException {
         ConnectionBDD cb = new ConnectionBDD();

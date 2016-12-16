@@ -55,6 +55,22 @@ public class Location extends Transaction {
         cb.fermerConnectionBDD();
         return liste;
     }
+    
+    public static ArrayList<Location> allLocation() throws ClassNotFoundException, SQLException {
+        ConnectionBDD cb = new ConnectionBDD();
+        Statement st = cb.getStmt();
+        ArrayList<Location> liste = new ArrayList<Location>();
+        String sql = "SELECT * FROM LOCATION ";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Location l = new Location(rs.getInt("ID"), rs.getInt("VIDEOTHEQUE_ID"), rs.getString("CLIENT_NUMTEL"), rs.getInt("DUREE_LOCATION"), rs.getString("DATE_TRANSACTION"), rs.getString("DATE_RETOUR_LOCATION"));
+            liste.add(l);
+
+        }
+        rs.close();
+        cb.fermerConnectionBDD();
+        return liste;
+    }
 
     public Integer getId() {
         return id;
