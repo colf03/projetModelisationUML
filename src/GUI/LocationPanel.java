@@ -6,11 +6,20 @@
 package GUI;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.SystemColor;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import main.Client;
+import main.FilmVideotheque;
 
 /**
  *
@@ -47,6 +56,7 @@ public class LocationPanel extends javax.swing.JPanel {
 
         infoLocationPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         infoLocationPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        infoLocationPanel.setPreferredSize(new java.awt.Dimension(400, 400));
 
         jlblLocation.setForeground(java.awt.SystemColor.textInactiveText);
         jlblLocation.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -69,24 +79,37 @@ public class LocationPanel extends javax.swing.JPanel {
         jscpAchatInfo.setViewportView(jtblAchatInfo);
 
         jcbTitre.setEditable(true);
-        jcbTitre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbTitre.setModel(new DefaultComboBoxModel(new String[] { "item 1", "item 2", " " }));
         jcbTitre.setSelectedItem("");
         jcbTitre.setEnabled(false);
         JTextField editorComponent = (JTextField)jcbTitre.getEditor().getEditorComponent();
         editorComponent.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                jcbTitreUpdate(e);
+                update();
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                jcbTitreUpdate(e);
+                update();
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                jcbTitreUpdate(e);
+
+            }
+
+            public void update(){
+                //perform separately, as listener conflicts between the editing component
+                //and JComboBox will result in an IllegalStateException due to editing
+                //the component when it is locked.
+
+                SwingUtilities.invokeLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        jcbTitreUpdate();
+                    }
+                });
             }
         });
 
@@ -103,7 +126,7 @@ public class LocationPanel extends javax.swing.JPanel {
             .addGroup(infoLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpAchatInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jscpAchatInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                     .addGroup(infoLocationPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jbtnAnnuler)
@@ -113,7 +136,7 @@ public class LocationPanel extends javax.swing.JPanel {
                     .addGroup(infoLocationPanelLayout.createSequentialGroup()
                         .addComponent(jlblTitre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbTitre, 0, 268, Short.MAX_VALUE)
+                        .addComponent(jcbTitre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnAjouter)))
                 .addContainerGap())
@@ -130,7 +153,7 @@ public class LocationPanel extends javax.swing.JPanel {
                         .addComponent(jbtnAjouter))
                     .addComponent(jlblTitre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpAchatInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jscpAchatInfo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnConfirmer)
@@ -140,7 +163,10 @@ public class LocationPanel extends javax.swing.JPanel {
 
         infoClientPanel.addActionListenerToSubmit(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                setLocationState(true);
+                Client client = infoClientPanel.getClient();
+                setLocationState(client != null);
+                if (client != null)
+                loadClient(client);
             }
         });
 
@@ -150,9 +176,9 @@ public class LocationPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -160,14 +186,31 @@ public class LocationPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(infoLocationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 533, Short.MAX_VALUE)
                     .addComponent(infoClientPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbTitreUpdate(DocumentEvent evt) {                                     
-        jcbTitre.showPopup();
+    private Client client;
+    
+    private void jcbTitreUpdate() {                                     
+        try {
+            JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
+            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm(tf.getText());
+            String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
+            //jcbTitre.removeAllItems();
+            DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
+            for(String titre : listeTitre){
+                model.addElement(titre);
+            }
+            jcbTitre.setModel(model);
+            jcbTitre.showPopup();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void setLocationState(boolean state){
@@ -183,7 +226,10 @@ public class LocationPanel extends javax.swing.JPanel {
         jbtnAnnuler.setEnabled(state);
         jbtnConfirmer.setEnabled(state);
         jcbTitre.setEnabled(state);
-        
+    }
+    
+    private void loadClient(Client client){
+        this.client = client;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

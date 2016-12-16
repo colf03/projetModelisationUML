@@ -48,7 +48,8 @@ public class MainUI extends javax.swing.JFrame {
         jmEdit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(980, 480));
+        setMinimumSize(new java.awt.Dimension(980, 540));
+        setPreferredSize(new java.awt.Dimension(980, 540));
 
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel.setLayout(new java.awt.CardLayout());

@@ -9,7 +9,6 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
 import javax.swing.text.JTextComponent;
 import main.Client;
 
@@ -35,7 +34,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jtfCodePostal.setEditable(editable);
         jbtnSoumettre.setVisible(editable);
     }
-    
+
     public InfoClientPanel() {
         initComponents();
     }
@@ -78,8 +77,9 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jlblErreur = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        setMinimumSize(new java.awt.Dimension(400, 475));
-        setPreferredSize(new java.awt.Dimension(400, 400));
+        setForeground(new java.awt.Color(153, 0, 0));
+        setMinimumSize(new java.awt.Dimension(400, 460));
+        setPreferredSize(new java.awt.Dimension(400, 460));
 
         jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblClient.setText("Informations du Client");
@@ -271,20 +271,21 @@ public class InfoClientPanel extends javax.swing.JPanel {
                     .addComponent(jlblErreur))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtnSoumettre)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private static final Color errorColor = new Color(255,232,232);
+    private static final Color errorColor = new Color(255, 232, 232);
     private boolean editable = true;
-    
-    public void addActionListenerToSubmit(java.awt.event.ActionListener listener){
+    private Client client;
+
+    public void addActionListenerToSubmit(java.awt.event.ActionListener listener) {
         jbtnCharger.addActionListener(listener);
     }
-    
-    private void resetFields(){
+
+    private void resetErrors() {
         jlblErreur.setText("");
         jftfNoTel.setBackground(Color.white);
         jpsfCodeSecret.setBackground(Color.white);
@@ -297,39 +298,69 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jtfProvince.setBackground(Color.white);
         jtfCodePostal.setBackground(Color.white);
     }
+
+    private void emptyFields() {
+        jtfNom.setText("");
+        jtfPrenom.setText("");
+        jtfEmail.setText("");
+        jtfNoRue.setText("");
+        jtfNomRue.setText("");
+        jtfVille.setText("");
+        jtfProvince.setText("");
+        jtfCodePostal.setText("");
+        this.client = null;
+    }
     
+    public Client getClient(){
+        jbtnChargerActionPerformed(null);
+        return this.client;
+    }
+
     private void jbtnChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnChargerActionPerformed
-        if (editable)
-            resetFields();
+        if (editable) {
+            resetErrors();
+        } else {
+            jlblErreur.setText("");
+            jftfNoTel.setBackground(Color.white);
+            jpsfCodeSecret.setBackground(Color.white);
+        }
         try {
             String noTel = jftfNoTel.getText();
-            if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}"))
+            if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}")) {
                 throw new NumberFormatException();
-            
+            }
+
             Client client = Client.trouverClient(noTel, jpsfCodeSecret.getPassword());
-            
+
+            this.client = client;
             jtfNom.setText(client.getNom());
             jtfPrenom.setText(client.getPrenom());
+            jtfEmail.setText(client.getEmail());
             jtfNoRue.setText(client.getNoRue());
             jtfNomRue.setText(client.getNomRue());
             jtfVille.setText(client.getVille());
             jtfProvince.setText(client.getProvince());
             jtfCodePostal.setText(client.getCodePostal());
         } catch (NumberFormatException ex) {
-            jftfNoTel.setBackground(new Color(255,232,232));
+            jftfNoTel.setBackground(new Color(255, 232, 232));
+            jlblErreur.setText("Numéro de téléphone invalide");
+            emptyFields();
         } catch (Client.UnautorizedException ex) {
-            jpsfCodeSecret.setBackground(new Color(255,232,232));
+            jpsfCodeSecret.setBackground(new Color(255, 232, 232));
+            jlblErreur.setText("Code secret invalide");
+            emptyFields();
         } catch (SQLException ex) {
             Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Client.NotFoundException ex) {
             jlblErreur.setText("Client inexistant");
+            emptyFields();
         }
     }//GEN-LAST:event_jbtnChargerActionPerformed
 
     private void jbtnSoumettreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSoumettreActionPerformed
-        resetFields();
+        resetErrors();
         try {
             String noTel = jftfNoTel.getText();
             char[] code = jpsfCodeSecret.getPassword();
@@ -341,37 +372,47 @@ public class InfoClientPanel extends javax.swing.JPanel {
             String ville = jtfVille.getText();
             String province = jtfProvince.getText();
             String codePostal = jtfCodePostal.getText();
-            if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}"))
+            if (!noTel.matches("^\\(\\d{3}\\)\\s\\d{3}-\\d{4}")) {
                 throw new RequiredException(jftfNoTel);
-            if (code.length == 0)
+            }
+            if (code.length == 0) {
                 throw new RequiredException(jpsfCodeSecret);
-            if (nom.isEmpty())
+            }
+            if (nom.isEmpty()) {
                 throw new RequiredException(jtfNom);
-            if (prenom.isEmpty())
+            }
+            if (prenom.isEmpty()) {
                 throw new RequiredException(jtfPrenom);
+            }
             if (email.isEmpty() && email.matches("(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])")) // Yay for phat regex expressions! :D
+            {
                 throw new RequiredException(jtfEmail);
-            if (noRue.isEmpty())
+            }
+            if (noRue.isEmpty()) {
                 throw new RequiredException(jtfNoRue);
-            if (nomRue.isEmpty())
+            }
+            if (nomRue.isEmpty()) {
                 throw new RequiredException(jtfNomRue);
-            if (ville.isEmpty())
+            }
+            if (ville.isEmpty()) {
                 throw new RequiredException(jtfVille);
-            if (province.isEmpty())
+            }
+            if (province.isEmpty()) {
                 throw new RequiredException(jtfProvince);
-            if (codePostal.isEmpty())
+            }
+            if (codePostal.isEmpty()) {
                 throw new RequiredException(jtfCodePostal);
-            
+            }
 
             Client nouveauClient = new Client(noTel, code, nom, prenom, email, noRue, nomRue, ville, province, codePostal);
             Client.ajouterClient(nouveauClient, code);
 
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(InfoClientPanel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (RequiredException ex){
-            
+        } catch (RequiredException ex) {
+
         } catch (Client.UnautorizedException ex) {
-            jpsfCodeSecret.setBackground(new Color(255,232,232));
+            jpsfCodeSecret.setBackground(new Color(255, 232, 232));
         }
     }//GEN-LAST:event_jbtnSoumettreActionPerformed
 
@@ -405,12 +446,4 @@ public class InfoClientPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jtfProvince;
     private javax.swing.JTextField jtfVille;
     // End of variables declaration//GEN-END:variables
-
-    private static class RequiredException extends Exception {
-
-        public JTextComponent component;
-        public RequiredException(JTextComponent component) {
-            component.setBackground(new Color(255,232,232));
-        }
-    }
 }

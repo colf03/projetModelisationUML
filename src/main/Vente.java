@@ -56,7 +56,7 @@ public class Vente extends Transaction {
             totaux += l.getSousTotal();
         }
         for (FilmVideotheque f : listeF) {
-            totaux += f.getPrix();
+            totaux += f.getPrixVente();
         }
         this.total = totaux;
         ConnectionBDD cb = new ConnectionBDD();

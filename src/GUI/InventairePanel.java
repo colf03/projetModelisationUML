@@ -7,9 +7,16 @@ package GUI;
 
 import java.awt.Color;
 import java.awt.SystemColor;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
+import main.Film;
+import main.FilmVideotheque;
 
 /**
  *
@@ -38,23 +45,26 @@ public class InventairePanel extends javax.swing.JPanel {
         jlblTitre = new javax.swing.JLabel();
         jlblDescription = new javax.swing.JLabel();
         jlblGenre = new javax.swing.JLabel();
-        jcbGenre = new javax.swing.JComboBox<>();
         jlblDuree = new javax.swing.JLabel();
         jcbVendable = new javax.swing.JCheckBox();
-        jlblPrix = new javax.swing.JLabel();
+        jlblPrixVente = new javax.swing.JLabel();
         jbtnAnnuler = new javax.swing.JButton();
         jbtnConfirmer = new javax.swing.JButton();
         jtfTitre = new javax.swing.JTextField();
-        jtfDuree = new javax.swing.JTextField();
-        jftfPrix = new javax.swing.JFormattedTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtaDescription = new javax.swing.JTextArea();
+        jlblPrixLocation = new javax.swing.JLabel();
+        jftfPrixLocation = new javax.swing.JFormattedTextField();
+        jftfPrixVente = new javax.swing.JFormattedTextField();
+        jftfDureeLocation = new javax.swing.JFormattedTextField();
+        jtfGenre = new javax.swing.JTextField();
         inventairePanel = new javax.swing.JPanel();
         jlblInventaire = new javax.swing.JLabel();
-        jlblRecherche = new javax.swing.JLabel();
-        jcbRecherche = new javax.swing.JComboBox<>();
-        jscpInventaireInfo = new javax.swing.JScrollPane();
-        jtblInventaireInfo1 = new javax.swing.JTable();
+        jlblFiltrer = new javax.swing.JLabel();
+        jtfFiltrer = new javax.swing.JTextField();
+        jbtnAppliquer = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jtblInventaireInfo = new javax.swing.JTable();
 
         ajouterModifierPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         ajouterModifierPanel.setMinimumSize(new java.awt.Dimension(400, 400));
@@ -69,27 +79,6 @@ public class InventairePanel extends javax.swing.JPanel {
 
         jlblGenre.setText("Genre : ");
 
-        jcbGenre.setEditable(true);
-        jcbGenre.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbGenre.setSelectedItem("");
-        JTextField editorComponent2 = (JTextField)jcbGenre.getEditor().getEditorComponent();
-        editorComponent2.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                jcbGenreUpdate(e);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                jcbGenreUpdate(e);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                jcbGenreUpdate(e);
-            }
-        });
-
         jlblDuree.setText("Durée de location : ");
 
         jcbVendable.setText("Vendable");
@@ -99,19 +88,30 @@ public class InventairePanel extends javax.swing.JPanel {
             }
         });
 
-        jlblPrix.setForeground(java.awt.SystemColor.textInactiveText);
-        jlblPrix.setText("Prix : ");
+        jlblPrixVente.setForeground(java.awt.SystemColor.textInactiveText);
+        jlblPrixVente.setText("Prix Vente : ");
 
         jbtnAnnuler.setText("Annuler");
 
         jbtnConfirmer.setText("Confirmer");
-
-        jftfPrix.setEditable(false);
-        jftfPrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        jbtnConfirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnConfirmerActionPerformed(evt);
+            }
+        });
 
         jtaDescription.setColumns(20);
         jtaDescription.setRows(5);
         jScrollPane1.setViewportView(jtaDescription);
+
+        jlblPrixLocation.setText("Prix Location : ");
+
+        jftfPrixLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jftfPrixVente.setEditable(false);
+        jftfPrixVente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        jftfDureeLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
 
         javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
         ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
@@ -131,18 +131,18 @@ public class InventairePanel extends javax.swing.JPanel {
                             .addComponent(jlblGenre)
                             .addComponent(jlblTitre)
                             .addComponent(jlblDescription)
-                            .addComponent(jlblPrix)
-                            .addComponent(jlblDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlblDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbVendable)
+                            .addComponent(jlblPrixLocation)
+                            .addComponent(jlblPrixVente))
                         .addGap(1, 1, 1)
                         .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcbGenre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jtfTitre)
-                            .addComponent(jtfDuree)
-                            .addComponent(jftfPrix)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)))
-                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                        .addComponent(jcbVendable)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                            .addComponent(jftfPrixLocation)
+                            .addComponent(jftfPrixVente)
+                            .addComponent(jftfDureeLocation)
+                            .addComponent(jtfGenre))))
                 .addContainerGap())
         );
         ajouterModifierPanelLayout.setVerticalGroup(
@@ -161,21 +161,28 @@ public class InventairePanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblDuree)
-                    .addComponent(jtfDuree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jftfDureeLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblPrixLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfPrixLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jcbVendable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftfPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnConfirmer)
-                    .addComponent(jbtnAnnuler))
+                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                        .addComponent(jlblPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtnConfirmer)
+                            .addComponent(jbtnAnnuler)))
+                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
+                        .addComponent(jftfPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -186,38 +193,44 @@ public class InventairePanel extends javax.swing.JPanel {
         jlblInventaire.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblInventaire.setText("Inventaire");
 
-        jlblRecherche.setText("Recherche : ");
+        jlblFiltrer.setText("Filtrer : ");
 
-        jcbRecherche.setEditable(true);
-        jcbRecherche.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbRecherche.setSelectedItem("");
-        JTextField editorComponent = (JTextField)jcbRecherche.getEditor().getEditorComponent();
-        editorComponent.getDocument().addDocumentListener(new DocumentListener() {
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                jcbRechercheUpdate(e);
-            }
-
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                jcbRechercheUpdate(e);
-            }
-
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                jcbRechercheUpdate(e);
+        jbtnAppliquer.setText("Appliquer");
+        jbtnAppliquer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAppliquerActionPerformed(evt);
             }
         });
 
-        jtblInventaireInfo1.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        jtblInventaireInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Titre", "Description", "Genre", "Durée des locations", "Quantitée en stock", "Vendable"
+                "ID", "Titre", "Description", "Genre", "Vendable", "Loué", "Durée des locations", "Prix Location", "Prix Vente"
             }
-        ));
-        jscpInventaireInfo.setViewportView(jtblInventaireInfo1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class, java.lang.Boolean.class, java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        updateTable("");
+        jtblInventaireInfo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtblInventaireInfo.setMinimumSize(new java.awt.Dimension(675, 32));
+        jScrollPane2.setViewportView(jtblInventaireInfo);
 
         javax.swing.GroupLayout inventairePanelLayout = new javax.swing.GroupLayout(inventairePanel);
         inventairePanel.setLayout(inventairePanelLayout);
@@ -226,12 +239,14 @@ public class InventairePanel extends javax.swing.JPanel {
             .addGroup(inventairePanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
                     .addComponent(jlblInventaire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(inventairePanelLayout.createSequentialGroup()
-                        .addComponent(jlblRecherche)
+                        .addComponent(jlblFiltrer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbRecherche, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jtfFiltrer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnAppliquer))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
                 .addContainerGap())
         );
         inventairePanelLayout.setVerticalGroup(
@@ -241,10 +256,11 @@ public class InventairePanel extends javax.swing.JPanel {
                 .addComponent(jlblInventaire)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jcbRecherche, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAppliquer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -270,49 +286,129 @@ public class InventairePanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void resetErrors() {
+        jtfTitre.setBackground(Color.white);
+        jtaDescription.setBackground(Color.white);
+        jtfGenre.setBackground(Color.white);
+        jftfDureeLocation.setBackground(Color.white);
+        jftfPrixLocation.setBackground(Color.white);
+        if (jftfPrixVente.isEditable()) {
+            jftfPrixVente.setBackground(Color.white);
+        }
+
+    }
+
     private void jcbVendableItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbVendableItemStateChanged
-        if(evt.getStateChange() == 1)
-        {
-            jftfPrix.setEditable(true);
-            jlblPrix.setForeground(Color.black);
+        if (evt.getStateChange() == 1) {
+            jftfPrixVente.setEditable(true);
+            jlblPrixVente.setForeground(Color.black);
+        } else if (evt.getStateChange() == 2) {
+            jftfPrixVente.setEditable(false);
+            jlblPrixVente.setForeground(SystemColor.textInactiveText);
         }
-        else if(evt.getStateChange() == 2){
-            jftfPrix.setEditable(false);
-            jlblPrix.setForeground(SystemColor.textInactiveText);
-        }
-        
+
     }//GEN-LAST:event_jcbVendableItemStateChanged
 
-    private void jcbRechercheUpdate(DocumentEvent evt) {                                     
-        jcbRecherche.showPopup();
+    private void jbtnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmerActionPerformed
+        resetErrors();
+        try {
+
+            String titre = jtfTitre.getText();
+            String description = jtaDescription.getText();
+            String genre = jtfGenre.getText();
+
+            if (titre.isEmpty()) {
+                throw new RequiredException(jtfTitre);
+            }
+            if (description.isEmpty()) {
+                throw new RequiredException(jtaDescription);
+            }
+            if (genre.isEmpty()) {
+                throw new RequiredException(jtfGenre);
+            }
+            if (jftfDureeLocation.getValue() == null) {
+                throw new RequiredException(jftfDureeLocation);
+            }
+            if (jftfPrixLocation.getValue() == null) {
+                throw new RequiredException(jftfPrixLocation);
+            }
+            float prixVente = 0;
+            if (jcbVendable.isSelected()) {
+                if (jftfPrixVente.getValue() == null) {
+                    throw new RequiredException(jftfPrixVente);
+                }
+                prixVente = ((Long) jftfPrixVente.getValue()).floatValue();
+                if (prixVente < 0) {
+                    throw new RequiredException(jftfPrixVente);
+                }
+            }
+
+            int dureeLocation = ((Long) jftfDureeLocation.getValue()).intValue();
+            float prixLocation = ((Long) jftfPrixLocation.getValue()).floatValue();
+
+            if (dureeLocation < 1) {
+                throw new RequiredException(jftfDureeLocation);
+            }
+            if (prixLocation < 0) {
+                throw new RequiredException(jftfPrixLocation);
+            }
+
+            Film.ajouterFilm(new Film(titre, description, genre));
+            FilmVideotheque.ajouterFilmVideotheque(new FilmVideotheque(Film.trouverFilm(titre).get(0), jcbVendable.isSelected(), false, dureeLocation, prixLocation, prixVente));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RequiredException ex) {
+
+        }
+    }//GEN-LAST:event_jbtnConfirmerActionPerformed
+
+    private void updateTable(String filtre){
+        try {
+            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm(filtre);
+            DefaultTableModel model = (DefaultTableModel)jtblInventaireInfo.getModel();
+            model.setRowCount(0);
+            for (FilmVideotheque film : listeFilm){
+                model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.isVendable(), film.isLoue(), film.getDureeLocation(), film.getPrixLocation(), film.getPrixVente()});
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    private void jcbGenreUpdate(DocumentEvent evt) {                                     
-        jcbGenre.showPopup();
-    } 
+    private void jbtnAppliquerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAppliquerActionPerformed
+        updateTable(jtfFiltrer.getText());
+    }//GEN-LAST:event_jbtnAppliquerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ajouterModifierPanel;
     private javax.swing.JPanel inventairePanel;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton jbtnAnnuler;
+    private javax.swing.JButton jbtnAppliquer;
     private javax.swing.JButton jbtnConfirmer;
-    private javax.swing.JComboBox<String> jcbGenre;
-    private javax.swing.JComboBox<String> jcbRecherche;
     private javax.swing.JCheckBox jcbVendable;
-    private javax.swing.JFormattedTextField jftfPrix;
+    private javax.swing.JFormattedTextField jftfDureeLocation;
+    private javax.swing.JFormattedTextField jftfPrixLocation;
+    private javax.swing.JFormattedTextField jftfPrixVente;
     private javax.swing.JLabel jlblAjouterModifier;
     private javax.swing.JLabel jlblDescription;
     private javax.swing.JLabel jlblDuree;
+    private javax.swing.JLabel jlblFiltrer;
     private javax.swing.JLabel jlblGenre;
     private javax.swing.JLabel jlblInventaire;
-    private javax.swing.JLabel jlblPrix;
-    private javax.swing.JLabel jlblRecherche;
+    private javax.swing.JLabel jlblPrixLocation;
+    private javax.swing.JLabel jlblPrixVente;
     private javax.swing.JLabel jlblTitre;
     private javax.swing.JScrollPane jscpInventaireInfo;
     private javax.swing.JTextArea jtaDescription;
-    private javax.swing.JTable jtblInventaireInfo1;
-    private javax.swing.JTextField jtfDuree;
+    private javax.swing.JTable jtblInventaireInfo;
+    private javax.swing.JTextField jtfFiltrer;
+    private javax.swing.JTextField jtfGenre;
     private javax.swing.JTextField jtfTitre;
     // End of variables declaration//GEN-END:variables
 }

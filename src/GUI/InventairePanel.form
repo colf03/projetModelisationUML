@@ -72,21 +72,20 @@
                               <Component id="jlblGenre" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jlblTitre" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jlblDescription" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jlblPrix" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jlblDuree" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                              <Component id="jcbVendable" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblPrixLocation" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblPrixVente" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jcbGenre" max="32767" attributes="0"/>
                               <Component id="jtfTitre" max="32767" attributes="0"/>
-                              <Component id="jtfDuree" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jftfPrix" alignment="0" max="32767" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" pref="271" max="32767" attributes="0"/>
+                              <Component id="jftfPrixLocation" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jftfPrixVente" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jftfDureeLocation" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jtfGenre" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jcbVendable" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -111,24 +110,34 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlblGenre" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jcbGenre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jtfGenre" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlblDuree" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jtfDuree" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jftfDureeLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
-                  <Component id="jcbVendable" min="-2" pref="24" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlblPrix" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                      <Component id="jftfPrix" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jlblPrixLocation" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="jftfPrixLocation" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="97" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jbtnConfirmer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnAnnuler" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jcbVendable" min="-2" pref="24" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jlblPrixVente" min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jbtnConfirmer" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbtnAnnuler" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jftfPrixVente" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -157,26 +166,6 @@
             <Property name="text" type="java.lang.String" value="Genre : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbGenre">
-          <Properties>
-            <Property name="editable" type="boolean" value="true"/>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-            <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;&quot;" type="code"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTextField editorComponent2 = (JTextField)jcbGenre.getEditor().getEditorComponent();&#xa;editorComponent2.getDocument().addDocumentListener(new DocumentListener() {&#xa;    @Override&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        jcbGenreUpdate(e);&#xa;    }&#xa;&#xa;    @Override&#xa;    public void removeUpdate(DocumentEvent e) {&#xa;        jcbGenreUpdate(e);&#xa;    }&#xa;&#xa;    @Override&#xa;    public void changedUpdate(DocumentEvent e) {&#xa;        jcbGenreUpdate(e);&#xa;    }&#xa;});&#xa;"/>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JLabel" name="jlblDuree">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dur&#xe9;e de location : "/>
@@ -190,12 +179,12 @@
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jcbVendableItemStateChanged"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlblPrix">
+        <Component class="javax.swing.JLabel" name="jlblPrixVente">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6d" green="6d" id="Text Inactive Text" palette="2" red="6d" type="palette"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Prix : "/>
+            <Property name="text" type="java.lang.String" value="Prix Vente : "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnAnnuler">
@@ -207,18 +196,11 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Confirmer"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnConfirmerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfTitre">
-        </Component>
-        <Component class="javax.swing.JTextField" name="jtfDuree">
-        </Component>
-        <Component class="javax.swing.JFormattedTextField" name="jftfPrix">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format subtype="0" type="4"/>
-            </Property>
-          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -235,6 +217,35 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="jlblPrixLocation">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Prix Location : "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jftfPrixLocation">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="0" type="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jftfPrixVente">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="0" type="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="jftfDureeLocation">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format subtype="0" type="0"/>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jtfGenre">
+        </Component>
       </SubComponents>
     </Container>
     <Container class="javax.swing.JPanel" name="inventairePanel">
@@ -255,16 +266,18 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jscpInventaireInfo" alignment="0" pref="386" max="32767" attributes="0"/>
                       <Component id="jlblInventaire" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jlblRecherche" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlblFiltrer" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jcbRecherche" max="32767" attributes="0"/>
+                          <Component id="jtfFiltrer" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jbtnAppliquer" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="jScrollPane2" alignment="0" pref="386" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -277,11 +290,12 @@
                   <Component id="jlblInventaire" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jlblRecherche" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="jcbRecherche" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlblFiltrer" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="jtfFiltrer" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbtnAppliquer" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jscpInventaireInfo" pref="0" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="326" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -294,51 +308,44 @@
             <Property name="text" type="java.lang.String" value="Inventaire"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jlblRecherche">
+        <Component class="javax.swing.JLabel" name="jlblFiltrer">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Recherche : "/>
+            <Property name="text" type="java.lang.String" value="Filtrer : "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jcbRecherche">
-          <Properties>
-            <Property name="editable" type="boolean" value="true"/>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-            <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="&quot;&quot;" type="code"/>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_ListenersCodePost" type="java.lang.String" value="JTextField editorComponent = (JTextField)jcbRecherche.getEditor().getEditorComponent();&#xa;editorComponent.getDocument().addDocumentListener(new DocumentListener() {&#xa;    @Override&#xa;    public void insertUpdate(DocumentEvent e) {&#xa;        jcbRechercheUpdate(e);&#xa;    }&#xa;&#xa;    @Override&#xa;    public void removeUpdate(DocumentEvent e) {&#xa;        jcbRechercheUpdate(e);&#xa;    }&#xa;&#xa;    @Override&#xa;    public void changedUpdate(DocumentEvent e) {&#xa;        jcbRechercheUpdate(e);&#xa;    }&#xa;});&#xa;"/>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
+        <Component class="javax.swing.JTextField" name="jtfFiltrer">
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jscpInventaireInfo">
-          <AuxValues>
-            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-          </AuxValues>
+        <Component class="javax.swing.JButton" name="jbtnAppliquer">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Appliquer"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnAppliquerActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <Properties>
+            <Property name="horizontalScrollBarPolicy" type="int" value="32"/>
+          </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jtblInventaireInfo1">
+            <Component class="javax.swing.JTable" name="jtblInventaireInfo">
               <Properties>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="7" rowCount="0">
-                    <Column editable="true" title="ID" type="java.lang.Object"/>
-                    <Column editable="true" title="Titre" type="java.lang.Object"/>
-                    <Column editable="true" title="Description" type="java.lang.Object"/>
-                    <Column editable="true" title="Genre" type="java.lang.Object"/>
-                    <Column editable="true" title="Dur&#xe9;e des locations" type="java.lang.Object"/>
-                    <Column editable="true" title="Quantit&#xe9;e en stock" type="java.lang.Object"/>
-                    <Column editable="true" title="Vendable" type="java.lang.Object"/>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor" postCode="updateTable(&quot;&quot;);">
+                  <Table columnCount="9" rowCount="0">
+                    <Column editable="false" title="ID" type="java.lang.Integer"/>
+                    <Column editable="false" title="Titre" type="java.lang.String"/>
+                    <Column editable="false" title="Description" type="java.lang.String"/>
+                    <Column editable="false" title="Genre" type="java.lang.String"/>
+                    <Column editable="false" title="Vendable" type="java.lang.Boolean"/>
+                    <Column editable="false" title="Lou&#xe9;" type="java.lang.Boolean"/>
+                    <Column editable="false" title="Dur&#xe9;e des locations" type="java.lang.Integer"/>
+                    <Column editable="false" title="Prix Location" type="java.lang.Float"/>
+                    <Column editable="false" title="Prix Vente" type="java.lang.Float"/>
                   </Table>
                 </Property>
+                <Property name="autoResizeMode" type="int" value="0"/>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                   <TableColumnModel selectionModel="0">
                     <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
@@ -377,6 +384,9 @@
                       <Renderer/>
                     </Column>
                   </TableColumnModel>
+                </Property>
+                <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[675, 32]"/>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

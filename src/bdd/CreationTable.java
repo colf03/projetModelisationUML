@@ -13,10 +13,9 @@ public class CreationTable {
             stmt = c.createStatement();
             String sql = "CREATE TABLE FILM " +
                          "(ID               INTEGER PRIMARY KEY AUTOINCREMENT ," +
-                         " TITRE            CHAR(50) NOT NULL, " + 
+                         " TITRE            CHAR(50) NOT NULL UNIQUE, " + 
                          " DESCRIPTION      CHAR(500), " + 
-                         " GENRE            CHAR(50), " +
-                         " DUREE_LOCATION   INT )"; 
+                         " GENRE            CHAR(50) )";
             stmt.executeUpdate(sql);
             System.out.println("table Film créée");
 
@@ -59,12 +58,13 @@ public class CreationTable {
 
 
             sql="CREATE TABLE VIDEOTHEQUE " +
-                 "(ID           INTEGER PRIMARY KEY AUTOINCREMENT, "+
-                 " FILM_ID      INT NOT NULL, " +
-                 " VENDABLE     BOOLEAN NOT NULL, " + 
-                 " LOUE         BOOLEAN NOT NULL, " + 
-                 " PRIXLOCATON  FLOAT NOT NULL, " +
-                 " PRIXVENTE    FLOAT, " +
+                 "(ID               INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                 " FILM_ID          INT NOT NULL, " +
+                 " VENDABLE         BOOLEAN NOT NULL, " + 
+                 " LOUE             BOOLEAN NOT NULL, " + 
+                 " DUREE_LOCATION   INT NOT NULL, " +
+                 " PRIXLOCATION     FLOAT NOT NULL, " +
+                 " PRIXVENTE        FLOAT, " +
                  " FOREIGN KEY(FILM_ID) REFERENCES FILM(ID) )"; 
 
             stmt.executeUpdate(sql);

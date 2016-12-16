@@ -2,6 +2,7 @@ package main;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FilmVideotheque {
 
@@ -9,21 +10,27 @@ public class FilmVideotheque {
     private Film film;
     private boolean vendable;
     private boolean loue;
-    private float prix;
+    private int dureeLocation;
+    private float prixLocation;
+    private float prixVente;
 
-    public FilmVideotheque(Integer i, Film f, boolean v, boolean l, float p) {
-        this.id = i;
-        this.film = f;
-        this.vendable = v;
-        this.loue = l;
-        this.prix = p;
+    public FilmVideotheque(Integer id, Film film, boolean vendable, boolean loue, int dureeLocation, float prixLocation, float prixVente) {
+        this.id = id;
+        this.film = film;
+        this.vendable = vendable;
+        this.loue = loue;
+        this.dureeLocation = dureeLocation;
+        this.prixLocation = prixLocation;
+        this.prixVente = prixVente;
     }
 
-    public FilmVideotheque(Film f, boolean v, boolean l, float p) {
-        this.film = f;
-        this.vendable = v;
-        this.loue = l;
-        this.prix = p;
+    public FilmVideotheque(Film film, boolean vendable, boolean loue, int dureeLocation, float prixLocation, float prixVente) {
+        this.film = film;
+        this.vendable = vendable;
+        this.loue = loue;
+        this.dureeLocation = dureeLocation;
+        this.prixLocation = prixLocation;
+        this.prixVente = prixVente;
     }
 
     public static ArrayList<FilmVideotheque> allFilm() throws ClassNotFoundException, SQLException {
@@ -34,7 +41,7 @@ public class FilmVideotheque {
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             Film f = Film.trouverFilm(rs.getInt("FILM_ID"));
-            FilmVideotheque fv = new FilmVideotheque(rs.getInt("ID"), f, rs.getBoolean("VENDABLE"), rs.getBoolean("LOUE"), rs.getFloat("PRIX"));
+            FilmVideotheque fv = new FilmVideotheque(rs.getInt("ID"), f, rs.getBoolean("VENDABLE"), rs.getBoolean("LOUE"), rs.getInt("DUREE_LOCATION"), rs.getFloat("PRIXLOCATION"), rs.getFloat("PRIXVENTE"));
             liste.add(fv);
         }
         rs.close();
@@ -42,17 +49,17 @@ public class FilmVideotheque {
         return liste;
     }
 
-    public static ArrayList<FilmVideotheque> trouverFilm(String title) throws ClassNotFoundException, SQLException {
+    public static List<FilmVideotheque> trouverFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
-        ArrayList<FilmVideotheque> liste = new ArrayList<FilmVideotheque>();
+        List<FilmVideotheque> liste = new ArrayList<FilmVideotheque>();
         String sql = "SELECT * FROM VIDEOTHEQUE;";
         ResultSet rs = st.executeQuery(sql);
-        ArrayList<Film> f = Film.trouverFilm(title);
+        List<Film> f = Film.trouverFilm(title);
         while (rs.next()) {
             for (Film film : f) {
                 if ((int) film.getId() == rs.getInt("FILM_ID")) {
-                    FilmVideotheque fv = new FilmVideotheque(rs.getInt("ID"), film, rs.getBoolean("VENDABLE"), rs.getBoolean("LOUE"), rs.getFloat("PRIX"));
+                    FilmVideotheque fv = new FilmVideotheque(rs.getInt("ID"), film, rs.getBoolean("VENDABLE"), rs.getBoolean("LOUE"), rs.getInt("DUREE_LOCATION"), rs.getFloat("PRIXLOCATION"), rs.getFloat("PRIXVENTE"));
                     liste.add(fv);
                 }
             }
@@ -70,7 +77,7 @@ public class FilmVideotheque {
         FilmVideotheque fv = null;
         while (rs.next()) {
             Film f = Film.trouverFilm(rs.getInt("FILM_ID"));
-            fv = new FilmVideotheque(rs.getInt("ID"), f, rs.getBoolean("VENDABLE"), rs.getBoolean("LOUE"), rs.getFloat("PRIX"));
+            fv = new FilmVideotheque(rs.getInt("ID"), f, rs.getBoolean("VENDABLE"), rs.getBoolean("LOUE"), rs.getInt("DUREE_LOCATION"), rs.getFloat("PRIXLOCATION"), rs.getFloat("PRIXVENTE"));
         }
         rs.close();
         cb.fermerConnectionBDD();
@@ -81,8 +88,8 @@ public class FilmVideotheque {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
 
-        String sql = "INSERT INTO VIDEOTHEQUE(FILM_ID,VENDABLE,LOUE,PRIX) "
-                + "VALUES (" + (int) fv.film.getId() + "," + fv.vendable + "," + fv.loue + "," + fv.prix + ");";
+        String sql = "INSERT INTO VIDEOTHEQUE(FILM_ID,VENDABLE,LOUE,DUREE_LOCATION,PRIXLOCATION, PRIXVENTE) "
+                + "VALUES (" + (int) fv.film.getId() + ",'" + fv.vendable + "','" + fv.loue + "'," + fv.dureeLocation + ","+ fv.prixLocation + "," + fv.prixVente + ");";
         st.executeUpdate(sql);
 
         cb.fermerConnectionBDD();
@@ -137,8 +144,16 @@ public class FilmVideotheque {
     public boolean isLoue() {
         return loue;
     }
+    
+    public int getDureeLocation(){
+        return dureeLocation;
+    }
 
-    public float getPrix() {
-        return prix;
+    public float getPrixLocation() {
+        return prixLocation;
+    }
+    
+    public float getPrixVente() {
+        return prixVente;
     }
 }
