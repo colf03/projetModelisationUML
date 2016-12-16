@@ -140,14 +140,14 @@ public class AdminPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Numéro de téléphone", "ID", "Description", "Durée de location", "Date de transaction", "Date de retour", "Date limite"
+                "Retard", "Numéro de téléphone", "ID", "Description", "Durée de location", "Date de transaction", "Date de retour", "Date limite"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Boolean.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -162,8 +162,8 @@ public class AdminPanel extends javax.swing.JPanel {
         jtblLocations.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jscpLocations.setViewportView(jtblLocations);
         if (jtblLocations.getColumnModel().getColumnCount() > 0) {
-            jtblLocations.getColumnModel().getColumn(0).setMinWidth(120);
-            jtblLocations.getColumnModel().getColumn(2).setMinWidth(100);
+            jtblLocations.getColumnModel().getColumn(1).setMinWidth(120);
+            jtblLocations.getColumnModel().getColumn(3).setMinWidth(100);
         }
 
         javax.swing.GroupLayout locationsPanelLayout = new javax.swing.GroupLayout(locationsPanel);
@@ -351,7 +351,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 boolean retard = new Date().after(dateLimite);
                 String description = FilmVideotheque.trouverFilm(location.getVideothequeId()).getFilm().getTitre();
                 
-                model.addRow(new Object[]{(String)location.getClientNumTel(), location.getId(), description, location.getDureeLocation(), location.getDate_transaction(), location.getDate_retour(), dateLimiteStr});
+                model.addRow(new Object[]{retard, location.getClientNumTel(), location.getId(), description, location.getDureeLocation(), location.getDate_transaction(), location.getDate_retour(), dateLimiteStr});
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -370,11 +370,10 @@ public class AdminPanel extends javax.swing.JPanel {
             } else {
                 venteList = Vente.allVente(this.client.getNumTel());
             }
-            DefaultTableModel model = (DefaultTableModel) jtblLocations.getModel();
+            DefaultTableModel model = (DefaultTableModel) jtblTransactions.getModel();
             model.setRowCount(0);
             for (Vente vente : venteList) {
-                String numTel = vente.getClientNumTel() == null ? vente.getClientNumTel() : "";
-                model.addRow(new Object[]{numTel, vente.getId(), vente.getDate_transaction(), vente.getTotal()});
+                model.addRow(new Object[]{vente.getClientNumTel(), vente.getId(), vente.getDate_transaction(), vente.getTotal()});
             }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
