@@ -19,13 +19,13 @@ public class Vente extends Transaction {
 
     }
 
-    public Vente(int idNumtel) {
-        super(idNumtel);
+    public Vente(String numTel) {
+        super(numTel);
 
     }
 
-    private Vente(Integer ids, int idNum, float totaux, String mdpmt, String date) {
-        super(idNum, date);
+    private Vente(Integer ids, String numTel, float totaux, String mdpmt, String date) {
+        super(numTel, date);
         this.id = ids;
         this.modePaiement = mdpmt;
         this.total = totaux;
@@ -42,9 +42,9 @@ public class Vente extends Transaction {
         this.listeF.add(fv);
     }
 
-    public void ajouterIdClient(int id) {
+    public void ajouterIdClient(String numTel) {
 
-        this.numTel = id;
+        this.numTel = numTel;
     }
 
     //voir tableau pour choisir mode de paiement
@@ -89,7 +89,7 @@ public class Vente extends Transaction {
         String sql = "SELECT * FROM VENTE;";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            Vente v = new Vente(rs.getInt("ID"), rs.getInt("CLIENT_NUMTEL"), rs.getFloat("TOTAL"),
+            Vente v = new Vente(rs.getInt("ID"), rs.getString("CLIENT_NUMTEL"), rs.getFloat("TOTAL"),
                     rs.getString("MODE_PAIEMENT"), new SimpleDateFormat("yyy-MM-dd").format(rs.getDate("DATE_TRANSACTION")));
             liste.add(v);
 
