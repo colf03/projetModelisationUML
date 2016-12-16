@@ -14,6 +14,17 @@ public class FilmVideotheque {
     private float prixLocation;
     private float prixVente;
 
+    /**
+     * Constructeur pour cree un film recuperer de la videotheque
+     * 
+     * @param id id film dans videotheque
+     * @param film film
+     * @param vendable vendable 
+     * @param qtee quantite 
+     * @param dureeLocation dure de la location
+     * @param prixLocation prix de la location
+     * @param prixVente prix de la vente
+     */
     public FilmVideotheque(Integer id, Film film, boolean vendable, int qtee, int dureeLocation, float prixLocation, float prixVente) {
         this.id = id;
         this.film = film;
@@ -24,6 +35,15 @@ public class FilmVideotheque {
         this.prixVente = prixVente;
     }
 
+    /**
+     * Constructeur pour cree un nouveau film dans la videotheque
+     * @param film film
+     * @param vendable vendable 
+     * @param qtee quantite 
+     * @param dureeLocation dure de la location
+     * @param prixLocation prix de la location
+     * @param prixVente prix de la vente
+     */
     public FilmVideotheque(Film film, boolean vendable, int qtee, int dureeLocation, float prixLocation, float prixVente) {
         this.film = film;
         this.vendable = vendable;
@@ -33,6 +53,12 @@ public class FilmVideotheque {
         this.prixVente = prixVente;
     }
 
+    /** Methode pour recuperer tout les film de la table Videotheque
+     * 
+     * @return liste film
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<FilmVideotheque> allFilm() throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -49,6 +75,13 @@ public class FilmVideotheque {
         return liste;
     }
 
+    /**
+     * Methode pour recuperer une liste de film contenant au moins les caractere passe en parametre dans leur titre
+     * @param title titre du film
+     * @return liste films
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static List<FilmVideotheque> rechercheFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -69,6 +102,13 @@ public class FilmVideotheque {
         return liste;
     }
     
+    /**
+     * Methode pour recuperer une liste de film via leur titre
+     * @param title titre du film
+     * @return liste films
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<FilmVideotheque> trouverFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -89,6 +129,14 @@ public class FilmVideotheque {
         return liste;
     }
 
+    /**
+     * Methode pour trouver un film dans la table videotheque via son id
+     * 
+     * @param id id film dans videotheque
+     * @return un film
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static FilmVideotheque trouverFilm(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -104,6 +152,11 @@ public class FilmVideotheque {
         return fv;
     }
 
+    /** Methode pour ajouter un film dans la videotheque
+     * @param fv filmVideotheque
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void ajouterFilmVideotheque(FilmVideotheque fv) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -125,6 +178,11 @@ public class FilmVideotheque {
         }
     }
 
+    /** methode pour mettre a jour un film au niveau de sa location
+     * @param id id filmVideotheque
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void louerFilm(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;
@@ -134,6 +192,11 @@ public class FilmVideotheque {
 
     }
 
+    /** methode pour mettre a jour un film au niveau de son retour de location
+     * @param id id filmVideotheque
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void retourLocationFilm(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;
@@ -142,6 +205,12 @@ public class FilmVideotheque {
         cb.fermerConnectionBDD();
     }
 
+    /** methode pour mettre a jour un film et le rendre vendable
+     * @param id id filmVideotheque
+     * @param p  prix du film
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void filmVendable(int id, float p) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;
@@ -150,6 +219,11 @@ public class FilmVideotheque {
         cb.fermerConnectionBDD();
     }
 
+    /** methode pour supprimer un film de la videothque qui a ete vendu
+     * @param id id filmVideotheque
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void filmVendu(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();;

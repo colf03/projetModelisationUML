@@ -14,16 +14,32 @@ public class Vente extends Transaction {
     private ArrayList<LigneArticle> listeA;
     private ArrayList<FilmVideotheque> listeF;
 
+    /**
+     *  Constructeur par defaut pour cree une nouvelle vente
+     */
     public Vente() {
         super();
 
     }
 
+    /**
+     * Constructeur pour initialiser une vente a un client donné
+     * @param numTel numero de telephone
+     */
     public Vente(String numTel) {
         super(numTel);
 
     }
 
+    /**
+     * Constructeur pour creer une vente recuperer de la table Vente
+     * 
+     * @param ids id vente
+     * @param numTel numero telephone client
+     * @param totaux prix total de la vente
+     * @param mdpmt mode paiement
+     * @param date date vente
+     */
     private Vente(Integer ids, String numTel, float totaux, String mdpmt, String date) {
         super(numTel, date);
         this.id = ids;
@@ -32,22 +48,42 @@ public class Vente extends Transaction {
 
     }
 
+    /**
+     * Methode pour ajouter un article a une vente
+     * @param a article
+     * @param qte quantite
+     */
     public void ajouterArticle(Article a, int qte) {
 
         this.listeA.add(new LigneArticle(a, qte));
     }
 
+    /**
+     * Methode pour ajouter un film a une vente
+     * @param fv filmVideotheque
+     */
     public void ajouterFilm(FilmVideotheque fv) {
 
         this.listeF.add(fv);
     }
 
+    /**
+     * Methode pour associer une vente a un client
+     * @param numTel numero telephone
+     */
     public void ajouterIdClient(String numTel) {
 
         this.numTel = numTel;
     }
 
     //voir tableau pour choisir mode de paiement
+    /**
+     * Methode pour terminer une vente et l enregistrer dans la table Vente
+     * 
+     * @param modePmt mode de paiement
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public void terminerVente(int modePmt) throws ClassNotFoundException, SQLException {
         String[] tMode = {"carte debit", "carte crebit", "argent comptant", "cheque"};
         this.modePaiement = tMode[modePmt];
@@ -82,6 +118,13 @@ public class Vente extends Transaction {
 
     }
 
+    /**
+     * 
+     * Methode pour retourner toute les ventes de la table Vente
+     * @return liste vente
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<Vente> allVente() throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();

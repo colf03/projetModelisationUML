@@ -6,6 +6,10 @@ public class LigneArticle {
     private int quantite;
     private float sousTotal;
 
+    /** Constructeur pour cree une ligne d'un article 
+     * @param a article
+     * @param qte quantite
+     */
     public LigneArticle(Article a, int qte) {
         this.article = a;
         this.quantite = qte;
