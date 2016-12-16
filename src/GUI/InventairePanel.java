@@ -17,6 +17,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import main.Article;
 import main.Film;
 import main.FilmVideotheque;
 
@@ -42,177 +43,59 @@ public class InventairePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ajouterModifierPanel = new javax.swing.JPanel();
-        jlblAjouterModifier = new javax.swing.JLabel();
-        jlblTitre = new javax.swing.JLabel();
-        jlblDescription = new javax.swing.JLabel();
-        jlblGenre = new javax.swing.JLabel();
-        jlblDuree = new javax.swing.JLabel();
-        jcbVendable = new javax.swing.JCheckBox();
-        jlblPrixVente = new javax.swing.JLabel();
-        jbtnAnnuler = new javax.swing.JButton();
-        jbtnConfirmer = new javax.swing.JButton();
-        jtfTitre = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtaDescription = new javax.swing.JTextArea();
-        jlblPrixLocation = new javax.swing.JLabel();
-        jftfPrixLocation = new javax.swing.JFormattedTextField();
-        jftfPrixVente = new javax.swing.JFormattedTextField();
-        jftfDureeLocation = new javax.swing.JFormattedTextField();
-        jtfGenre = new javax.swing.JTextField();
-        jlblQtee = new javax.swing.JLabel();
-        jftfQtee = new javax.swing.JFormattedTextField();
-        inventairePanel = new javax.swing.JPanel();
-        jlblInventaire = new javax.swing.JLabel();
-        jlblFiltrer = new javax.swing.JLabel();
-        jtfFiltrer = new javax.swing.JTextField();
-        jscpInventaireInfo = new javax.swing.JScrollPane();
-        jtblInventaireInfo = new javax.swing.JTable();
+        jTabbedPane = new javax.swing.JTabbedPane();
+        filmPanel = new javax.swing.JPanel();
+        filmInventairePanel = new javax.swing.JPanel();
+        jlblFilmInventaire = new javax.swing.JLabel();
+        jlblFilmFiltrer = new javax.swing.JLabel();
+        jtfFilmFiltrer = new javax.swing.JTextField();
+        jscpFilmInventaireInfo = new javax.swing.JScrollPane();
+        jtblFilmInventaireInfo = new javax.swing.JTable();
+        filmEditPanel = new javax.swing.JPanel();
+        jlblFilmAjouterModifier = new javax.swing.JLabel();
+        jlblFilmTitre = new javax.swing.JLabel();
+        jtfFilmTitre = new javax.swing.JTextField();
+        jlblFilmDescription = new javax.swing.JLabel();
+        jscpFilmDescription = new javax.swing.JScrollPane();
+        jtaFilmDescription = new javax.swing.JTextArea();
+        jlblFilmGenre = new javax.swing.JLabel();
+        jtfFilmGenre = new javax.swing.JTextField();
+        jlblFilmQtee = new javax.swing.JLabel();
+        jftfFilmQtee = new javax.swing.JFormattedTextField();
+        jlblFilmDuree = new javax.swing.JLabel();
+        jftfFilmDureeLocation = new javax.swing.JFormattedTextField();
+        jlblFilmPrixLocation = new javax.swing.JLabel();
+        jftfFilmPrixLocation = new javax.swing.JFormattedTextField();
+        jcbFilmVendable = new javax.swing.JCheckBox();
+        jlblFilmPrixVente = new javax.swing.JLabel();
+        jftfFilmPrixVente = new javax.swing.JFormattedTextField();
+        jbtnFilmAnnuler = new javax.swing.JButton();
+        jbtnFilmConfirmer = new javax.swing.JButton();
+        articlePanel = new javax.swing.JPanel();
+        articleInventairePanel = new javax.swing.JPanel();
+        jlblArticleInventaire = new javax.swing.JLabel();
+        jlblArticleFiltrer = new javax.swing.JLabel();
+        jtfArticleFiltrer = new javax.swing.JTextField();
+        jscpArticleInventaireInfo = new javax.swing.JScrollPane();
+        jtblArticleInventaireInfo = new javax.swing.JTable();
+        articleEditPanel = new javax.swing.JPanel();
+        jlblArticleAjouterModifier = new javax.swing.JLabel();
+        jlblArticleDescription = new javax.swing.JLabel();
+        jtfArticleDescription = new javax.swing.JTextField();
+        jbtnArticleAnnuler = new javax.swing.JButton();
+        jbtnArticleConfirmer = new javax.swing.JButton();
+        jlblArticlePrix = new javax.swing.JLabel();
+        jftfArticlePrix = new javax.swing.JFormattedTextField();
 
-        ajouterModifierPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        ajouterModifierPanel.setMinimumSize(new java.awt.Dimension(400, 400));
-        ajouterModifierPanel.setPreferredSize(new java.awt.Dimension(400, 400));
+        filmInventairePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        filmInventairePanel.setMinimumSize(new java.awt.Dimension(400, 400));
 
-        jlblAjouterModifier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblAjouterModifier.setText("Ajouter / Modifier");
+        jlblFilmInventaire.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblFilmInventaire.setText("Inventaire");
 
-        jlblTitre.setText("Titre : ");
+        jlblFilmFiltrer.setText("Filtrer : ");
 
-        jlblDescription.setText("Description : ");
-
-        jlblGenre.setText("Genre : ");
-
-        jlblDuree.setText("Durée de location : ");
-
-        jcbVendable.setText("Vendable");
-        jcbVendable.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jcbVendableItemStateChanged(evt);
-            }
-        });
-
-        jlblPrixVente.setForeground(java.awt.SystemColor.textInactiveText);
-        jlblPrixVente.setText("Prix Vente : ");
-
-        jbtnAnnuler.setText("Annuler");
-        jbtnAnnuler.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnAnnulerActionPerformed(evt);
-            }
-        });
-
-        jbtnConfirmer.setText("Confirmer");
-        jbtnConfirmer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnConfirmerActionPerformed(evt);
-            }
-        });
-
-        jtaDescription.setColumns(20);
-        jtaDescription.setRows(5);
-        jScrollPane1.setViewportView(jtaDescription);
-
-        jlblPrixLocation.setText("Prix Location : ");
-
-        jftfPrixLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
-
-        jftfPrixVente.setEditable(false);
-        java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###.00");
-        decimalFormat.setParseIntegerOnly(true);
-        jftfPrixVente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(decimalFormat)));
-
-        jftfDureeLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
-        jlblQtee.setText("Quantitée : ");
-
-        jftfQtee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-
-        javax.swing.GroupLayout ajouterModifierPanelLayout = new javax.swing.GroupLayout(ajouterModifierPanel);
-        ajouterModifierPanel.setLayout(ajouterModifierPanelLayout);
-        ajouterModifierPanelLayout.setHorizontalGroup(
-            ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ajouterModifierPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbtnAnnuler)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnConfirmer))
-                    .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblGenre)
-                            .addComponent(jlblTitre)
-                            .addComponent(jlblDescription)
-                            .addComponent(jlblDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jcbVendable)
-                            .addComponent(jlblPrixLocation)
-                            .addComponent(jlblPrixVente)
-                            .addComponent(jlblQtee))
-                        .addGap(1, 1, 1)
-                        .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfTitre)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
-                            .addComponent(jftfPrixLocation)
-                            .addComponent(jftfPrixVente)
-                            .addComponent(jftfDureeLocation)
-                            .addComponent(jtfGenre)
-                            .addComponent(jftfQtee))))
-                .addContainerGap())
-        );
-        ajouterModifierPanelLayout.setVerticalGroup(
-            ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ajouterModifierPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jlblAjouterModifier)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfTitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblQtee, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftfQtee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblDuree)
-                    .addComponent(jftfDureeLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblPrixLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftfPrixLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jcbVendable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jftfPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(ajouterModifierPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnConfirmer)
-                    .addComponent(jbtnAnnuler))
-                .addContainerGap())
-        );
-
-        inventairePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        inventairePanel.setMinimumSize(new java.awt.Dimension(400, 400));
-        inventairePanel.setPreferredSize(new java.awt.Dimension(400, 400));
-
-        jlblInventaire.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlblInventaire.setText("Inventaire");
-
-        jlblFiltrer.setText("Filtrer : ");
-
-        jtfFiltrer.getDocument().addDocumentListener(new DocumentListener() {
+        jtfFilmFiltrer.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
                 update();
@@ -236,15 +119,15 @@ public class InventairePanel extends javax.swing.JPanel {
                 SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run() {
-                        updateTable(jtfFiltrer.getText());
+                        updateFilmTable(jtfFilmFiltrer.getText());
                     }
                 });
             }
         });
 
-        jscpInventaireInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        jscpFilmInventaireInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 
-        jtblInventaireInfo.setModel(new javax.swing.table.DefaultTableModel(
+        jtblFilmInventaireInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -267,45 +150,395 @@ public class InventairePanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        updateTable("");
-        jtblInventaireInfo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
-        jtblInventaireInfo.setMinimumSize(new java.awt.Dimension(675, 32));
-        jtblInventaireInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        updateFilmTable("");
+        jtblFilmInventaireInfo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        jtblFilmInventaireInfo.setMinimumSize(new java.awt.Dimension(675, 32));
+        jtblFilmInventaireInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
             public void valueChanged(ListSelectionEvent event) {
-                if (jtblInventaireInfo.getRowCount() > 0)
-                loadRow(event);
+                if (jtblFilmInventaireInfo.getRowCount() > 0)
+                loadFilmRow(event);
             }
         });
-        jscpInventaireInfo.setViewportView(jtblInventaireInfo);
+        jscpFilmInventaireInfo.setViewportView(jtblFilmInventaireInfo);
 
-        javax.swing.GroupLayout inventairePanelLayout = new javax.swing.GroupLayout(inventairePanel);
-        inventairePanel.setLayout(inventairePanelLayout);
-        inventairePanelLayout.setHorizontalGroup(
-            inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventairePanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout filmInventairePanelLayout = new javax.swing.GroupLayout(filmInventairePanel);
+        filmInventairePanel.setLayout(filmInventairePanelLayout);
+        filmInventairePanelLayout.setHorizontalGroup(
+            filmInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filmInventairePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jlblInventaire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(inventairePanelLayout.createSequentialGroup()
-                        .addComponent(jlblFiltrer)
+                .addGroup(filmInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblFilmInventaire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(filmInventairePanelLayout.createSequentialGroup()
+                        .addComponent(jlblFilmFiltrer)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfFiltrer))
-                    .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                        .addComponent(jtfFilmFiltrer))
+                    .addComponent(jscpFilmInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        inventairePanelLayout.setVerticalGroup(
-            inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(inventairePanelLayout.createSequentialGroup()
+        filmInventairePanelLayout.setVerticalGroup(
+            filmInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filmInventairePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jlblInventaire)
+                .addComponent(jlblFilmInventaire)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(inventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(filmInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFilmFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfFilmFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscpInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addComponent(jscpFilmInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        filmEditPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        filmEditPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jlblFilmAjouterModifier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblFilmAjouterModifier.setText("Ajouter / Modifier");
+
+        jlblFilmTitre.setText("Titre : ");
+
+        jlblFilmDescription.setText("Description : ");
+
+        jtaFilmDescription.setColumns(20);
+        jtaFilmDescription.setRows(5);
+        jscpFilmDescription.setViewportView(jtaFilmDescription);
+
+        jlblFilmGenre.setText("Genre : ");
+
+        jlblFilmQtee.setText("Quantitée : ");
+
+        jftfFilmQtee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        jlblFilmDuree.setText("Durée de location : ");
+
+        jftfFilmDureeLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
+
+        jlblFilmPrixLocation.setText("Prix Location : ");
+
+        jftfFilmPrixLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+
+        jcbFilmVendable.setText("Vendable");
+        jcbFilmVendable.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jcbFilmVendableItemStateChanged(evt);
+            }
+        });
+
+        jlblFilmPrixVente.setForeground(java.awt.SystemColor.textInactiveText);
+        jlblFilmPrixVente.setText("Prix Vente : ");
+
+        jftfFilmPrixVente.setEditable(false);
+        java.text.DecimalFormat decimalFormat = new java.text.DecimalFormat("#,###.00");
+        decimalFormat.setParseIntegerOnly(true);
+        jftfFilmPrixVente.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+
+        jbtnFilmAnnuler.setText("Annuler");
+        jbtnFilmAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFilmAnnulerActionPerformed(evt);
+            }
+        });
+
+        jbtnFilmConfirmer.setText("Confirmer");
+        jbtnFilmConfirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnFilmConfirmerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout filmEditPanelLayout = new javax.swing.GroupLayout(filmEditPanel);
+        filmEditPanel.setLayout(filmEditPanelLayout);
+        filmEditPanelLayout.setHorizontalGroup(
+            filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filmEditPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblFilmAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, filmEditPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jbtnFilmAnnuler)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnFilmConfirmer))
+                    .addGroup(filmEditPanelLayout.createSequentialGroup()
+                        .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblFilmGenre)
+                            .addComponent(jlblFilmTitre)
+                            .addComponent(jlblFilmDescription)
+                            .addComponent(jlblFilmDuree, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcbFilmVendable)
+                            .addComponent(jlblFilmPrixLocation)
+                            .addComponent(jlblFilmPrixVente)
+                            .addComponent(jlblFilmQtee))
+                        .addGap(1, 1, 1)
+                        .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfFilmTitre)
+                            .addComponent(jscpFilmDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                            .addComponent(jftfFilmPrixLocation)
+                            .addComponent(jftfFilmPrixVente)
+                            .addComponent(jftfFilmDureeLocation)
+                            .addComponent(jtfFilmGenre)
+                            .addComponent(jftfFilmQtee))))
+                .addContainerGap())
+        );
+        filmEditPanelLayout.setVerticalGroup(
+            filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filmEditPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblFilmAjouterModifier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFilmTitre, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfFilmTitre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblFilmDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jscpFilmDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFilmGenre, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfFilmGenre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFilmQtee, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfFilmQtee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFilmDuree)
+                    .addComponent(jftfFilmDureeLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFilmPrixLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfFilmPrixLocation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jcbFilmVendable, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblFilmPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfFilmPrixVente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(filmEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnFilmConfirmer)
+                    .addComponent(jbtnFilmAnnuler))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout filmPanelLayout = new javax.swing.GroupLayout(filmPanel);
+        filmPanel.setLayout(filmPanelLayout);
+        filmPanelLayout.setHorizontalGroup(
+            filmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filmPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(filmInventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(filmEditPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        filmPanelLayout.setVerticalGroup(
+            filmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(filmPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(filmPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(filmEditPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(filmInventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane.addTab("Films", filmPanel);
+
+        articleInventairePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        articleInventairePanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jlblArticleInventaire.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblArticleInventaire.setText("Inventaire");
+
+        jlblArticleFiltrer.setText("Filtrer : ");
+
+        jtfArticleFiltrer.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                update();
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                update();
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+
+            }
+
+            public void update(){
+                //perform separately, as listener conflicts between the editing component
+                //and JComboBox will result in an IllegalStateException due to editing
+                //the component when it is locked.
+
+                SwingUtilities.invokeLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        updateArticleTable(jtfArticleFiltrer.getText());
+                    }
+                });
+            }
+        });
+
+        jscpArticleInventaireInfo.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+
+        jtblArticleInventaireInfo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Description", "Prix Vente"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        updateArticleTable("");
+        jtblArticleInventaireInfo.setMinimumSize(new java.awt.Dimension(675, 32));
+        jtblArticleInventaireInfo.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            public void valueChanged(ListSelectionEvent event) {
+                if (jtblArticleInventaireInfo.getRowCount() > 0)
+                loadArticleRow(event);
+            }
+        });
+        jscpArticleInventaireInfo.setViewportView(jtblArticleInventaireInfo);
+
+        javax.swing.GroupLayout articleInventairePanelLayout = new javax.swing.GroupLayout(articleInventairePanel);
+        articleInventairePanel.setLayout(articleInventairePanelLayout);
+        articleInventairePanelLayout.setHorizontalGroup(
+            articleInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(articleInventairePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(articleInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblArticleInventaire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(articleInventairePanelLayout.createSequentialGroup()
+                        .addComponent(jlblArticleFiltrer)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfArticleFiltrer))
+                    .addComponent(jscpArticleInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        articleInventairePanelLayout.setVerticalGroup(
+            articleInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(articleInventairePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblArticleInventaire)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(articleInventairePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblArticleFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfArticleFiltrer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpArticleInventaireInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        articleEditPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        articleEditPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+
+        jlblArticleAjouterModifier.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlblArticleAjouterModifier.setText("Ajouter / Modifier");
+
+        jlblArticleDescription.setText("Description : ");
+
+        jbtnArticleAnnuler.setText("Annuler");
+        jbtnArticleAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnArticleAnnulerActionPerformed(evt);
+            }
+        });
+
+        jbtnArticleConfirmer.setText("Confirmer");
+        jbtnArticleConfirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnArticleConfirmerActionPerformed(evt);
+            }
+        });
+
+        jlblArticlePrix.setText("Prix : ");
+
+        jftfArticlePrix.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+
+        javax.swing.GroupLayout articleEditPanelLayout = new javax.swing.GroupLayout(articleEditPanel);
+        articleEditPanel.setLayout(articleEditPanelLayout);
+        articleEditPanelLayout.setHorizontalGroup(
+            articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(articleEditPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblArticleAjouterModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, articleEditPanelLayout.createSequentialGroup()
+                        .addGap(0, 219, Short.MAX_VALUE)
+                        .addComponent(jbtnArticleAnnuler)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnArticleConfirmer))
+                    .addGroup(articleEditPanelLayout.createSequentialGroup()
+                        .addGroup(articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblArticleDescription)
+                            .addComponent(jlblArticlePrix))
+                        .addGap(31, 31, 31)
+                        .addGroup(articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfArticleDescription)
+                            .addComponent(jftfArticlePrix))))
+                .addContainerGap())
+        );
+        articleEditPanelLayout.setVerticalGroup(
+            articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(articleEditPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblArticleAjouterModifier)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblArticleDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfArticleDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblArticlePrix, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jftfArticlePrix, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(articleEditPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnArticleConfirmer)
+                    .addComponent(jbtnArticleAnnuler))
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout articlePanelLayout = new javax.swing.GroupLayout(articlePanel);
+        articlePanel.setLayout(articlePanelLayout);
+        articlePanelLayout.setHorizontalGroup(
+            articlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(articlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(articleInventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(articleEditPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        articlePanelLayout.setVerticalGroup(
+            articlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(articlePanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(articlePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(articleEditPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(articleInventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane.addTab("Articles", articlePanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -313,105 +546,115 @@ public class InventairePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(inventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jTabbedPane)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ajouterModifierPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(inventairePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jTabbedPane)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void resetErrors() {
-        jtfTitre.setBackground(Color.white);
-        jtaDescription.setBackground(Color.white);
-        jtfGenre.setBackground(Color.white);
-        jftfDureeLocation.setBackground(Color.white);
-        jftfPrixLocation.setBackground(Color.white);
-        if (jftfPrixVente.isEditable()) {
-            jftfPrixVente.setBackground(Color.white);
+    private void resetFilmErrors() {
+        jtfFilmTitre.setBackground(Color.white);
+        jtaFilmDescription.setBackground(Color.white);
+        jtfFilmGenre.setBackground(Color.white);
+        jftfFilmDureeLocation.setBackground(Color.white);
+        jftfFilmPrixLocation.setBackground(Color.white);
+        if (jftfFilmPrixVente.isEditable()) {
+            jftfFilmPrixVente.setBackground(Color.white);
         }
     }
     
-    private void emptyFields() {
-        jtfTitre.setText("");
-        jtaDescription.setText("");
-        jtfGenre.setText("");
-        jftfDureeLocation.setValue(null);
-        jftfPrixLocation.setValue(null);
-        jcbVendable.setSelected(false);
-        jftfPrixVente.setValue(null);
+    private void emptyFilmFields() {
+        jtfFilmTitre.setText("");
+        jtaFilmDescription.setText("");
+        jtfFilmGenre.setText("");
+        jftfFilmDureeLocation.setValue(null);
+        jftfFilmPrixLocation.setValue(null);
+        jcbFilmVendable.setSelected(false);
+        jftfFilmPrixVente.setValue(null);
+    }
+    
+    private void resetArticleErrors() {
+        jtfArticleDescription.setBackground(Color.white);
+        jftfArticlePrix.setBackground(Color.white);
+    }
+    
+    private void emptyArticleFields() {
+        jtfArticleDescription.setText("");
+        jftfArticlePrix.setValue(null);
     }
 
-    private void jcbVendableItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbVendableItemStateChanged
+    private void jcbFilmVendableItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jcbFilmVendableItemStateChanged
         if (evt.getStateChange() == 1) {
-            jftfPrixVente.setEditable(true);
-            jlblPrixVente.setForeground(Color.black);
+            jftfFilmPrixVente.setEditable(true);
+            jlblFilmPrixVente.setForeground(Color.black);
         } else if (evt.getStateChange() == 2) {
-            jftfPrixVente.setEditable(false);
-            jlblPrixVente.setForeground(SystemColor.textInactiveText);
+            jftfFilmPrixVente.setEditable(false);
+            jlblFilmPrixVente.setForeground(SystemColor.textInactiveText);
         }
+    }//GEN-LAST:event_jcbFilmVendableItemStateChanged
 
-    }//GEN-LAST:event_jcbVendableItemStateChanged
+    private void jbtnFilmAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFilmAnnulerActionPerformed
+        emptyFilmFields();
+        resetFilmErrors();
+    }//GEN-LAST:event_jbtnFilmAnnulerActionPerformed
 
-    private void jbtnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmerActionPerformed
-        resetErrors();
+    private void jbtnFilmConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnFilmConfirmerActionPerformed
+        resetFilmErrors();
         try {
 
-            String titre = jtfTitre.getText();
-            String description = jtaDescription.getText();
-            String genre = jtfGenre.getText();
+            String titre = jtfFilmTitre.getText();
+            String description = jtaFilmDescription.getText();
+            String genre = jtfFilmGenre.getText();
 
             if (titre.isEmpty()) {
-                throw new RequiredException(jtfTitre);
+                throw new RequiredException(jtfFilmTitre);
             }
             if (description.isEmpty()) {
-                throw new RequiredException(jtaDescription);
+                throw new RequiredException(jtaFilmDescription);
             }
             if (genre.isEmpty()) {
-                throw new RequiredException(jtfGenre);
+                throw new RequiredException(jtfFilmGenre);
             }
-            if (jftfQtee.getValue() == null) {
-                throw new RequiredException(jftfQtee);
+            if (jftfFilmQtee.getValue() == null) {
+                throw new RequiredException(jftfFilmQtee);
             }
-            if (jftfDureeLocation.getValue() == null) {
-                throw new RequiredException(jftfDureeLocation);
+            if (jftfFilmDureeLocation.getValue() == null) {
+                throw new RequiredException(jftfFilmDureeLocation);
             }
-            if (jftfPrixLocation.getValue() == null) {
-                throw new RequiredException(jftfPrixLocation);
+            if (jftfFilmPrixLocation.getValue() == null) {
+                throw new RequiredException(jftfFilmPrixLocation);
             }
             float prixVente = 0;
-            if (jcbVendable.isSelected()) {
-                if (jftfPrixVente.getValue() == null) {
-                    throw new RequiredException(jftfPrixVente);
+            if (jcbFilmVendable.isSelected()) {
+                if (jftfFilmPrixVente.getValue() == null) {
+                    throw new RequiredException(jftfFilmPrixVente);
                 }
-                prixVente = ((Number)jftfPrixVente.getValue()).floatValue();
+                prixVente = ((Number)jftfFilmPrixVente.getValue()).floatValue();
                 if (prixVente < 0) {
-                    throw new RequiredException(jftfPrixVente);
+                    throw new RequiredException(jftfFilmPrixVente);
                 }
             }
-            int qtee = ((Number)jftfQtee.getValue()).intValue();
-            int dureeLocation = ((Number)jftfDureeLocation.getValue()).intValue();
-            float prixLocation = ((Number)jftfPrixLocation.getValue()).floatValue();
+            int qtee = ((Number)jftfFilmQtee.getValue()).intValue();
+            int dureeLocation = ((Number)jftfFilmDureeLocation.getValue()).intValue();
+            float prixLocation = ((Number)jftfFilmPrixLocation.getValue()).floatValue();
 
             if (qtee < 0)
-                throw new RequiredException(jftfQtee);
+                throw new RequiredException(jftfFilmQtee);
             if (dureeLocation < 1) {
-                throw new RequiredException(jftfDureeLocation);
+                throw new RequiredException(jftfFilmDureeLocation);
             }
             if (prixLocation < 0) {
-                throw new RequiredException(jftfPrixLocation);
+                throw new RequiredException(jftfFilmPrixLocation);
             }
 
             Film.ajouterFilm(new Film(titre, description, genre));
-            FilmVideotheque.ajouterFilmVideotheque(new FilmVideotheque(Film.rechercheFilm(titre).get(0), jcbVendable.isSelected(), qtee, dureeLocation, prixLocation, prixVente));
+            FilmVideotheque.ajouterFilmVideotheque(new FilmVideotheque(Film.rechercheFilm(titre).get(0), jcbFilmVendable.isSelected(), qtee, dureeLocation, prixLocation, prixVente));
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -419,18 +662,47 @@ public class InventairePanel extends javax.swing.JPanel {
         } catch (RequiredException ex) {
 
         }
-        updateTable("");
-    }//GEN-LAST:event_jbtnConfirmerActionPerformed
+        updateFilmTable("");
+    }//GEN-LAST:event_jbtnFilmConfirmerActionPerformed
 
-    private void jbtnAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAnnulerActionPerformed
-        emptyFields();
-        resetErrors();
-    }//GEN-LAST:event_jbtnAnnulerActionPerformed
+    private void jbtnArticleAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnArticleAnnulerActionPerformed
+        emptyArticleFields();
+        resetArticleErrors();
+    }//GEN-LAST:event_jbtnArticleAnnulerActionPerformed
 
-    private void updateTable(String filtre){
+    private void jbtnArticleConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnArticleConfirmerActionPerformed
+        resetArticleErrors();
+        try {
+
+            String description = jtfArticleDescription.getText();
+            
+            if (description.isEmpty()) {
+                throw new RequiredException(jtfArticleDescription);
+            }
+            if (jftfArticlePrix.getValue() == null) {
+                throw new RequiredException(jftfArticlePrix);
+            }
+            float prix = ((Number)jftfArticlePrix.getValue()).floatValue();
+
+            if (prix < 0) {
+                throw new RequiredException(jftfArticlePrix);
+            }
+
+            Article.ajouterArticle(new Article(description, prix));
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (RequiredException ex) {
+
+        }
+        updateArticleTable("");
+    }//GEN-LAST:event_jbtnArticleConfirmerActionPerformed
+
+    private void updateFilmTable(String filtre){
         try {
             List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(filtre);
-            DefaultTableModel model = (DefaultTableModel)jtblInventaireInfo.getModel();
+            DefaultTableModel model = (DefaultTableModel)jtblFilmInventaireInfo.getModel();
             model.setRowCount(0);
             for (FilmVideotheque film : listeFilm){
                 model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.getQtee(), film.getDureeLocation(), film.getPrixLocation(), film.isVendable(), film.getPrixVente()});
@@ -442,50 +714,91 @@ public class InventairePanel extends javax.swing.JPanel {
         }
     }
     
-    private void loadRow(ListSelectionEvent evt){
-        DefaultTableModel model = (DefaultTableModel)jtblInventaireInfo.getModel();
-        int row = jtblInventaireInfo.getSelectedRow();
+    private void updateArticleTable(String filtre){
+        try {
+            List<Article> listeArticle = Article.trouverArticle(filtre);
+            DefaultTableModel model = (DefaultTableModel)jtblArticleInventaireInfo.getModel();
+            model.setRowCount(0);
+            for (Article article : listeArticle){
+                model.addRow(new Object[]{article.getId(), article.getDescription(), article.getPrix()});
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(InventairePanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void loadFilmRow(ListSelectionEvent evt){
+        DefaultTableModel model = (DefaultTableModel)jtblFilmInventaireInfo.getModel();
+        int row = jtblFilmInventaireInfo.getSelectedRow();
         if (row >= 0) {
-            jtfTitre.setText((String)model.getValueAt(row, 1));
-            jtaDescription.setText((String)model.getValueAt(row, 2));
-            jtfGenre.setText((String)model.getValueAt(row, 3));
-            jftfQtee.setValue((int)model.getValueAt(row, 4));
-            jftfDureeLocation.setValue((int)model.getValueAt(row, 5));
-            jftfPrixLocation.setValue((float)model.getValueAt(row, 6));
-            jcbVendable.setSelected((boolean)model.getValueAt(row, 7));
-            if (jcbVendable.isSelected())
-                jftfPrixVente.setValue((float)model.getValueAt(row, 8));
+            jtfFilmTitre.setText((String)model.getValueAt(row, 1));
+            jtaFilmDescription.setText((String)model.getValueAt(row, 2));
+            jtfFilmGenre.setText((String)model.getValueAt(row, 3));
+            jftfFilmQtee.setValue((int)model.getValueAt(row, 4));
+            jftfFilmDureeLocation.setValue((int)model.getValueAt(row, 5));
+            jftfFilmPrixLocation.setValue((float)model.getValueAt(row, 6));
+            jcbFilmVendable.setSelected((boolean)model.getValueAt(row, 7));
+            if (jcbFilmVendable.isSelected())
+                jftfFilmPrixVente.setValue((float)model.getValueAt(row, 8));
             else
-                jftfPrixVente.setValue(null);
+                jftfFilmPrixVente.setValue(null);
+        }
+    }
+    
+    private void loadArticleRow(ListSelectionEvent evt){
+        DefaultTableModel model = (DefaultTableModel)jtblArticleInventaireInfo.getModel();
+        int row = jtblArticleInventaireInfo.getSelectedRow();
+        if (row >= 0) {
+            jtfArticleDescription.setText((String)model.getValueAt(row, 1));
+            jftfArticlePrix.setValue((float)model.getValueAt(row, 2));
         }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ajouterModifierPanel;
-    private javax.swing.JPanel inventairePanel;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbtnAnnuler;
-    private javax.swing.JButton jbtnConfirmer;
-    private javax.swing.JCheckBox jcbVendable;
-    private javax.swing.JFormattedTextField jftfDureeLocation;
-    private javax.swing.JFormattedTextField jftfPrixLocation;
-    private javax.swing.JFormattedTextField jftfPrixVente;
-    private javax.swing.JFormattedTextField jftfQtee;
-    private javax.swing.JLabel jlblAjouterModifier;
-    private javax.swing.JLabel jlblDescription;
-    private javax.swing.JLabel jlblDuree;
-    private javax.swing.JLabel jlblFiltrer;
-    private javax.swing.JLabel jlblGenre;
-    private javax.swing.JLabel jlblInventaire;
-    private javax.swing.JLabel jlblPrixLocation;
-    private javax.swing.JLabel jlblPrixVente;
-    private javax.swing.JLabel jlblQtee;
-    private javax.swing.JLabel jlblTitre;
-    private javax.swing.JScrollPane jscpInventaireInfo;
-    private javax.swing.JTextArea jtaDescription;
-    private javax.swing.JTable jtblInventaireInfo;
-    private javax.swing.JTextField jtfFiltrer;
-    private javax.swing.JTextField jtfGenre;
-    private javax.swing.JTextField jtfTitre;
+    private javax.swing.JPanel articleEditPanel;
+    private javax.swing.JPanel articleInventairePanel;
+    private javax.swing.JPanel articlePanel;
+    private javax.swing.JPanel filmEditPanel;
+    private javax.swing.JPanel filmInventairePanel;
+    private javax.swing.JPanel filmPanel;
+    private javax.swing.JTabbedPane jTabbedPane;
+    private javax.swing.JButton jbtnArticleAnnuler;
+    private javax.swing.JButton jbtnArticleConfirmer;
+    private javax.swing.JButton jbtnFilmAnnuler;
+    private javax.swing.JButton jbtnFilmConfirmer;
+    private javax.swing.JCheckBox jcbFilmVendable;
+    private javax.swing.JFormattedTextField jftfArticlePrix;
+    private javax.swing.JFormattedTextField jftfFilmDureeLocation;
+    private javax.swing.JFormattedTextField jftfFilmPrixLocation;
+    private javax.swing.JFormattedTextField jftfFilmPrixVente;
+    private javax.swing.JFormattedTextField jftfFilmQtee;
+    private javax.swing.JLabel jlblArticleAjouterModifier;
+    private javax.swing.JLabel jlblArticleDescription;
+    private javax.swing.JLabel jlblArticleFiltrer;
+    private javax.swing.JLabel jlblArticleInventaire;
+    private javax.swing.JLabel jlblArticlePrix;
+    private javax.swing.JLabel jlblFilmAjouterModifier;
+    private javax.swing.JLabel jlblFilmDescription;
+    private javax.swing.JLabel jlblFilmDuree;
+    private javax.swing.JLabel jlblFilmFiltrer;
+    private javax.swing.JLabel jlblFilmGenre;
+    private javax.swing.JLabel jlblFilmInventaire;
+    private javax.swing.JLabel jlblFilmPrixLocation;
+    private javax.swing.JLabel jlblFilmPrixVente;
+    private javax.swing.JLabel jlblFilmQtee;
+    private javax.swing.JLabel jlblFilmTitre;
+    private javax.swing.JScrollPane jscpArticleInventaireInfo;
+    private javax.swing.JScrollPane jscpFilmDescription;
+    private javax.swing.JScrollPane jscpFilmInventaireInfo;
+    private javax.swing.JTextArea jtaFilmDescription;
+    private javax.swing.JTable jtblArticleInventaireInfo;
+    private javax.swing.JTable jtblFilmInventaireInfo;
+    private javax.swing.JTextField jtfArticleDescription;
+    private javax.swing.JTextField jtfArticleFiltrer;
+    private javax.swing.JTextField jtfFilmFiltrer;
+    private javax.swing.JTextField jtfFilmGenre;
+    private javax.swing.JTextField jtfFilmTitre;
     // End of variables declaration//GEN-END:variables
 }

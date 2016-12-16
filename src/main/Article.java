@@ -60,7 +60,7 @@ public class Article {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
         ArrayList<Article> liste = new ArrayList<Article>();
-        String sql = "SELECT * ARTICLE WHERE DESCRIPTION LIKE '%" + descrip + "%';";
+        String sql = "SELECT * FROM ARTICLE WHERE DESCRIPTION LIKE '%" + descrip + "%';";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
             Article a = new Article(rs.getInt("ID"), rs.getString("DESCRIPTION"), rs.getFloat("PRIX"));

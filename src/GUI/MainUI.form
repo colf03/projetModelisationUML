@@ -35,7 +35,7 @@
       <Dimension value="[980, 540]"/>
     </Property>
     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-      <Dimension value="[980, 540]"/>
+      <Dimension value="[1000, 540]"/>
     </Property>
   </Properties>
   <SyntheticProperties>

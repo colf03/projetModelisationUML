@@ -48,8 +48,12 @@ public class FilmVideotheque {
         cb.fermerConnectionBDD();
         return liste;
     }
+    
+    public static List<FilmVideotheque> rechercheFilm(String titre) throws ClassNotFoundException, SQLException{
+        return rechercheFilm(titre, false);
+    }
 
-    public static List<FilmVideotheque> rechercheFilm(String title) throws ClassNotFoundException, SQLException {
+    public static List<FilmVideotheque> rechercheFilm(String title, boolean onlyVendable) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
         List<FilmVideotheque> liste = new ArrayList<FilmVideotheque>();
@@ -60,7 +64,8 @@ public class FilmVideotheque {
             for (Film film : f) {
                 if ((int) film.getId() == rs.getInt("FILM_ID")) {
                     FilmVideotheque fv = new FilmVideotheque(rs.getInt("ID"), film, rs.getString("VENDABLE").equals(Boolean.toString(true)), rs.getInt("QTEE"), rs.getInt("DUREE_LOCATION"), rs.getFloat("PRIX_LOCATION"), rs.getFloat("PRIX_VENTE"));
-                    liste.add(fv);
+                    if (!onlyVendable || fv.isVendable())
+                        liste.add(fv);
                 }
             }
         }

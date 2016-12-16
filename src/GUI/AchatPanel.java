@@ -56,7 +56,8 @@ public class AchatPanel extends javax.swing.JPanel {
         infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(false);
 
         infoAchatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        infoAchatPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        infoAchatPanel.setMinimumSize(new java.awt.Dimension(400, 460));
+        infoAchatPanel.setPreferredSize(new java.awt.Dimension(400, 460));
 
         jlblAchat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblAchat.setText("Informations de la Vente");
@@ -64,6 +65,11 @@ public class AchatPanel extends javax.swing.JPanel {
         jlblTitre.setText("Titre : ");
 
         jbtnAjouter.setText("Ajouter");
+        jbtnAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAjouterActionPerformed(evt);
+            }
+        });
 
         jtblAchatInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -201,6 +207,10 @@ public class AchatPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAjouterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAjouterActionPerformed
     
     private List<Article> articles;
     private float total;
@@ -218,12 +228,17 @@ public class AchatPanel extends javax.swing.JPanel {
         try {
             JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
             String text = tf.getText();
-            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text);
-            String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
+            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text, true);
+            String[] listeFilmStr = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
+            List<Article> listeArticle = Article.allArticle();
+            String[] listeArticleDesc = listeArticle.stream().map(e -> e.getDescription()).collect(Collectors.toList()).toArray(new String[0]);
             jcbTitre.removeAllItems();
             DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
-            for(String titre : listeTitre){
+            for(String titre : listeFilmStr){
                 model.addElement(titre);
+            }
+            for(String desc : listeArticleDesc){
+                model.addElement(desc);
             }
             jcbTitre.setModel(model);
             jcbTitre.setSelectedIndex(-1);

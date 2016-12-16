@@ -49,7 +49,7 @@ public class MainUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(980, 540));
-        setPreferredSize(new java.awt.Dimension(980, 540));
+        setPreferredSize(new java.awt.Dimension(1000, 540));
 
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel.setLayout(new java.awt.CardLayout());
