@@ -10,6 +10,9 @@ public class Film {
     private String description;
     private String genre;
 
+    /**
+     *  Constructeur par défaut
+     */
     public Film() {
         this.titre = null;
         this.description = null;
@@ -17,6 +20,13 @@ public class Film {
 
     }
 
+    /** 
+     * Constructeur pour créer un nouveau film
+     * 
+     * @param title titre du film
+     * @param descrip resume du film
+     * @param genr genre du film
+     */
     public Film(String title, String descrip, String genr) {
         this.titre = title;
         this.description = descrip;
@@ -24,6 +34,14 @@ public class Film {
 
     }
 
+    /**
+     *  Constructeur pour créer un film recupére depuis la table Film
+     * 
+     * @param ids id du film dans la table Film
+     * @param title titre du film
+     * @param descrip resume du film
+     * @param genr genre du film
+     */
     public Film(Integer ids, String title, String descrip, String genr) {
         this.id = ids;
         this.titre = title;
@@ -32,6 +50,13 @@ public class Film {
 
     }
 
+    /** 
+     * Méthode pour ajouter un film dans la table Film
+     * 
+     * @param f film a ajouter
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void ajouterFilm(Film f) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -55,6 +80,14 @@ public class Film {
         }
     }
 
+    /**
+     * Methode pour recuperer un film avec le titre passé en parametre
+     * 
+     * @param title titre du film
+     * @return liste de film avec le titre rentré en parametres
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<Film> trouverFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -70,6 +103,14 @@ public class Film {
         return liste;
     }
     
+    /** 
+     * Methode pour recuperer une liste de film contenant au moins les caracteres passé en parametres
+     * 
+     * @param title titre du film
+     * @return liste de film
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<Film> rechercheFilm(String title) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -85,6 +126,14 @@ public class Film {
         return liste;
     }
 
+    /**
+     * Methode pour recuperer un film avec l'id passé en parametre
+     * 
+     * @param id id film
+     * @return un film
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static Film trouverFilm(int id) throws SQLException, ClassNotFoundException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();

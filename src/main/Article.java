@@ -5,28 +5,55 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * @author Florian
+ *
+ */
 public class Article {
 
     private Integer id;
     private String description;
     private float prix;
-
+  
+    /**
+     *  Constructeur vide 
+     */
     public Article() {
         this.description = null;
         this.prix = 0;
     }
 
+    /** 
+     * Constructeur pour créer un nouvel article
+     * 
+     * @param descrip description
+     * @param p prix
+     */
     public Article(String descrip, float p) {
         this.description = descrip;
         this.prix = p;
     }
 
+    /** 
+     * Constructeur pour créer un article recuperer depuis la table Article
+     * 
+     * @param ids id article dans la table
+     * @param descrip description
+     * @param p prix
+     */
     public Article(Integer ids, String descrip, float p) {
         this.id = ids;
         this.description = descrip;
         this.prix = p;
     }
 
+    /**
+     *  Methode ajoutant un article à la table Article
+     * 
+     * @param a article a ajouter dans la table
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void ajouterArticle(Article a) throws ClassNotFoundException, SQLException {
 
         ConnectionBDD cb = new ConnectionBDD();
@@ -40,6 +67,14 @@ public class Article {
 
     }
 
+    /**
+     * 
+     * Méthode recuperant tout les articles de la table
+     * 
+     * @return liste de tout les articles de la table
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static ArrayList<Article> allArticle() throws SQLException, ClassNotFoundException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -56,6 +91,15 @@ public class Article {
         return liste;
     }
 
+    /**
+     * Méthode recuperant une liste d'article
+     *  contenant les caracteres rentre en parametre dans la Article
+     * 
+     * @param descrip nom de l'article
+     * @return liste d'article comprenant @descript dans leur nom
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<Article> trouverArticle(String descrip) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -71,6 +115,15 @@ public class Article {
         return liste;
     }
 
+    /**
+     * 
+     * Méthode recuperant un article via son id dans la table Article
+     * 
+     * @param id
+     * @return un Article identifier par son id
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static Article trouverArticle(int id) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();

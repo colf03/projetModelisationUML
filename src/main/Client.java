@@ -28,6 +28,20 @@ public class Client {
     private String province;
     private String codePostal;
 
+    /**
+     * Constructeur client pour insertion dans la table Client
+     * 
+     * @param num numero telephone du client
+     * @param code code du client
+     * @param n nom du client
+     * @param p prenom du client
+     * @param mail mail du client
+     * @param noRue numero de rue
+     * @param nomRue nom de la rue
+     * @param ville ville du client
+     * @param province province du client
+     * @param codePostal code postal du client
+     */
     public Client(String num, char[] code, String n, String p, String mail, String noRue, String nomRue, String ville, String province, String codePostal) {
         this.numTel = num;
         this.codeSecret = saltHash(code);
@@ -41,6 +55,21 @@ public class Client {
         this.email = mail;
     }
 
+    
+    /**
+     * Constructeur client pour recuperer client dans la table Client
+     * 
+     * @param num numero du client
+     * @param code code du client
+     * @param n nom du client
+     * @param p prenom du client
+     * @param mail mail du client
+     * @param noRue numero de rue
+     * @param nomRue nom de la rue
+     * @param ville ville du client
+     * @param province province du client
+     * @param codePostal code postal du client
+     */
     public Client(String num, String code, String n, String p, String mail, String noRue, String nomRue, String ville, String province, String codePostal) {
         this.numTel = num;
         this.codeSecret = code;
@@ -54,6 +83,15 @@ public class Client {
         this.codePostal = codePostal;
     }
 
+    /**
+     * Methode pour ajouter un client dans la table Client
+     * 
+     * @param cl client 
+     * @param code code client
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws UnautorizedException
+     */
     public static void ajouterClient(Client cl, char[] code) throws ClassNotFoundException, SQLException, UnautorizedException {
         try {
             trouverClient(cl.numTel, code);
@@ -79,6 +117,15 @@ public class Client {
 
     }
 
+    /**
+     * Methode pour modifier un client dans la table Client
+     * 
+     * @param cl client 
+     * @param codeSecret code client
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws UnautorizedException
+     */
     public static void modifierClient(Client cl, char[] codeSecret) throws ClassNotFoundException, SQLException, UnautorizedException {
 
         ConnectionBDD cb = new ConnectionBDD();
@@ -91,6 +138,13 @@ public class Client {
         cb.fermerConnectionBDD();
     }
 
+    /** 
+     * Methode pour recuperer tout les clients de la table client
+     * 
+     * @return liste de tout les client
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static ArrayList<Client> allClient() throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -106,6 +160,16 @@ public class Client {
         return liste;
     }
 
+    /**
+     * Methode pour verifier si un client existe dans la table Client
+     * 
+     * @param num numero telephone client
+     * @param code code client
+     * @return boolean si client existe ou non
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws NotFoundException
+     */
     public static boolean verifierClient(String num, char[] code) throws ClassNotFoundException, SQLException, NotFoundException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -123,6 +187,17 @@ public class Client {
         }
     }
 
+    /**
+     * Methode pour recuperer un client specifique dans la table Client
+     * 
+     * @param num numero telephone client
+     * @param code code client
+     * @return un client
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     * @throws UnautorizedException
+     * @throws NotFoundException
+     */
     public static Client trouverClient(String num, char[] code) throws ClassNotFoundException, SQLException, UnautorizedException, NotFoundException {
         if (!verifierClient(num, code)) {
             throw new UnautorizedException();
@@ -140,6 +215,14 @@ public class Client {
         return c;
     }
 
+    /**
+     * Methode pour recuperer tout les client comprenant les caracterere passé en parametres
+     * 
+     * @param nom nom client
+     * @return liste clients
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     public static ArrayList<Client> trouverClients(String nom) throws SQLException, ClassNotFoundException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -155,6 +238,13 @@ public class Client {
         return liste;
     }
 
+    /**
+     *  Methode pour supprimer un client de la table Client
+     * 
+     * @param numtel numero telephone
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     public static void supprimerClient(int numtel) throws ClassNotFoundException, SQLException {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
@@ -165,6 +255,12 @@ public class Client {
         cb.fermerConnectionBDD();
     }
 
+    /**
+     * Methode pour hasher le codeSecret d 'un client pour la table
+     * 
+     * @param codeSecret codeSecret du client
+     * @return
+     */
     private static String saltHash(char[] codeSecret) {
         try {
             byte[] salt = SecureRandom.getInstance("SHA1PRNG").generateSeed(32);
