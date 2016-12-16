@@ -1,5 +1,6 @@
 package main;
 
+import java.io.File;
 import java.sql.*;
 
 public class ConnectionBDD {
@@ -11,6 +12,10 @@ public class ConnectionBDD {
         this.c = null;
         this.stmt = null;
         Class.forName("org.sqlite.JDBC");
+        File db = new File("BDDvideotheque.db");
+        if (!db.exists()){
+            bdd.CreationTable.CreerTable();
+        }
         this.c = DriverManager.getConnection("jdbc:sqlite:BDDvideotheque.db");
         this.stmt = this.c.createStatement();
     }
