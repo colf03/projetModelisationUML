@@ -72,7 +72,7 @@ public class ComptePanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Description", "Durée de location", "Date de location", "Date de retour", "Date limite", "Retard"
+                "ID", "Description", "Duree de location", "Date de location", "Date de retour", "Date limite", "Retard"
             }
         ) {
             Class[] types = new Class [] {

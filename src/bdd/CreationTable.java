@@ -19,7 +19,7 @@ public class CreationTable {
                     + " DESCRIPTION      CHAR(500), "
                     + " GENRE            CHAR(50) )";
             stmt.executeUpdate(sql);
-            System.out.println("table Film créée");
+            System.out.println("table Film creee");
 
             sql = "CREATE TABLE LOCATION "
                     + "(ID                       INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -32,7 +32,7 @@ public class CreationTable {
                     + " FOREIGN KEY(CLIENT_NUMTEL)   REFERENCES CLIENT(NUMTEL) )";
 
             stmt.executeUpdate(sql);
-            System.out.println("table Location créée");
+            System.out.println("table Location creee");
 
             sql = "CREATE TABLE CLIENT "
                     + "(NUMTEL         CHAR(10) PRIMARY KEY,"
@@ -47,7 +47,7 @@ public class CreationTable {
                     + " CODEPOSTAL     CHAR(50) NOT NULL )";
 
             stmt.executeUpdate(sql);
-            System.out.println("table Client créée");
+            System.out.println("table Client creee");
 
             sql = "CREATE TABLE ARTICLE  "
                     + "(ID           INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -55,7 +55,7 @@ public class CreationTable {
                     + " PRIX         FLOAT NOT NULL)";
 
             stmt.executeUpdate(sql);
-            System.out.println("table Article créée");
+            System.out.println("table Article creee");
 
             sql = "CREATE TABLE VIDEOTHEQUE "
                     + "(ID               INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -68,7 +68,7 @@ public class CreationTable {
                     + " FOREIGN KEY(FILM_ID) REFERENCES FILM(ID) )";
 
             stmt.executeUpdate(sql);
-            System.out.println("table Videotheque créée");
+            System.out.println("table Videotheque creee");
 
             sql = "CREATE TABLE VENTE "
                     + "(ID               INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -79,7 +79,7 @@ public class CreationTable {
                     + " FOREIGN KEY(CLIENT_NUMTEL) REFERENCES CLIENT(NUMTEL) )";
 
             stmt.executeUpdate(sql);
-            System.out.println("table Vente créée");
+            System.out.println("table Vente creee");
 
             stmt.close();
             c.close();

@@ -11,7 +11,7 @@ public class Film {
     private String genre;
 
     /**
-     *  Constructeur par défaut
+     *  Constructeur par defaut
      */
     public Film() {
         this.titre = null;
@@ -21,7 +21,7 @@ public class Film {
     }
 
     /** 
-     * Constructeur pour créer un nouveau film
+     * Constructeur pour creer un nouveau film
      * 
      * @param title titre du film
      * @param descrip resume du film
@@ -35,7 +35,7 @@ public class Film {
     }
 
     /**
-     *  Constructeur pour créer un film recupére depuis la table Film
+     *  Constructeur pour creer un film recupere depuis la table Film
      * 
      * @param ids id du film dans la table Film
      * @param title titre du film
@@ -51,7 +51,7 @@ public class Film {
     }
 
     /** 
-     * Méthode pour ajouter un film dans la table Film
+     * Methode pour ajouter un film dans la table Film
      * 
      * @param f film a ajouter
      * @throws ClassNotFoundException
@@ -80,10 +80,10 @@ public class Film {
     }
 
     /**
-     * Methode pour recuperer un film avec le titre passé en parametre
+     * Methode pour recuperer un film avec le titre passe en parametre
      * 
      * @param title titre du film
-     * @return liste de film avec le titre rentré en parametres
+     * @return liste de film avec le titre rentre en parametres
      * @throws ClassNotFoundException
      * @throws SQLException
      */
@@ -103,7 +103,7 @@ public class Film {
     }
 
     /** 
-     * Methode pour recuperer une liste de film contenant au moins les caracteres passé en parametres
+     * Methode pour recuperer une liste de film contenant au moins les caracteres passe en parametres
      * 
      * @param title titre du film
      * @return liste de film
@@ -126,7 +126,7 @@ public class Film {
     }
 
     /**
-     * Methode pour recuperer un film avec l'id passé en parametre
+     * Methode pour recuperer un film avec l'id passe en parametre
      * 
      * @param id id film
      * @return un film

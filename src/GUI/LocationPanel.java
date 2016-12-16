@@ -82,7 +82,7 @@ public class LocationPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Titre", "Description", "Genre", "Durée de la location", "Prix"
+                "ID", "Titre", "Description", "Genre", "Duree de la location", "Prix"
             }
         ) {
             Class[] types = new Class [] {
@@ -283,7 +283,7 @@ public class LocationPanel extends javax.swing.JPanel {
                 main.Location location = new main.Location(client.getNumTel(), film.getId(), film.getDureeLocation());
                 location.ajouterLocation();
             }
-            JOptionPane.showMessageDialog(jbtnConfirmer, "La location a été créée avec succès.");
+            JOptionPane.showMessageDialog(jbtnConfirmer, "La location a ete creee avec succès.");
             clearLocation();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);

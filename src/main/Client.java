@@ -229,7 +229,7 @@ public class Client {
     }
 
     /**
-     * Methode pour recuperer tout les client comprenant les caracterere passé en parametres
+     * Methode pour recuperer tout les client comprenant les caracterere passe en parametres
      * 
      * @param nom nom client
      * @return liste clients

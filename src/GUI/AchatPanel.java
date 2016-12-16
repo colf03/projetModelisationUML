@@ -282,7 +282,7 @@ public class AchatPanel extends javax.swing.JPanel {
             }
 
             vente.terminerVente();
-            JOptionPane.showMessageDialog(jbtnConfirmer, "La location a été créée avec succès.");
+            JOptionPane.showMessageDialog(jbtnConfirmer, "La location a ete creee avec succès.");
             clearAchat();
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);

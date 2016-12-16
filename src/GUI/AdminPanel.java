@@ -73,7 +73,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Numéro de téléphone", "Nom, Prenom", "Email", "Addresse"
+                "Numero de telephone", "Nom, Prenom", "Email", "Addresse"
             }
         ) {
             Class[] types = new Class [] {
@@ -140,7 +140,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Retard", "Numéro de téléphone", "ID", "Description", "Durée de location", "Date de transaction", "Date de retour", "Date limite"
+                "Retard", "Numero de telephone", "ID", "Description", "Duree de location", "Date de transaction", "Date de retour", "Date limite"
             }
         ) {
             Class[] types = new Class [] {
@@ -200,7 +200,7 @@ public class AdminPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Numéro de téléphone", "ID", "Date", "Total"
+                "Numero de telephone", "ID", "Date", "Total"
             }
         ) {
             Class[] types = new Class [] {

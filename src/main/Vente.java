@@ -21,7 +21,7 @@ public class Vente extends Transaction {
     }
 
     /**
-     * Constructeur pour initialiser une vente a un client donné
+     * Constructeur pour initialiser une vente a un client donne
      * @param numTel numero de telephone
      */
     public Vente(String numTel) {

@@ -83,7 +83,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
         jlblClient.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblClient.setText("Informations du Client");
 
-        jlblNoTel.setText("Numéro de téléphone : ");
+        jlblNoTel.setText("Numero de telephone : ");
 
         try {
             jftfNoTel.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(###) ###-####")));
@@ -104,14 +104,14 @@ public class InfoClientPanel extends javax.swing.JPanel {
 
         jlblNom.setText("Nom : ");
 
-        jlblPrenom.setText("Prénom : ");
+        jlblPrenom.setText("Prenom : ");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jlblAddresse.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblAddresse.setText("Addresse");
 
-        jlblNoRue.setText("Numéro de rue : ");
+        jlblNoRue.setText("Numero de rue : ");
 
         jlblNomRue.setText("Nom de rue : ");
 
@@ -342,7 +342,7 @@ public class InfoClientPanel extends javax.swing.JPanel {
             jtfCodePostal.setText(client.getCodePostal());
         } catch (NumberFormatException ex) {
             jftfNoTel.setBackground(new Color(255, 232, 232));
-            jlblErreur.setText("Numéro de téléphone invalide");
+            jlblErreur.setText("Numero de telephone invalide");
             emptyFields();
         } catch (Client.UnautorizedException ex) {
             jpsfCodeSecret.setBackground(new Color(255, 232, 232));

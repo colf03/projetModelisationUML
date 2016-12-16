@@ -24,7 +24,7 @@ public class Article {
     }
 
     /** 
-     * Constructeur pour créer un nouvel article
+     * Constructeur pour creer un nouvel article
      * 
      * @param descrip description
      * @param p prix
@@ -35,7 +35,7 @@ public class Article {
     }
 
     /** 
-     * Constructeur pour créer un article recuperer depuis la table Article
+     * Constructeur pour creer un article recuperer depuis la table Article
      * 
      * @param ids id article dans la table
      * @param descrip description
@@ -48,7 +48,7 @@ public class Article {
     }
 
     /**
-     *  Methode ajoutant un article à la table Article
+     *  Methode ajoutant un article a la table Article
      * 
      * @param a article a ajouter dans la table
      * @throws ClassNotFoundException
@@ -69,7 +69,7 @@ public class Article {
 
     /**
      * 
-     * Méthode recuperant tout les articles de la table
+     * Methode recuperant tout les articles de la table
      * 
      * @return liste de tout les articles de la table
      * @throws SQLException
@@ -92,7 +92,7 @@ public class Article {
     }
 
     /**
-     * Méthode recuperant une liste d'article
+     * Methode recuperant une liste d'article
      *  contenant les caracteres rentre en parametre dans la Article
      * 
      * @param descrip nom de l'article
@@ -132,7 +132,7 @@ public class Article {
 
     /**
      * 
-     * Méthode recuperant un article via son id dans la table Article
+     * Methode recuperant un article via son id dans la table Article
      * 
      * @param id
      * @return un Article identifier par son id

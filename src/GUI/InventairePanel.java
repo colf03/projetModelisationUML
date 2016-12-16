@@ -132,7 +132,7 @@ public class InventairePanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Titre", "Description", "Genre", "Quantitée", "Durée des locations", "Prix Location", "Vendable", "Prix Vente"
+                "ID", "Titre", "Description", "Genre", "Quantitee", "Duree des locations", "Prix Location", "Vendable", "Prix Vente"
             }
         ) {
             Class[] types = new Class [] {
@@ -206,11 +206,11 @@ public class InventairePanel extends javax.swing.JPanel {
 
         jlblFilmGenre.setText("Genre : ");
 
-        jlblFilmQtee.setText("Quantitée : ");
+        jlblFilmQtee.setText("Quantitee : ");
 
         jftfFilmQtee.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
-        jlblFilmDuree.setText("Durée de location : ");
+        jlblFilmDuree.setText("Duree de location : ");
 
         jftfFilmDureeLocation.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
 
