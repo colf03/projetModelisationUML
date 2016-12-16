@@ -49,7 +49,7 @@ public class MainUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(980, 540));
-        setPreferredSize(new java.awt.Dimension(980, 540));
+        setPreferredSize(new java.awt.Dimension(1000, 540));
 
         mainPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         mainPanel.setLayout(new java.awt.CardLayout());
@@ -177,27 +177,27 @@ public class MainUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtbLocationTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbLocationTabActionPerformed
-        CardLayout card = (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "location");
     }//GEN-LAST:event_jtbLocationTabActionPerformed
 
     private void jtbAchatTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbAchatTabActionPerformed
-        CardLayout card = (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "achat");
     }//GEN-LAST:event_jtbAchatTabActionPerformed
 
     private void jtbInventaireTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbInventaireTabActionPerformed
-        CardLayout card = (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "inventaire");
     }//GEN-LAST:event_jtbInventaireTabActionPerformed
 
     private void jtbCompteTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbCompteTabActionPerformed
-        CardLayout card = (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "compte");
     }//GEN-LAST:event_jtbCompteTabActionPerformed
 
     private void jtbAdminTabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbAdminTabActionPerformed
-        CardLayout card = (CardLayout)mainPanel.getLayout();
+        CardLayout card = (CardLayout) mainPanel.getLayout();
         card.show(mainPanel, "admin");
     }//GEN-LAST:event_jtbAdminTabActionPerformed
 

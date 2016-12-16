@@ -20,5 +20,5 @@ public class RequiredException extends Exception {
     public RequiredException(JTextComponent component) {
         component.setBackground(new Color(255, 232, 232));
     }
-    
+
 }

@@ -3,16 +3,14 @@ package main;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class Vente extends Transaction {
 
     private Integer id;
     private float total;
-    private String modePaiement;
-    private ArrayList<LigneArticle> listeA;
-    private ArrayList<FilmVideotheque> listeF;
+    private ArrayList<Article> listeA = new ArrayList<Article>();
+    private ArrayList<FilmVideotheque> listeF = new ArrayList<FilmVideotheque>();
 
     /**
      *  Constructeur par defaut pour cree une nouvelle vente
@@ -40,10 +38,10 @@ public class Vente extends Transaction {
      * @param mdpmt mode paiement
      * @param date date vente
      */
-    private Vente(Integer ids, String numTel, float totaux, String mdpmt, String date) {
+    private Vente(Integer ids, String numTel, float totaux, String date) {
         super(numTel, date);
         this.id = ids;
-        this.modePaiement = mdpmt;
+
         this.total = totaux;
 
     }
@@ -53,9 +51,9 @@ public class Vente extends Transaction {
      * @param a article
      * @param qte quantite
      */
-    public void ajouterArticle(Article a, int qte) {
+    public void ajouterArticle(Article a) {
 
-        this.listeA.add(new LigneArticle(a, qte));
+        this.listeA.add(a);
     }
 
     /**
@@ -84,12 +82,10 @@ public class Vente extends Transaction {
      * @throws ClassNotFoundException
      * @throws SQLException
      */
-    public void terminerVente(int modePmt) throws ClassNotFoundException, SQLException {
-        String[] tMode = {"carte debit", "carte crebit", "argent comptant", "cheque"};
-        this.modePaiement = tMode[modePmt];
+    public void terminerVente() throws ClassNotFoundException, SQLException {
         float totaux = 0;
-        for (LigneArticle l : listeA) {
-            totaux += l.getSousTotal();
+        for (Article l : listeA) {
+            totaux += l.getPrix();
         }
         for (FilmVideotheque f : listeF) {
             totaux += f.getPrixVente();
@@ -98,16 +94,16 @@ public class Vente extends Transaction {
         ConnectionBDD cb = new ConnectionBDD();
         Statement st = cb.getStmt();
 
-        if (listeF.size() < 1) {
-            String sql = "INSERT INTO VENTE(CLIENT_NUMTEL,PRIX_TOTAL,MODE_PAIEMENT,DATE_TRANSACTION) "
-                    + "VALUES (" + null + "," + total + ",'" + modePaiement + "'," + date_transaction + ");";
+        if (numTel == null) {
+            String sql = "INSERT INTO VENTE(CLIENT_NUMTEL,PRIX_TOTAL,DATE_TRANSACTION) "
+                    + "VALUES (" + null + "," + total + ",'" + date_transaction + "');";
             st.executeUpdate(sql);
             cb.fermerConnectionBDD();
 
         } else {
 
-            String sql = "INSERT INTO VENTE(CLIENT_NUMTEL,PRIX_TOTAL,MODE_PAIEMENT,DATE_TRANSACTION) "
-                    + "VALUES (" + numTel + "," + total + ",'" + modePaiement + "'," + date_transaction + ");";
+            String sql = "INSERT INTO VENTE(CLIENT_NUMTEL,PRIX_TOTAL,DATE_TRANSACTION) "
+                    + "VALUES ('" + numTel + "'," + total + ",'" + date_transaction + "');";
             st.executeUpdate(sql);
             cb.fermerConnectionBDD();
             for (FilmVideotheque film : listeF) {
@@ -132,15 +128,31 @@ public class Vente extends Transaction {
         String sql = "SELECT * FROM VENTE;";
         ResultSet rs = st.executeQuery(sql);
         while (rs.next()) {
-            Vente v = new Vente(rs.getInt("ID"), rs.getString("CLIENT_NUMTEL"), rs.getFloat("TOTAL"),
-                    rs.getString("MODE_PAIEMENT"), new SimpleDateFormat("yyy-MM-dd").format(rs.getDate("DATE_TRANSACTION")));
+            Vente v = new Vente(rs.getInt("ID"), rs.getString("CLIENT_NUMTEL"), rs.getFloat("PRIX_TOTAL"),
+                    rs.getString("DATE_TRANSACTION"));
             liste.add(v);
 
         }
         rs.close();
         cb.fermerConnectionBDD();
         return liste;
+    }
+    
+    public static ArrayList<Vente> allVente(String numTel) throws ClassNotFoundException, SQLException {
+        ConnectionBDD cb = new ConnectionBDD();
+        Statement st = cb.getStmt();
+        ArrayList<Vente> liste = new ArrayList<Vente>();
+        String sql = "SELECT * FROM VENTE WHERE CLIENT_NUMTEL = '" + numTel + "';";
+        ResultSet rs = st.executeQuery(sql);
+        while (rs.next()) {
+            Vente v = new Vente(rs.getInt("ID"), rs.getString("CLIENT_NUMTEL"), rs.getFloat("PRIX_TOTAL"),
+                    rs.getString("DATE_TRANSACTION"));
+            liste.add(v);
 
+        }
+        rs.close();
+        cb.fermerConnectionBDD();
+        return liste;
     }
 
     public Integer getId() {
@@ -151,11 +163,7 @@ public class Vente extends Transaction {
         return total;
     }
 
-    public String getModePaiement() {
-        return modePaiement;
-    }
-
-    public ArrayList<LigneArticle> getListeA() {
+    public ArrayList<Article> getListeA() {
         return listeA;
     }
 

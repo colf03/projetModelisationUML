@@ -14,11 +14,14 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import main.Article;
+import main.Client;
 import main.FilmVideotheque;
+import main.Vente;
 
 /**
  *
@@ -56,7 +59,8 @@ public class AchatPanel extends javax.swing.JPanel {
         infoClientPanel = infoClientPanel = new GUI.InfoClientPanel(false);
 
         infoAchatPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        infoAchatPanel.setMinimumSize(new java.awt.Dimension(400, 400));
+        infoAchatPanel.setMinimumSize(new java.awt.Dimension(400, 460));
+        infoAchatPanel.setPreferredSize(new java.awt.Dimension(400, 460));
 
         jlblAchat.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblAchat.setText("Informations de la Vente");
@@ -64,6 +68,11 @@ public class AchatPanel extends javax.swing.JPanel {
         jlblTitre.setText("Titre : ");
 
         jbtnAjouter.setText("Ajouter");
+        jbtnAjouter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAjouterActionPerformed(evt);
+            }
+        });
 
         jtblAchatInfo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,8 +126,18 @@ public class AchatPanel extends javax.swing.JPanel {
         });
 
         jbtnConfirmer.setText("Comfirmer l'achat");
+        jbtnConfirmer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnConfirmerActionPerformed(evt);
+            }
+        });
 
         jbtnAnnuler.setText("Annuler");
+        jbtnAnnuler.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAnnulerActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Total : ");
 
@@ -180,6 +199,14 @@ public class AchatPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        infoClientPanel.addActionListenerToSubmit(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Client client = infoClientPanel.getClient();
+                if (client != null)
+                loadClient(client);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -201,29 +228,100 @@ public class AchatPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    private List<Article> articles;
+
+    private void jbtnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAjouterActionPerformed
+        try {
+            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm((String) jcbTitre.getSelectedItem());
+            if (listeFilm.size() > 0) {
+                DefaultTableModel model = (DefaultTableModel) jtblAchatInfo.getModel();
+                for (FilmVideotheque film : listeFilm) {
+                    if (film.getQtee() > 0) {
+                        films.add(film);
+                        model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getPrixVente()});
+                        total += film.getPrixVente();
+                        jftfTotal.setValue(total);
+                    }
+                }
+            } else {
+                List<Article> listeArticle = Article.trouverArticle((String) jcbTitre.getSelectedItem());
+                DefaultTableModel model = (DefaultTableModel) jtblAchatInfo.getModel();
+                for (Article article : listeArticle) {
+                    articles.add(article);
+                    model.addRow(new Object[]{article.getId(), null, article.getDescription(), article.getPrix()});
+                    total += article.getPrix();
+                    jftfTotal.setValue(total);
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jbtnAjouterActionPerformed
+
+    private void jbtnAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAnnulerActionPerformed
+        clearAchat();
+    }//GEN-LAST:event_jbtnAnnulerActionPerformed
+
+    private void jbtnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmerActionPerformed
+        try {
+
+            Vente vente;
+            if (client != null) {
+                vente = new Vente(client.getNumTel());
+            } else {
+                vente = new Vente();
+            }
+
+            for (FilmVideotheque film : films) {
+                vente.ajouterFilm(film);
+            }
+
+            for (Article article : articles) {
+                vente.ajouterArticle(article);
+            }
+
+            vente.terminerVente();
+            JOptionPane.showMessageDialog(jbtnConfirmer, "La location a été créée avec succès.");
+            clearAchat();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jbtnConfirmerActionPerformed
+
+    private Client client;
+    private List<FilmVideotheque> films = new ArrayList<FilmVideotheque>();
+    private List<Article> articles = new ArrayList<Article>();
+    ;
     private float total;
-    
-    private void clearAchat(){
-        DefaultTableModel model = (DefaultTableModel)jtblAchatInfo.getModel();
+
+    private void clearAchat() {
+        DefaultTableModel model = (DefaultTableModel) jtblAchatInfo.getModel();
         model.setRowCount(0);
         articles = new ArrayList<Article>();
         total = 0;
         jftfTotal.setValue(total);
-        ((JTextField)jcbTitre.getEditor().getEditorComponent()).setText("");
+        ((JTextField) jcbTitre.getEditor().getEditorComponent()).setText("");
     }
-    
-    private void jcbTitreUpdate() {                                     
+
+    private void jcbTitreUpdate() {
         try {
-            JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
+            JTextField tf = (JTextField) jcbTitre.getEditor().getEditorComponent();
             String text = tf.getText();
-            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text);
-            String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
+            List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text, true);
+            String[] listeFilmStr = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
+            List<Article> listeArticle = Article.allArticle();
+            String[] listeArticleDesc = listeArticle.stream().map(e -> e.getDescription()).collect(Collectors.toList()).toArray(new String[0]);
             jcbTitre.removeAllItems();
-            DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
-            for(String titre : listeTitre){
+            DefaultComboBoxModel<String> model = (DefaultComboBoxModel) jcbTitre.getModel();
+            for (String titre : listeFilmStr) {
                 model.addElement(titre);
+            }
+            for (String desc : listeArticleDesc) {
+                model.addElement(desc);
             }
             jcbTitre.setModel(model);
             jcbTitre.setSelectedIndex(-1);
@@ -234,6 +332,10 @@ public class AchatPanel extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void loadClient(Client client) {
+        this.client = client;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

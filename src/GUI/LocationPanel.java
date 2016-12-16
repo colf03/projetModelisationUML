@@ -167,12 +167,12 @@ public class LocationPanel extends javax.swing.JPanel {
             .addGroup(infoLocationPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(infoLocationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpLocationInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jscpLocationInfo)
                     .addComponent(jlblLocation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(infoLocationPanelLayout.createSequentialGroup()
                         .addComponent(jlblTitre)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbTitre, 0, 268, Short.MAX_VALUE)
+                        .addComponent(jcbTitre, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnAjouter))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, infoLocationPanelLayout.createSequentialGroup()
@@ -243,23 +243,22 @@ public class LocationPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void clearLocation(){
-        DefaultTableModel model = (DefaultTableModel)jtblLocationInfo.getModel();
+    private void clearLocation() {
+        DefaultTableModel model = (DefaultTableModel) jtblLocationInfo.getModel();
         model.setRowCount(0);
         films = new ArrayList<FilmVideotheque>();
         total = 0;
         jftfTotal.setValue(total);
-        ((JTextField)jcbTitre.getEditor().getEditorComponent()).setText("");
+        ((JTextField) jcbTitre.getEditor().getEditorComponent()).setText("");
     }
-    
+
     private void jbtnAjouterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAjouterActionPerformed
         try {
-            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm((String)jcbTitre.getSelectedItem());
-            if (listeFilm.size() > 0)
-            {
-                DefaultTableModel model = (DefaultTableModel)jtblLocationInfo.getModel();
-                for (FilmVideotheque film : listeFilm){
-                    if (!films.stream().map(e -> e.getId()).collect(Collectors.toList()).contains(film.getId()) && film.getQtee() > 0){
+            List<FilmVideotheque> listeFilm = FilmVideotheque.trouverFilm((String) jcbTitre.getSelectedItem());
+            if (listeFilm.size() > 0) {
+                DefaultTableModel model = (DefaultTableModel) jtblLocationInfo.getModel();
+                for (FilmVideotheque film : listeFilm) {
+                    if (!films.stream().map(e -> e.getId()).collect(Collectors.toList()).contains(film.getId()) && film.getQtee() > 0) {
                         films.add(film);
                         model.addRow(new Object[]{film.getFilm().getId(), film.getFilm().getTitre(), film.getFilm().getDescription(), film.getFilm().getGenre(), film.getDureeLocation(), film.getPrixLocation()});
                         total += film.getPrixLocation();
@@ -279,33 +278,33 @@ public class LocationPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnAnnulerActionPerformed
 
     private void jbtnConfirmerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnConfirmerActionPerformed
-        for (FilmVideotheque film : films){
-            try {
+        try {
+            for (FilmVideotheque film : films) {
                 main.Location location = new main.Location(client.getNumTel(), film.getId(), film.getDureeLocation());
                 location.ajouterLocation();
-                JOptionPane.showMessageDialog(jbtnConfirmer, "La location a été créée avec succès.");
-                clearLocation();
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+            JOptionPane.showMessageDialog(jbtnConfirmer, "La location a été créée avec succès.");
+            clearLocation();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jbtnConfirmerActionPerformed
 
     private Client client;
     private List<FilmVideotheque> films = new ArrayList<FilmVideotheque>();
     private float total = 0;
-    
-    private void jcbTitreUpdate() {                                     
+
+    private void jcbTitreUpdate() {
         try {
-            JTextField tf = (JTextField)jcbTitre.getEditor().getEditorComponent();
+            JTextField tf = (JTextField) jcbTitre.getEditor().getEditorComponent();
             String text = tf.getText();
             List<FilmVideotheque> listeFilm = FilmVideotheque.rechercheFilm(text);
             String[] listeTitre = listeFilm.stream().map(e -> e.getFilm().getTitre()).collect(Collectors.toList()).toArray(new String[0]);
             jcbTitre.removeAllItems();
-            DefaultComboBoxModel<String> model = (DefaultComboBoxModel)jcbTitre.getModel();
-            for(String titre : listeTitre){
+            DefaultComboBoxModel<String> model = (DefaultComboBoxModel) jcbTitre.getModel();
+            for (String titre : listeTitre) {
                 model.addElement(titre);
             }
             jcbTitre.setModel(model);
@@ -318,13 +317,12 @@ public class LocationPanel extends javax.swing.JPanel {
             Logger.getLogger(LocationPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    private void setLocationState(boolean state){
-        if (state){
+
+    private void setLocationState(boolean state) {
+        if (state) {
             jlblLocation.setForeground(Color.black);
             jlblTitre.setForeground(Color.black);
-        }            
-        else{
+        } else {
             jlblLocation.setForeground(SystemColor.textInactiveText);
             jlblTitre.setForeground(SystemColor.textInactiveText);
         }
@@ -333,8 +331,8 @@ public class LocationPanel extends javax.swing.JPanel {
         jbtnConfirmer.setEnabled(state);
         jcbTitre.setEnabled(state);
     }
-    
-    private void loadClient(Client client){
+
+    private void loadClient(Client client) {
         this.client = client;
     }
 
